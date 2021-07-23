@@ -11,8 +11,8 @@ import Interstitial from './interstitial/Interstitial';
 
 const Webpages = () => {
     return(
-        <Router>
-            <Route exact path="/" component= {Home} />
+        <Router basename={process.env.PUBLIC_URL}>
+            <Route path="/" exact component = {Home} />
             <Route path = "/interstitial" component = {Interstitial} />
         </Router>
     );
