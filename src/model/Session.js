@@ -3,7 +3,7 @@ class Session {
   constructor(){
     this.start_time = new Date();
     this.duration = 2;
-    this.delay_minutes = 1;
+    this.delay_minutes = 0.75;
   }
 
   setStartTime(time){
