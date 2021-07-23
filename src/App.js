@@ -1,10 +1,12 @@
 
 import './App.css';
 
+import Webpages from './WebPages';
+
 function App() {
   return (
-    <div className="App">
-      SeptembRSE application
+    <div>
+      <Webpages />
     </div>
   );
 }
