@@ -7,6 +7,8 @@ import ReactMarkdown from 'react-markdown'
 
 import styles from "./Search.module.css";
 
+const gfm = require('remark-gfm');
+
 const Search = ({text = ""}) => {
 
   const [search_text, setSearchText] = React.useState({text});
@@ -48,7 +50,7 @@ const Search = ({text = ""}) => {
         <div className={styles.title}>{r.getTitle()}</div>
         <div className={styles.name}>{r.getName()}</div>
         <div className={styles.institution}>{r.getInstitution()}</div>
-        <div className={styles.markdown}><ReactMarkdown children={r.getAbstract()} /></div>
+        <div className={styles.markdown}><ReactMarkdown remarkPlugins={[gfm]} children={r.getAbstract()} /></div>
       </div>
     )
   }
