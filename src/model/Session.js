@@ -1,9 +1,53 @@
 
+import sessions from "../sessions.json";
+
 class Session {
-  constructor(){
-    this.start_time = new Date();
-    this.duration = 2;
+  constructor(data = {}){
+    if (data["starts"]){
+      this.start_time = new Date(data["starts"]);
+    } else {
+      this.start_time = new Date();
+    }
+
+    if (data["ends"]){
+      this.end_time = new Date(data["ends"]);
+    } else {
+      this.end_time = new Date(this.start_time.getTime() + (2 * 60 * 60 * 1000));
+    }
+
+    if (data["description"]){
+      this.description = data["description"];
+    } else {
+      this.description = null;
+    }
+
+    if (data["title"]){
+      this.title = data["title"];
+    } else {
+      this.title = "No title";
+    }
+
     this.delay_minutes = 5;
+  }
+
+  static getNextSession(){
+    for (let session in sessions){
+      return new Session(sessions[session]);
+    }
+
+    return new Session();
+  }
+
+  getTitle(){
+    return this.title;
+  }
+
+  hasDescription(){
+    return this.description !== null;
+  }
+
+  getDescription(){
+    return this.description;
   }
 
   setStartTime(time){
@@ -19,7 +63,7 @@ class Session {
   }
 
   getEndTime(){
-    return new Date(this.start_time.getTime() + (this.duration * 60 * 60 * 1000));
+    return this.end_time;
   }
 
   getDelayTime(){
