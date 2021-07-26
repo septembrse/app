@@ -1,38 +1,42 @@
 import React from 'react'
 
-const CountDown = ({ hours = 0, minutes = 0, seconds = 60 }) => {
+const CountDown = ({ minutes = 0, seconds = 60 }) => {
 
 
-    const [time, setTime] = React.useState({hours, minutes, seconds});
+    minutes = Math.floor(minutes);
+    seconds = Math.floor(seconds);
+
+    const [time, setTime] = React.useState({minutes,
+                                            seconds});
 
 
     const tick = () => {
 
-        if (time.hours === 0 && time.minutes === 0 && time.seconds === 0)
-            reset()
-        else if (time.hours === 0 && time.seconds === 0) {
-            setTime({hours: time.hours - 1, minutes: 59, seconds: 59});
-        } else if (time.seconds === 0) {
-            setTime({hours: time.hours, minutes: time.minutes - 1, seconds: 59});
+        if (time.minutes <= 0 && time.seconds <= 0){
+            reset();
+        } else if (time.seconds <= 0) {
+            setTime({minutes: time.minutes - 1, seconds: 59});
         } else {
-            setTime({hours: time.hours, minutes: time.minutes, seconds: time.seconds - 1});
+            setTime({minutes: time.minutes, seconds: time.seconds - 1});
         }
     };
 
-    const reset = () => setTime({hours: time.hours, minutes: time.minutes, seconds: time.seconds});
+    const reset = () => setTime({minutes: time.minutes, seconds: time.seconds});
 
     React.useEffect(() => {
         const timerId = setInterval(() => tick(), 1000);
         return () => clearInterval(timerId);
     });
 
-    return (
-        <div>
-            <p>{`${time.hours.toString().padStart(2, '0')}:${time.minutes
-            .toString()
-            .padStart(2, '0')}:${time.seconds.toString().padStart(2, '0')}`}</p>
-        </div>
-    );
+    if (time.minutes <= 0 && time.seconds <= 0){
+        return <div>Session has started</div>
+    } else {
+      return (
+          <div>
+            Session will start in {`${time.minutes.toString()}:${time.seconds.toString().padStart(2, '0')}`}
+          </div>
+      );
+    };
 }
 
 export default CountDown;

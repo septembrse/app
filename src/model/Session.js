@@ -3,7 +3,7 @@ class Session {
   constructor(){
     this.start_time = new Date();
     this.duration = 2;
-    this.delay_minutes = 0.75;
+    this.delay_minutes = 5;
   }
 
   setStartTime(time){
@@ -27,8 +27,7 @@ class Session {
   }
 
   _getDateString(d){
-    console.log(d);
-    return d.toLocaleString('en-GB', { weekday:"long", year:"numeric", month:"short", day:"numeric", hour:"numeric", minute:"numeric", hour12:true});
+    return `${d.toLocaleString('en-GB', {hour:"numeric", minute:"numeric", hour12:true})} on ${d.toLocaleString('en-GB', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}`;
   }
 
   getStartTimeString(){
