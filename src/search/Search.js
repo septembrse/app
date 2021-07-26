@@ -3,6 +3,8 @@ import React from 'react';
 
 import Submission from "../model/Submission";
 
+import ReactMarkdown from 'react-markdown'
+
 import styles from "./Search.module.css";
 
 const Search = ({text = ""}) => {
@@ -46,7 +48,7 @@ const Search = ({text = ""}) => {
         <div className={styles.title}>{r.getTitle()}</div>
         <div className={styles.name}>{r.getName()}</div>
         <div className={styles.institution}>{r.getInstitution()}</div>
-        <div className={styles.abstract}>{r.getAbstract()}</div>
+        <div className={styles.markdown}><ReactMarkdown children={r.getAbstract()} /></div>
       </div>
     )
   }

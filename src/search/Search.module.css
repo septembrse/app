@@ -46,10 +46,57 @@
   padding: 2px;
 }
 
-.abstract {
+.markdown {
   padding-left: 10px;
   padding-right: 10px;
   padding-top: 2px;
   padding-bottom: 2px;
   font-size: small;
+}
+
+.markdown h1 {
+  font-size: 28pt;
+  line-height: 1.2;
+  font-style: italic;
+  text-align: center;
+  margin-bottom: 8pt;
+  font-family: "Domine";
+}
+
+.markdown h2 {
+  font-size: 12pt;
+  line-height: 1.2;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 8pt;
+  font-family: "Domine";
+}
+
+.markdown p {
+  font-size: 12pt;
+  line-height: 1.5;
+  margin-bottom: 8pt;
+  text-align: justify;
+  font-family: "Domine";
+}
+
+.markdown em {
+  font-style: italic;
+  font-weight: bold;
+}
+
+.markdown ul {
+  list-style-position: inside;
+  font-size: 10pt;
+  line-height: 1.2;
+  margin-bottom: 8pt;
+  line-height: 1.2;
+  list-style-type: none;
+}
+
+.markdown li {
+  list-style-position: inside;
+  font-size: 10pt;
+  line-height: 1.2;
+  margin-bottom: 8pt;
 }
