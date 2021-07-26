@@ -8,6 +8,8 @@ import CountDown from './Countdown';
 import styles from "./Interstitial.module.css"
 
 import banner from "../images/interstitial_bg.png";
+import no_camera from "../images/no_camera.png";
+import no_microphone from "../images/no_microphone.png";
 
 const Interstitial = () => {
 
@@ -52,13 +54,15 @@ const Interstitial = () => {
   }
 
   let info = (<div className={styles.info}>
-               <div>Cameras and microphones off. Please feel free to say hello in the text chat.</div>
+               <img className={styles.no_camera} src={no_camera} alt=""/>
+               <div className={styles.info_text}>Cameras and microphones off. Please feel free to say hello in the text chat.</div>
+               <img className={styles.no_microphone} src={no_microphone} alt=""/>
               </div>)
 
   return (
       <div className={styles.background}>
         <img src={banner}
-             className={styles.bg_image} alt="SeptembRSE Banner"
+             className={styles.bg_image} alt=""
         ></img>
         {title}
         {description}

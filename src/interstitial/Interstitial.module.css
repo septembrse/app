@@ -19,19 +19,40 @@
 .title {
     font-size: xx-large;
     text-align: center;
+    padding: 12pt;
 }
 
 .description {
     font-size: large;
     text-align: center;
+    padding: 12pt;
 }
 
 .countdown {
     font-size: larger;
     text-align: center;
+    padding: 12pt;
 }
 
 .info {
-    font-size: small;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.no_camera {
+    max-height: 24pt;
+}
+
+.no_microphone {
+    max-height: 24pt;
+}
+
+.info_text {
+    font-size: medium;
     text-align: center;
+    padding: 12pt;
 }
