@@ -55,7 +55,7 @@ const Interstitial = () => {
 
   let info = (<div className={styles.info}>
                <img className={styles.no_camera} src={no_camera} alt=""/>
-               <div className={styles.info_text}>Cameras and microphones off. Please feel free to say hello in the text chat.</div>
+               <div className={styles.info_text}>Cameras and microphones off. Please feel free to say hello in the text chat 👋 😊</div>
                <img className={styles.no_microphone} src={no_microphone} alt=""/>
               </div>)
 
