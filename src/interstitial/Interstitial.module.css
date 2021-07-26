@@ -1,0 +1,37 @@
+
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: linear-gradient(rgb(89,128,188), white);
+}
+
+.bg_image {
+    width: 60%;
+    max-height: 30%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.title {
+    font-size: xx-large;
+    text-align: center;
+}
+
+.description {
+    font-size: large;
+    text-align: center;
+}
+
+.countdown {
+    font-size: larger;
+    text-align: center;
+}
+
+.info {
+    font-size: small;
+    text-align: center;
+}

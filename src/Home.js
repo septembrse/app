@@ -9,6 +9,7 @@ const Home = () => {
     return (
         <div>
             <h1>SeptembRSE</h1>
+            <img src={require("./images/interstitial_bg.png")}/>
             <Link to="/interstitial">Interstitial</Link>
             <p>Under construction</p>
         </div>

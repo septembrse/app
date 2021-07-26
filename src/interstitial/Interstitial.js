@@ -5,7 +5,9 @@ import Session from "../model/Session";
 
 import CountDown from './Countdown';
 
-import styles from "./Interstitial.css"
+import styles from "./Interstitial.module.css"
+
+import banner from "../images/interstitial_bg.png";
 
 const Interstitial = () => {
 
@@ -49,11 +51,19 @@ const Interstitial = () => {
     description = <div className={styles.description}>{s.getDescription()}</div>;
   }
 
+  let info = (<div className={styles.info}>
+               <div>Cameras and microphones off. Please feel free to say hello in the text chat.</div>
+              </div>)
+
   return (
       <div className={styles.background}>
-          {title}
-          {description}
-          {countdown}
+        <img src={banner}
+             className={styles.bg_image} alt="SeptembRSE Banner"
+        ></img>
+        {title}
+        {description}
+        {countdown}
+        {info}
       </div>
   );
 };
