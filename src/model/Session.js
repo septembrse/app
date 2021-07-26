@@ -31,8 +31,13 @@ class Session {
   }
 
   static getNextSession(){
+    let now = new Date();
+
     for (let session in sessions){
-      return new Session(sessions[session]);
+      let s = new Session(sessions[session]);
+      if (s.getEndTime() - now > 0){
+        return s;
+      }
     }
 
     return new Session();
