@@ -45,7 +45,7 @@ const Search = ({text = ""}) => {
     let r = results[result];
 
     formatted_results.push(
-      <div className={styles.result} id={r.getID()}>
+      <div className={styles.result} key={r.getID()}>
         <div className={styles.sformat}>{r.getFormat()}: {r.getID()}</div>
         <div className={styles.title}>{r.getTitle()}</div>
         <div className={styles.name}>{r.getName()}</div>
