@@ -2,6 +2,7 @@
 import React from 'react';
 
 import Submission from "../model/Submission";
+import SimplePage from "../SimplePage";
 
 import ReactMarkdown from 'react-markdown'
 
@@ -20,23 +21,29 @@ const Search = ({text = ""}) => {
     );
 
   if (search_text === "" || !search_text){
-    return (<div className={styles.searchpage}>
-      {search_bar}
-      <div className={styles.message}>
-        Results will appear here.
-      </div>
-    </div>);
+    return (
+      <SimplePage>
+        {search_bar}
+        <div className={styles.message}>
+          <div>Type above to search for any of the presentations or events
+               taking place as part of #SeptembRSE.
+          </div>
+        </div>
+      </SimplePage>
+    );
   }
 
   let results = Submission.search(search_text);
 
   if (results.length === 0){
-    return <div className={styles.searchpage}>
-      {search_bar}
-      <div className={styles.message}>
-        No match.
-      </div>
-    </div>;
+    return (
+      <SimplePage>
+        {search_bar}
+        <div className={styles.message}>
+          No match.
+        </div>
+        </SimplePage>
+    );
   }
 
   let formatted_results = [];
@@ -55,10 +62,12 @@ const Search = ({text = ""}) => {
     )
   }
 
-  return <div className={styles.searchpage}>
-          {search_bar}
-          <div className={styles.results}>{formatted_results}</div>
-         </div>;
+  return (
+    <SimplePage>
+      {search_bar}
+      <div className={styles.results}>{formatted_results}</div>
+    </SimplePage>
+  );
 }
 
 export default Search;

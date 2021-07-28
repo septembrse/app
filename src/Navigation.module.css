@@ -1,0 +1,14 @@
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+}
+
+.navitem {
+  font-size: smaller;
+  margin-left: 10px;
+  margin-right: 10px;
+}

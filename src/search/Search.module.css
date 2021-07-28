@@ -1,4 +1,22 @@
 
+.searchpage {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.searchBar {
+  width: 90%;
+  text-align: center;
+  margin: 10px;
+}
+
+.message {
+  text-align: center;
+}
+
 .results {
   display: flex;
   flex-direction: column;
@@ -9,6 +27,7 @@
   align-items: center;
   margin-left: auto;
   margin-right: auto;
+  border-radius: 5px;
 }
 
 .result {
@@ -16,7 +35,8 @@
   flex-direction: column;
   width: 95%;
   background-color: azure;
-  margin: 2px;
+  margin: 5px;
+  border-radius: 5px;
 }
 
 .sformat {
