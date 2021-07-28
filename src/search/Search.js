@@ -26,7 +26,9 @@ const Search = ({text = ""}) => {
         {search_bar}
         <div className={styles.message}>
           <div>Type above to search for any of the presentations or events
-               taking place as part of #SeptembRSE.
+               taking place as part of #SeptembRSE. Use "all" to see
+               all submissions, "talks" to see all talks, "posters" to
+               see all posters etc.
           </div>
         </div>
       </SimplePage>
