@@ -24,14 +24,20 @@ class Session {
     if (data["title"]){
       this.title = data["title"];
     } else {
-      this.title = "No title";
+      this.title = "SeptembRSE has finished. We hope it was fun!";
     }
 
     this.delay_minutes = 5;
   }
 
-  static getNextSession(){
-    let now = new Date();
+  static getNextSession(test_date=null){
+    let now = null;
+
+    if (test_date){
+      now = test_date;
+    } else {
+      now = new Date();
+    }
 
     for (let session in sessions){
       let s = new Session(sessions[session]);
@@ -76,7 +82,7 @@ class Session {
   }
 
   _getDateString(d){
-    return `${d.toLocaleString('en-GB', {hour:"numeric", minute:"numeric", hour12:true})} on ${d.toLocaleString('en-GB', { weekday:"long", year:"numeric", month:"short", day:"numeric"})}`;
+    return `${d.toLocaleString('en-US', {hour:"numeric", minute:"numeric", hour12:true})} on ${d.toLocaleString('en-GB', { weekday:"long", year:"numeric", month:"long", day:"numeric"})}`;
   }
 
   getStartTimeString(){

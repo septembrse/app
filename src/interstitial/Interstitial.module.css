@@ -16,6 +16,14 @@
     margin-right: auto;
 }
 
+.test_date {
+    text-align: center;
+}
+
+.message {
+    text-align: center;
+}
+
 .title {
     font-size: xx-large;
     text-align: center;

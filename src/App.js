@@ -18,6 +18,7 @@ function App() {
             <Switch>
               <Route exact path="/" component = {Home} />
               <Route exact path="/interstitial" component = {Interstitial} />
+              <Route exact path="/interstitial/:test_date" component = {Interstitial} />
               <Route exact path="/search" component = {Search} />
               <Route render={() => <h1>404: page not found</h1>} />
             </Switch>

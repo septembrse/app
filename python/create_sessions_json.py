@@ -1,24 +1,32 @@
 
 import json
+import pandas as pd
+import tzlocal
 
 sessions = []
 
 # 2021-07-26T09:26:21Z
 
-session = {"title": "Committee Meeting 9",
-           "details": None,
-           "starts": "2021-07-26T10:50:00",
-           "ends": "2021-07-26T11:00:00"}
+data = pd.read_excel("Timetable.xlsx")
 
-sessions.append(session)
+tz = tzlocal.get_localzone()
 
+for i in range(0, len(data)):
+    d = data.loc[i]
 
-session = {"title": "Committee Meeting 9",
-           "details": None,
-           "starts": "2021-07-29T11:00:00",
-           "ends": "2021-07-29T12:00:00"}
+    starts = tz.localize(d["Starts"]).isoformat()
+    ends = tz.localize(d["Ends"]).isoformat()
 
-sessions.append(session)
+    session = {"id": d["Session ID"],
+               "title": d["Title"],
+               "details": None,
+               "starts": starts,
+               "ends": ends}
+
+    sessions.append(session)
+
+# I am assuming that the sessions are already sorted from
+# earliest to latest - should add a sort function later
 
 sessions_file = "../src/sessions.json"
 
