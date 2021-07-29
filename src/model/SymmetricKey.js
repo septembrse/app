@@ -1,8 +1,10 @@
 
-import fernet from "fernet";
+var fernet = require('fernet');
 
-import base64js from "./base64js";
-import md5 from "./md5";
+var base64js = require('base64-js');
+
+var md5 = require('md5');
+
 
 function _utf8_bytes_to_string(b){
     return new TextDecoder("utf-8").decode(b);
@@ -16,13 +18,13 @@ function _string_to_encoded(s){
     return _bytes_to_string(_string_to_utf8_bytes(s));
 }
 
-function _encoded_to_string(b){
+/*function _encoded_to_string(b){
     return _utf8_bytes_to_string(_string_to_bytes(b));
-}
+}*/
 
-function _string_to_bytes(s){
+/*function _string_to_bytes(s){
     return base64js.toByteArray(s);
-}
+}*/
 
 function _bytes_to_string(b){
     return base64js.fromByteArray(b);
