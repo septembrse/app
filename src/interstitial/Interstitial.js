@@ -33,18 +33,17 @@ const Interstitial = () => {
 
   // get the time now
   let d = null;
+  let offset = 0;
 
   if (test_date){
     d = test_date;
+    offset = Math.floor((test_date - new Date()) / 1000.0);
   } else {
     d = new Date();
   }
 
-  // how many milliseconds to go?
+  // how many seconds to go?
   let delta = (s.getDelayTime() - d) / 1000.0;
-
-  let mins = Math.floor(delta / 60);
-  let secs = delta - (60*mins);
 
   let countdown = null;
 
@@ -62,7 +61,7 @@ const Interstitial = () => {
                  </div>);
   } else {
     countdown = (<div className={styles.countdown}>
-                  <CountDown minutes={mins} seconds={secs}/>
+                  <CountDown offset={offset} target={s.getDelayTime()}/>
                  </div>);
 
   }
