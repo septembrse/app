@@ -7,9 +7,8 @@ const Login = () => {
 
   console.log("HERE!");
 
-  let key = new SymmetricKey();
-
-  console.log(key);
+  let key = SymmetricKey.createFromPassword("Christopher.Woods@bristol.ac.uk",
+                                            "fluffy_sheep");
 
   let message = "Hello World!";
 
@@ -17,7 +16,11 @@ const Login = () => {
 
   console.log(encrypted);
 
-  console.log(key.decrypt(encrypted));
+  let key2 = SymmetricKey.createFromPassword("Christopher.Woods@bristol.ac.uk",
+                                             "fluffy_sheep");
+
+
+  console.log(key2.decrypt(encrypted));
 
   return (
     <div>Loaded the page!</div>
