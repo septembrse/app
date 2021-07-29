@@ -17,9 +17,9 @@ function _string_to_encoded(s) {
   return _bytes_to_string(_string_to_utf8_bytes(s));
 }
 
-/*function _encoded_to_string(b){
+function _encoded_to_string(b){
     return _utf8_bytes_to_string(_string_to_bytes(b));
-}*/
+}
 
 function _string_to_bytes(s){
     return base64js.toByteArray(s);

@@ -11,6 +11,7 @@ import Home from './Home';
 import Interstitial from './interstitial/Interstitial';
 import Search from './search/Search';
 import Login from './login/Login';
+import Generate from "./generate/Generate";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
               <Route exact path="/interstitial/:test_date" component = {Interstitial} />
               <Route exact path="/search" component = {Search} />
               <Route exact path="/login" component = {Login} />
+              <Route exact path="/generate" component = {Generate} />
               <Route render={() => <h1>404: page not found</h1>} />
             </Switch>
         </Router>
