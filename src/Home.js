@@ -11,6 +11,7 @@ const Home = () => {
             <h1>SeptembRSE</h1>
             <div><Link to="/interstitial">Interstitial</Link></div>
             <div><Link to="/search">Search</Link></div>
+            <div><Link to="/login">Login</Link></div>
         </div>
     );
 };
