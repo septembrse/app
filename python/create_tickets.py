@@ -11,7 +11,13 @@ from create_passwords import generate_password
 
 # The main ticketing spreadsheet - contains everything
 tickets = pd.read_excel("Tickets.xlsx", converters={"password": str,
-                                                    "name": str})
+                                                    "name": str,
+                                                    "presentations": str},
+                        index_col=None)
+
+for col in tickets.columns:
+    if col.startswith("Unnamed"):
+        tickets = tickets.drop(columns=col)
 
 # everyone who has bought a ticket
 purchased_tickets = pd.read_excel("Email addresses of ticket holders.xlsx")
@@ -21,6 +27,10 @@ submissions = pd.read_csv("sessions_and_emails.tsv", delimiter="\t")
 
 # Diversity data, so that we can get names
 diversity = pd.read_excel("diversity.xlsx")
+
+# Drive links, so that we can add links to write and read presentation
+# files
+links = pd.read_excel("Drive Links.xlsx")
 
 # Initalise the random number generators, so that we get
 # the same password sequence
@@ -76,51 +86,76 @@ for i in range(0, len(purchased_tickets)):
     idx = get_row_in_tickets(email)
 
     if idx is None:
-        print("Need to add!")
-
-print(tickets)
-
-raise SystemError("END")
+        tickets = tickets.append({"email": email,
+                                  "password": generate_password(),
+                                  "ticket": "full",
+                                  "name": get_name(email)},
+                                 ignore_index=True)
 
 # Go through all of the emails of people who made submissions and make
-# sure that they are in the main spreadsheet - if not, then add them
+# sure that they are in the main spreadsheet - if not, then add them.
+# Also add their sessions to the tickets spreadsheet
 for i in range(0, len(submissions)):
     submission = submissions.loc[i]
     email = submission["email"]
 
-    row_id = main_spreadsheet.index[
-                    main_spreadsheet['email'] == email].tolist()
+    idx = get_row_in_tickets(email)
 
-    if len(row_id) == 0:
-        # we need to add this person to the ticketing spreadsheet,
-        # as a presenter
-        print(email)
+    if idx is None:
+        tickets = tickets.append({"email": email,
+                                  "password": generate_password(),
+                                  "ticket": "day",
+                                  "name": get_name(email)},
+                                 ignore_index=True)
 
-for i in range(0, num_attendees):
-    email = data.loc[i]["Email"]
+        idx = get_row_in_tickets(email)
 
-    ok = False
+    presentation = submission["id"]
 
-    while not ok:
-        password = "%s_%03d" % (petname.generate(2, "_"),
-                                num_random.randint(100, 999))
+    current = tickets.loc[idx]["presentations"]
 
-        if password.find("maggot") == -1:
-            ok = True
+    if pd.isna(current):
+        current = presentation
+        tickets.at[idx, "presentations"] = current
+    elif current.find(presentation) == -1:
+        current = f"{current}, {presentation}"
+        tickets.at[idx, "presentations"] = current
 
-    df = df.append({"email": email, "password": password}, ignore_index=True)
+# Create the JSON file that is needed for the JS conference info system
+attendees = []
 
-    if email in attendees:
-        raise SystemError("Email clash!")
+for i in range(0, len(tickets)):
+    ticket = tickets.loc[i]
 
-    attendee = {"password": password,
-                "ticket": "full"}
+    p = ticket["presentations"]
 
-    attendees[email] = attendee
+    if pd.isna(p):
+        p = []
+    else:
+        p = p.split(",")
+
+    attendee = {"email": ticket["email"],
+                "password": ticket["password"],
+                "ticket": ticket["ticket"],
+                "presentations": p}
+
+    attendees.append(attendee)
+
+# Now read all of the google drive links and add them to
+# the json
+drive_links = {}
+
+for i in range(0, len(links)):
+    link = links.loc[i]
+
+    drive_links[link["ID"]] = {"read": link["RO_link"],
+                               "write": link["RW_link"]}
+
 
 with open("passwords.json", "w") as FILE:
-    json.dump(attendees, FILE)
+    json.dump({"attendees": attendees,
+               "links": drive_links}, FILE)
 
+print(tickets)
 
-with open("passwords.csv", "w") as FILE:
-    print(df)
+tickets.to_excel("Tickets.xlsx", index=False)

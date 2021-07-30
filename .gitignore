@@ -31,3 +31,5 @@ python/sessions_and_emails.tsv
 python/Tickets.xlsx
 python/Email addresses of ticket holders.xlsx
 *.pyc
+python/passwords.json
+python/Drive Links.xlsx
