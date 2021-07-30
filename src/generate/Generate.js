@@ -95,8 +95,6 @@ class Generate extends React.Component {
         throw Error(`Duplicate mangled email? ${email} : ${attendee.email}`);
       }
 
-      let key = get_user_key(attendee.email, attendee.password);
-
       let ticket = {"ticket": attendee.ticket};
 
       if (attendee.ticket === "committee" ||
@@ -150,7 +148,10 @@ class Generate extends React.Component {
         ticket["drive_links"] = links;
       }
 
+      let key = get_user_key(attendee.email, attendee.password);
       ticket = key.encrypt(JSON.stringify(ticket));
+
+      console.log(attendee.email, attendee.password, ticket);
 
       tickets[email] = ticket;
     }
