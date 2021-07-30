@@ -24,5 +24,10 @@ yarn-error.log*
 
 python/accepted_submissions.tsv
 python/Timetable.xlsx
-
-
+python/attendees.xlsx
+python/create_passwords.py
+python/diversity.xlsx
+python/sessions_and_emails.tsv
+python/Tickets.xlsx
+python/Email addresses of ticket holders.xlsx
+*.pyc

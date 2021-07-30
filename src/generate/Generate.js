@@ -22,7 +22,7 @@ class Generate extends React.Component {
     reader.readAsText(e.target.files[0])
   }
 
-  readZoomLinks = async (e) => {
+  readSessionLinks = async (e) => {
     e.preventDefault()
     const reader = new FileReader()
     reader.onload = async (e) => {
@@ -32,31 +32,23 @@ class Generate extends React.Component {
     reader.readAsText(e.target.files[0])
   }
 
-  readGodKey = async (e) => {
+  updateGodKey = async (e) => {
     e.preventDefault()
-    const reader = new FileReader()
-    reader.onload = async (e) => {
-      const text = (e.target.result)
-      this.setState({god_key: text});
-    };
-    reader.readAsText(e.target.files[0])
+    this.setState({god_key: e.target.value});
   }
 
   render = () => {
-    /** God key should be text from a text box - this is the text password,
-     *  generate locally using openssl
-     */
 
     return (
       <div>
         <div>
-          List of emails: <input type="file" onChange={(e) => this.readEmails(e)} />
+          User details file: <input type="file" onChange={(e) => this.readUserDetails(e)} />
         </div>
         <div>
-          List of Zoom links: <input type="file" onChange={(e) => this.readZoomLinks(e)} />
+          Session links file: <input type="file" onChange={(e) => this.readSessionLinks(e)} />
         </div>
         <div>
-          God key: <input type="file" onChange={(e) => this.readGodKey(e)} />
+          God key: <input type="text" onChange={(e) => this.updateGodKey(e)} />
         </div>
         <div>
           <div>{this.state.zoom_links}</div>
