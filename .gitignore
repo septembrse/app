@@ -35,4 +35,5 @@ python/passwords.json
 python/Drive Links.xlsx
 src/generate/Secret.js
 python/Zoom links.xlsx
-src/login/secrets.js
+src/login/secrets.json
+src/generate/Secret.json
