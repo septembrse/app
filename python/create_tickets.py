@@ -5,7 +5,7 @@ import random
 import petname
 import hashlib
 
-from create_passwords import generate_password
+from create_passwords import generate_password, get_god_key
 
 # Read the input data
 
@@ -154,7 +154,8 @@ for i in range(0, len(links)):
 
 with open("passwords.json", "w") as FILE:
     json.dump({"attendees": attendees,
-               "links": drive_links}, FILE)
+               "links": drive_links,
+               "god_key": get_god_key()}, FILE)
 
 print(tickets)
 

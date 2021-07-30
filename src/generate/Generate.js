@@ -48,7 +48,7 @@ class Generate extends React.Component {
           Session links file: <input type="file" onChange={(e) => this.readSessionLinks(e)} />
         </div>
         <div>
-          God key: <input type="text" onChange={(e) => this.updateGodKey(e)} />
+          God key: <input type="file" onChange={(e) => this.readGodKey(e)} />
         </div>
         <div>
           <div>{this.state.zoom_links}</div>
