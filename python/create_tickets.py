@@ -28,15 +28,6 @@ petname.random = random.Random(567893203151)
 num_random = random.Random(9473171914287)
 
 
-def generate_password():
-    while True:
-        password = "%s_%03d" % (petname.generate(2, "_"),
-                                num_random.randint(100, 999))
-
-        if password.find("maggot") == -1:
-            return password
-
-
 def get_name(email):
     rows = diversity.index[diversity['Email address'] == email].tolist()
 
