@@ -25,7 +25,7 @@ for i in range(0, len(data)):
 
     sessions.append(session)
 
-# I am assuming that the sessions are already sorted from
+# I am assuming that the sessions are already sorted from
 # earliest to latest - should add a sort function later
 
 sessions_file = "../src/sessions.json"

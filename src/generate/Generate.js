@@ -3,9 +3,10 @@ import React from "react";
 
 import SimplePage from "../SimplePage";
 
-import {get_god_key} from "./Secret";
+import {get_key} from "./Secret";
 
 import styles from "./Generate.module.css";
+import SymmetricKey from "../model/SymmetricKey";
 
 class Generate extends React.Component {
   constructor(props){
@@ -43,10 +44,17 @@ class Generate extends React.Component {
     console.log("Generate output...");
 
     const input = this.state.input;
+    const god_key = input.god_key;
 
-    let god_key = get_god_key(input.god_key);
+    // first, encrypt all of the drive links using the god key
+    let links = input.links;
 
-    console.log(god_key);
+    for (let key in links){
+      let link = links[key];
+      let symkey = get_key(god_key, key);
+      link.write = symkey.encrypt(link.write);
+    }
+
   }
 
   render = () => {

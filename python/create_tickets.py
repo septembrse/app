@@ -29,6 +29,10 @@ diversity = pd.read_excel("diversity.xlsx")
 # files
 links = pd.read_excel("Drive Links.xlsx")
 
+# Zoom links, so that we can add the zoom links for each day
+# (there is a different zoom link each day)
+zoom = pd.read_excel("Zoom links.xlsx")
+
 
 def get_name(email):
     rows = diversity.index[diversity['Email address'] == email].tolist()
@@ -144,9 +148,18 @@ for i in range(0, len(links)):
                                "write": link["RW_link"]}
 
 
+# Now read all of the zoom links and add them to the json
+zoom_links = {}
+
+for i in range(0, len(zoom)):
+    link = zoom.loc[i]
+
+    zoom_links[link["Date"].date().isoformat()] = link["Link"]
+
 with open("passwords.json", "w") as FILE:
     json.dump({"attendees": attendees,
-               "links": drive_links,
+               "drive_links": drive_links,
+               "zoom_links": zoom_links,
                "god_key": get_god_key()}, FILE)
 
 print(tickets)
