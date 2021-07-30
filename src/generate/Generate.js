@@ -1,61 +1,71 @@
 
 import React from "react";
 
-import SymmetricKey from "../model/SymmetricKey";
+import SimplePage from "../SimplePage";
+
+import {get_god_key} from "./Secret";
+
+import styles from "./Generate.module.css";
 
 class Generate extends React.Component {
   constructor(props){
     super(props);
 
-    this.state = {emails: null,
-                  zoom_links: null,
-                  god_key: new SymmetricKey("You need a better password!")};
+    this.state = {input: null,
+                  output: null};
   }
 
-  readEmails = async (e) => {
+  readJSON = async (e) => {
     e.preventDefault()
     const reader = new FileReader()
     reader.onload = async (e) => {
       const text = (e.target.result)
-      this.setState({emails: text});
+
+      try{
+        let data = JSON.parse(text);
+        this.setState({input: data, output: null});
+      } catch(error){
+        this.setState({input: null, output: null});
+      }
     };
     reader.readAsText(e.target.files[0])
   }
 
-  readSessionLinks = async (e) => {
-    e.preventDefault()
-    const reader = new FileReader()
-    reader.onload = async (e) => {
-      const text = (e.target.result)
-      this.setState({zoom_links: text});
-    };
-    reader.readAsText(e.target.files[0])
-  }
+  generateOutput(){
+    if (this.state.input === null){
+      return;
+    }
 
-  updateGodKey = async (e) => {
-    e.preventDefault()
-    this.setState({god_key: e.target.value});
+    if (this.state.output !== null){
+      return;
+    }
+
+    console.log("Generate output...");
+
+    const input = this.state.input;
+
+    let god_key = get_god_key(input.god_key);
+
+    console.log(god_key);
   }
 
   render = () => {
 
+    this.generateOutput();
+
     return (
-      <div>
-        <div>
-          User details file: <input type="file" onChange={(e) => this.readUserDetails(e)} />
+      <SimplePage>
+        <div className={styles.inputbox}>
+          <div className={styles.inputlabel}>Select JSON file to process:</div>
+          <div className={styles.inputdiv}>
+            <input className={styles.input} type="file"
+                   onChange={(e) => this.readJSON(e)} />
+          </div>
         </div>
-        <div>
-          Session links file: <input type="file" onChange={(e) => this.readSessionLinks(e)} />
+        <div className={styles.output}>
+          {this.state.output}
         </div>
-        <div>
-          God key: <input type="file" onChange={(e) => this.readGodKey(e)} />
-        </div>
-        <div>
-          <div>{this.state.zoom_links}</div>
-          <div>{this.state.emails}</div>
-          <div>{this.state.god_key.toString()}</div>
-        </div>
-      </div>
+      </SimplePage>
     )
   }
 };

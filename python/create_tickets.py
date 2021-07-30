@@ -1,9 +1,6 @@
 
 import json
 import pandas as pd
-import random
-import petname
-import hashlib
 
 from create_passwords import generate_password, get_god_key
 
@@ -31,11 +28,6 @@ diversity = pd.read_excel("diversity.xlsx")
 # Drive links, so that we can add links to write and read presentation
 # files
 links = pd.read_excel("Drive Links.xlsx")
-
-# Initalise the random number generators, so that we get
-# the same password sequence
-petname.random = random.Random(567893203151)
-num_random = random.Random(9473171914287)
 
 
 def get_name(email):

@@ -33,3 +33,4 @@ python/Email addresses of ticket holders.xlsx
 *.pyc
 python/passwords.json
 python/Drive Links.xlsx
+src/generate/Secret.js
