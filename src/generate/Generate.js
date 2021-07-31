@@ -6,7 +6,7 @@ import SimplePage from "../SimplePage";
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 import {get_key, get_day_secret,
-        get_user_key, mangle_email} from "./Secret";
+        get_user_key, mangle_email} from "../model/Secret";
 
 import styles from "./Generate.module.css";
 
@@ -51,7 +51,7 @@ class Generate extends React.Component {
       throw new Error("No drive links!");
     }
 
-    // next, encrypt all of the zoom links using the god key
+    // next, encrypt all of the zoom and slido links using the god key
     let zoom_links = data.zoom_links;
 
     if (!zoom_links){

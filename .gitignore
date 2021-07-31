@@ -33,7 +33,7 @@ python/Email addresses of ticket holders.xlsx
 *.pyc
 python/passwords.json
 python/Drive Links.xlsx
-src/generate/Secret.js
 python/Zoom links.xlsx
-src/login/secrets.json
 src/generate/Secret.json
+src/model/Secret.js
+src/model/secrets.json

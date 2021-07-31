@@ -4,11 +4,11 @@ import React from 'react';
 import SimplePage from "../SimplePage";
 
 import { get_user_key, mangle_email,
-         get_local_key } from '../generate/Secret';
+         get_local_key } from '../model/Secret';
 
 import styles from "./Login.module.css";
 
-import secrets from "./secrets.json";
+import secrets from "../model/secrets.json";
 
 const Login = () => {
 
