@@ -10,7 +10,7 @@ import {
 import Home from './Home';
 import Interstitial from './interstitial/Interstitial';
 import Search from './search/Search';
-import Login from './login/Login';
+import {Login} from './login/Login';
 import Logout from "./login/Logout";
 import Generate from "./generate/Generate";
 

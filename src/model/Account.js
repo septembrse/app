@@ -73,8 +73,12 @@ class Account {
     let encrypted_secret = secrets[mangle_email(email)];
 
     if (!encrypted_secret){
-      throw new Error(["Invalid email.",
-          "You need to use the exact email address to which your SeptembRSE ticket was sent."]);
+      throw new Error(
+          "Invalid email. " +
+          "You need to use the exact email address to " +
+          "which your SeptembRSE ticket was sent. " +
+          "Email conference-2021@society-rse.org if you " +
+          "have lost your ticket.");
     }
 
     // try to decrypt our secret package
@@ -95,8 +99,12 @@ class Account {
       return account;
 
     } catch(error){
-      throw new Error(["Invalid password.",
-            "Check the password sent to the email address associated with your SeptembRSE ticket."])
+      throw new Error(
+          "Invalid password. " +
+          "Check the password sent to the email address " +
+          "associated with your SeptembRSE ticket. " +
+          "Email conference-2021@society-rse.org if you " +
+          "have lost your ticket.");
     }
   }
 
