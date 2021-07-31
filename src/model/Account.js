@@ -1,14 +1,12 @@
 
-import React, { useState, useEffect } from 'react';
 
 import {get_local_key,
         get_user_key, mangle_email} from "./Secret";
 
-
 import secrets from "./secrets.json";
 
 
-export class Account {
+class Account {
   constructor(email=null, secret=null){
     if (!email){
       secret = null;
@@ -64,7 +62,7 @@ export class Account {
       }
     }
 
-    return new Account();
+    return null;
   }
 
   static login(email, password){
@@ -116,24 +114,4 @@ export class Account {
 
 Account._logged_in_account = null;
 
-export function useLoginStatus(){
-  const [loggedInAccount, setLoggedInAccount] = useState(null);
-
-  function handleStatusChange(account){
-    setLoggedInAccount(account);
-  }
-
-  useEffect(() => {
-    let old_account = Account._logged_in_account;
-    let account = Account.get_account();
-
-    console.log("useEffect");
-    console.log(old_account, account);
-
-    if (old_account != account){
-      handleStatusChange(account);
-    }
-  });
-
-  return loggedInAccount;
-}
+export default Account;

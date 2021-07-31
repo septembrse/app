@@ -12,6 +12,7 @@ const Home = () => {
             <div><Link to="/interstitial">Interstitial</Link></div>
             <div><Link to="/search">Search</Link></div>
             <div><Link to="/login">Login</Link></div>
+            <div><Link to="/logout">Logout</Link></div>
             <div><Link to="/generate">Generate</Link></div>
         </div>
     );
