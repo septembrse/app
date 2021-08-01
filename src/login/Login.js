@@ -101,9 +101,11 @@ export function LoginComponent(props) {
 
   if (account && account.isLoggedIn()) {
     return (
-      <Card style={{width: "80%", margin: "10px"}}>
+      <Card bg="primary" border="primary" text="primary"
+            style={{width: "80%", margin: "10px"}}>
         <Card.Body>
           <Button
+            variant="secondary"
             style={{width: "100%"}}
             onClick={() => logout()}>
               Logout
@@ -121,36 +123,41 @@ export function LoginComponent(props) {
     }
 
     return (
-      <Card style={{width: "80%", margin: "10px"}}>
+      <Card bg="primary" border="primary" text="primary"
+            style={{width: "80%", margin: "10px"}}>
         <Card.Body style={{align_items:"center"}}>
           {alert}
           <Form>
+            <Card.Title>Email address</Card.Title>
             <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Email address</Form.Label>
               <Form.Control type="email"
-                            placeholder="Enter email"
+                            placeholder="Enter your SeptembRSE email"
                             onChange={(e) => setEmail(e.target.value)}
                             onKeyPress={(e) => enterOnEnter(e)} />
               <Form.Text className="text-muted">
-                Use the email address to which your SeptembRSE ticket
-                was sent. Authentication happens locally on your computer.
-                No details are sent over the internet.
+                <div style={{color:"white"}}>
+                  Use the email address to which your SeptembRSE ticket
+                  was sent. Authentication happens locally on your computer.
+                  No details are sent over the internet.
+                </div>
               </Form.Text>
             </Form.Group>
 
+            <Card.Title>Password</Card.Title>
             <Form.Group className="mb-3" controlId="formBasicPassword">
-              <Form.Label>Password</Form.Label>
               <Form.Control type="password"
                             placeholder="Password"
                             onChange={(e) => setPassword(e.target.value)}
                             onKeyPress={(e) => enterOnEnter(e)} />
               <Form.Text className="text-muted">
-                Use the password that was include in the email with
-                your SeptembRSE ticket.
+                <div style={{color:"white"}}>
+                  Use the password that was include in the email with
+                  your SeptembRSE ticket.
+                </div>
               </Form.Text>
             </Form.Group>
             <Button style={{width:"100%"}}
-                    variant="primary"
+                    variant="secondary"
                     onClick={()=>login()}>
               Login
             </Button>
