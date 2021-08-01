@@ -51,4 +51,5 @@ function Home(props){
     </SimplePage>
   );
 };
+
 export default Home;
