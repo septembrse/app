@@ -4,13 +4,17 @@ import React from 'react';
 import Submission from "../model/Submission";
 import SimplePage from "../SimplePage";
 
+import Account from '../model/Account';
+
 import ReactMarkdown from 'react-markdown'
 
 import styles from "./Search.module.css";
 
 const gfm = require('remark-gfm');
 
-const Search = ({text = ""}) => {
+export function SearchComponent(props){
+
+  let text = props.text;
 
   const [search_text, setSearchText] = React.useState({text});
 
@@ -22,7 +26,7 @@ const Search = ({text = ""}) => {
 
   if (search_text === "" || !search_text){
     return (
-      <SimplePage>
+      <div className={styles.searchpage}>
         {search_bar}
         <div className={styles.message}>
           <div>Type above to search for any of the presentations or events
@@ -31,7 +35,7 @@ const Search = ({text = ""}) => {
                see all posters etc.
           </div>
         </div>
-      </SimplePage>
+      </div>
     );
   }
 
@@ -39,12 +43,12 @@ const Search = ({text = ""}) => {
 
   if (results.length === 0){
     return (
-      <SimplePage>
+      <div className={styles.searchpage}>
         {search_bar}
         <div className={styles.message}>
           No match.
         </div>
-        </SimplePage>
+      </div>
     );
   }
 
@@ -65,11 +69,24 @@ const Search = ({text = ""}) => {
   }
 
   return (
-    <SimplePage>
+    <div className={styles.searchpage}>
       {search_bar}
       <div className={styles.results}>{formatted_results}</div>
-    </SimplePage>
+    </div>
   );
 }
 
-export default Search;
+export function Search(props){
+
+  let [account, setAccount] = React.useState(null);
+
+  React.useEffect(() => {
+    setAccount(Account.get_account());
+  }, [account]);
+
+  return (
+    <SimplePage account={account} setAccount={setAccount}>
+      <SearchComponent />
+    </SimplePage>
+  );
+}
