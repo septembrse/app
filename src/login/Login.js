@@ -16,12 +16,6 @@ export function LoginComponent(props) {
     message: null
   });
 
-  let [account, setAccount] = React.useState(null);
-
-  React.useEffect(() => {
-    setAccount(Account.get_account());
-  }, [account]);
-
   function setEmail(email) {
     setCredentials({
       email: email,
@@ -36,6 +30,13 @@ export function LoginComponent(props) {
       password: password,
       message: null
     });
+  }
+
+  let account = props.account;
+  let setAccount = props.setAccount;
+
+  if (!setAccount){
+    throw new Error("You must pass in the account details!");
   }
 
   function fail(message) {
@@ -161,9 +162,16 @@ export function LoginComponent(props) {
 }
 
 export function Login(props){
+
+  let [account, setAccount] = React.useState(null);
+
+  React.useEffect(() => {
+    setAccount(Account.get_account());
+  }, [account]);
+
   return (
-    <SimplePage>
-      <LoginComponent />
+    <SimplePage account={account} setAccount={setAccount}>
+      <LoginComponent account={account} setAccount={setAccount} />
     </SimplePage>
   );
 }

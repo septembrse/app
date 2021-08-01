@@ -11,8 +11,10 @@ class SimplePage extends React.Component {
   render(){
     return (
       <div className={styles.page}>
-        <Banner />
-        <Navigation account={this.props.account} />
+        <Banner account={this.props.account}
+                setAccount={this.props.setAccount}/>
+        <Navigation account={this.props.account}
+                    setAccount={this.props.setAccount} />
         <div className={styles.content}>
           {this.props.children}
         </div>

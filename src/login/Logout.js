@@ -10,12 +10,12 @@ import Card from 'react-bootstrap/Card';
 
 export function LogoutComponent(props) {
 
-  let [account, setAccount] = React.useState(null);
+  let account = props.account;
+  let setAccount = props.setAccount;
 
-  React.useEffect(() => {
-      console.log("useEffect");
-      setAccount(Account.get_account());
-  }, [account]);
+  if (!setAccount){
+    throw new Error("You must supply account details!");
+  }
 
   function logout(){
     if (account && account.isLoggedIn()){
@@ -57,9 +57,16 @@ export function LogoutComponent(props) {
 }
 
 export function Logout(props){
+
+  let [account, setAccount] = React.useState(null);
+
+  React.useEffect(() => {
+    setAccount(Account.get_account());
+  }, [account]);
+
   return (
-    <SimplePage>
-      <LogoutComponent />
+    <SimplePage account={account} setAccount={setAccount}>
+      <LogoutComponent  account={account} setAccount={setAccount} />
     </SimplePage>
   );
 }
