@@ -3,6 +3,8 @@ import React from 'react';
 
 import Navigation from './Navigation';
 
+import Container from "react-bootstrap/Container";
+
 import styles from "./SimplePage.module.css";
 
 class SimplePage extends React.Component {
@@ -12,9 +14,9 @@ class SimplePage extends React.Component {
       <div>
         <Navigation account={this.props.account}
                     setAccount={this.props.setAccount} />
-        <div className={styles.content}>
+        <Container fluid>
           {this.props.children}
-        </div>
+        </Container>
         <div className={styles.background}/>
       </div>
     );

@@ -6,6 +6,10 @@ import SimplePage from "../SimplePage";
 
 import Account from '../model/Account';
 
+import Card from 'react-bootstrap/Card';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
 import ReactMarkdown from 'react-markdown'
 
 import styles from "./Search.module.css";
@@ -19,10 +23,14 @@ export function SearchComponent(props){
   const [search_text, setSearchText] = React.useState({text});
 
   const search_bar = (
-    <input key="input" className={styles.searchBar} type="search"
-           onChange={(e) => setSearchText(e.target.value)}
-           placeholder="Search..." />
-    );
+    <Row>
+      <Col>
+        <input key="input" className={styles.searchBar} type="search"
+               onChange={(e) => setSearchText(e.target.value)}
+               placeholder="Search..." />
+      </Col>
+    </Row>
+  );
 
   if (search_text === "" || !search_text){
     return (
@@ -54,18 +62,53 @@ export function SearchComponent(props){
 
   let formatted_results = [];
 
+  let i = 0;
+
   for (let result in results){
     let r = results[result];
 
+    let variant = "primary";
+
+    if (i % 3 === 1){
+      variant = "secondary";
+    } else if (i % 3 === 2){
+      variant = "info";
+    }
+
+    i += 1;
+
     formatted_results.push(
-      <div className={styles.result} key={r.getID()}>
-        <div className={styles.sformat}>{r.getFormat()}: {r.getID()}</div>
-        <div className={styles.title}>{r.getTitle()}</div>
-        <div className={styles.name}>{r.getName()}</div>
-        <div className={styles.institution}>{r.getInstitution()}</div>
-        <div className={styles.markdown}><ReactMarkdown remarkPlugins={[gfm]} children={r.getAbstract()} /></div>
-      </div>
-    )
+      <Row key={r.getID()}>
+        <Col>
+          <Card className="text-center"
+                bg={variant} border={variant} text={variant}
+                key={r.getID()}
+                style={{marginTop: "5px", borderRadius: "5px"}}>
+            <Card.Header style={{color: "rgb(220,220,220)",
+                         fontWeight: "bold"}}>
+              {r.getFormat()}: {r.getID()}
+            </Card.Header>
+            <Card.Body>
+              <Card.Title style={{fontSize: "large"}}>
+                {r.getTitle()}
+              </Card.Title>
+              <Card.Title style={{fontSize: "medium", fontWeight: "bold"}}>
+                {r.getName()}
+              </Card.Title>
+              <Card.Title style={{fontSize: "medium", fontStyle: "italic"}}>
+                {r.getInstitution()}
+              </Card.Title>
+              <Card.Text style={{fontSize: "small", textAlign: "left"}}>
+                <div className={styles.markdown}>
+                  <ReactMarkdown remarkPlugins={[gfm]}
+                                children={r.getAbstract()} />
+                </div>
+              </Card.Text>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+    );
   }
 
   return (
