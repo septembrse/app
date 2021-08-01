@@ -26,7 +26,8 @@ export function LogoutComponent(props) {
 
   if (account && account.isLoggedIn()){
     return (
-      <Card style={{width: "80%", margin: "10px"}}>
+      <Card bg="primary" border="primary" text="primary"
+            style={{width: "80%", margin: "10px"}}>
         <Card.Body>
           <div style={{width: "100%",
                        textAlign: "center",
@@ -34,6 +35,7 @@ export function LogoutComponent(props) {
             Are you sure you want to log out?
           </div>
           <Button
+            variant="secondary"
             style={{width: "100%"}}
             onClick={() => logout()}>
               Yes - log out!
@@ -43,7 +45,8 @@ export function LogoutComponent(props) {
     );
   } else {
     return (
-      <Card style={{width: "80%", margin: "10px"}}>
+      <Card bg="primary" border="primary" text="primary"
+            style={{width: "80%", margin: "10px"}}>
         <Card.Body>
           <div style={{width: "100%",
                        textAlign: "center",
