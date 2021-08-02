@@ -106,7 +106,7 @@ export function LoginComponent(props) {
 
   if (account && account.isLoggedIn()) {
     return (
-      <Redirect to="/" />
+      <Redirect to="/ticket" />
     );
   } else {
     let alert = null;

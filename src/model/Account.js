@@ -31,6 +31,53 @@ class Account {
     return this._is_logged_in;
   }
 
+  getTicket(){
+    if (!this.isLoggedIn()){
+      return null;
+    }
+
+    return this._secret.ticket;
+  }
+
+  getTicketDetails(){
+    if (!this.isLoggedIn()){
+      return null;
+    }
+
+    if (this.isGeneralTicket()){
+      return "This is a general ticket that provides complete access " +
+             "to the whole conference.";
+    } else {
+      return "This is a day ticket that provides access only on " +
+             "specified days.";
+    }
+  }
+
+  isGeneralTicket(){
+    if (!this.isLoggedIn()){
+      return false;
+    }
+
+    if (this.getTicket() === "committee" ||
+        this.getTicket() === "full"){
+      return true;
+    }
+
+    return false;
+  }
+
+  isValidToday(){
+    if (!this.isLoggedIn()){
+      return false;
+    }
+
+    if (this.isGeneralTicket()){
+      return true;
+    }
+
+    return false;
+  }
+
   getDayKey(date=null){
     if (!this.isLoggedIn()){
       return null;
