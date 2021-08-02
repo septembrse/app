@@ -7,6 +7,10 @@ import Account from '../model/Account';
 
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
 
 export function LogoutComponent(props) {
 
@@ -26,8 +30,7 @@ export function LogoutComponent(props) {
 
   if (account && account.isLoggedIn()){
     return (
-      <Card bg="primary" border="primary" text="primary"
-            style={{width: "80%", margin: "10px"}}>
+      <Card bg="primary" border="primary" text="primary">
         <Card.Body>
           <div style={{width: "100%",
                        textAlign: "center",
@@ -45,8 +48,7 @@ export function LogoutComponent(props) {
     );
   } else {
     return (
-      <Card bg="primary" border="primary" text="primary"
-            style={{width: "80%", margin: "10px"}}>
+      <Card bg="primary" border="primary" text="primary">
         <Card.Body>
           <div style={{width: "100%",
                        textAlign: "center",
@@ -69,7 +71,15 @@ export function Logout(props){
 
   return (
     <SimplePage account={account} setAccount={setAccount}>
-      <LogoutComponent  account={account} setAccount={setAccount} />
+      <Container fluid>
+        <Row>
+          <Col>&nbsp;</Col>
+          <Col md="auto" style={{maxWidth:"768px"}}>
+            <LogoutComponent  account={account} setAccount={setAccount} />
+          </Col>
+          <Col>&nbsp;</Col>
+        </Row>
+      </Container>
     </SimplePage>
   );
 }

@@ -8,6 +8,9 @@ import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 export function LoginComponent(props) {
   const [credentials, setCredentials] = React.useState({
@@ -102,7 +105,7 @@ export function LoginComponent(props) {
   if (account && account.isLoggedIn()) {
     return (
       <Card bg="primary" border="primary" text="primary"
-            style={{width: "80%", margin: "10px"}}>
+            style={{minWidth: "768px"}}>
         <Card.Body>
           <Button
             variant="secondary"
@@ -123,8 +126,7 @@ export function LoginComponent(props) {
     }
 
     return (
-      <Card bg="primary" border="primary" text="primary"
-            style={{width: "80%", margin: "10px"}}>
+      <Card bg="primary" border="primary" text="primary">
         <Card.Body style={{align_items:"center"}}>
           {alert}
           <Form>
@@ -178,7 +180,15 @@ export function Login(props){
 
   return (
     <SimplePage account={account} setAccount={setAccount}>
-      <LoginComponent account={account} setAccount={setAccount} />
+      <Container fluid>
+        <Row>
+          <Col>&nbsp;</Col>
+          <Col md="auto" style={{maxWidth:"768px"}}>
+            <LoginComponent account={account} setAccount={setAccount} />
+          </Col>
+          <Col>&nbsp;</Col>
+        </Row>
+      </Container>
     </SimplePage>
   );
 }
