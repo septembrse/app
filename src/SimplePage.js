@@ -14,9 +14,7 @@ class SimplePage extends React.Component {
       <div>
         <Navigation account={this.props.account}
                     setAccount={this.props.setAccount} />
-        <Container fluid>
-          {this.props.children}
-        </Container>
+        {this.props.children}
         <div className={styles.background}/>
       </div>
     );

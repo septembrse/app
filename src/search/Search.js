@@ -7,8 +7,10 @@ import SimplePage from "../SimplePage";
 import Account from '../model/Account';
 
 import Card from 'react-bootstrap/Card';
+import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
 
 import ReactMarkdown from 'react-markdown'
 
@@ -20,7 +22,7 @@ export function SearchComponent(props){
 
   let text = props.text;
 
-  const [search_text, setSearchText] = React.useState({text});
+  const [search_text, setSearchText] = React.useState(text);
 
   const search_bar = (
     <Row>
@@ -32,18 +34,72 @@ export function SearchComponent(props){
     </Row>
   );
 
+  const divider = (
+    <Row><Col>&nbsp;</Col></Row>
+  );
+
+  const view_all = (
+    <Row>
+      <Col>
+        <Button variant="primary"
+                style={{width: "100%",
+                        marginTop: "5px"}}
+                onClick={() => setSearchText("all")}>
+          View all submissions
+        </Button>
+        <Button variant="secondary"
+                style={{width: "100%",
+                        marginTop: "5px"}}
+                onClick={() => setSearchText("talks")}>
+          View all talks
+        </Button>
+        <Button variant="info"
+                style={{width: "100%",
+                        marginTop: "5px"}}
+                onClick={() => setSearchText("walkthroughs")}>
+          View all walkthroughs
+        </Button>
+        <Button variant="primary"
+                style={{width: "100%",
+                        marginTop: "5px"}}
+                onClick={() => setSearchText("posters")}>
+          View all posters
+        </Button>
+        <Button variant="secondary"
+                style={{width: "100%",
+                        marginTop: "5px"}}
+                onClick={() => setSearchText("workshops")}>
+          View all workshops
+        </Button>
+        <Button variant="info"
+                style={{width: "100%",
+                        marginTop: "5px"}}
+                onClick={() => setSearchText("panels")}>
+          View all panels
+        </Button>
+        <Button variant="primary"
+                style={{width: "100%",
+                        marginTop: "5px"}}
+                onClick={() => setSearchText("discussions")}>
+          View all discussions
+        </Button>
+        <Button variant="danger"
+                style={{width: "100%",
+                marginTop: "5px"}}
+                onClick={() => setSearchText(null)}>
+          Clear
+        </Button>
+      </Col>
+    </Row>
+  );
+
   if (search_text === "" || !search_text){
     return (
-      <div className={styles.searchpage}>
+      <Container fluid>
         {search_bar}
-        <div className={styles.message}>
-          <div>Type above to search for any of the presentations or events
-               taking place as part of #SeptembRSE. Use "all" to see
-               all submissions, "talks" to see all talks, "posters" to
-               see all posters etc.
-          </div>
-        </div>
-      </div>
+        {divider}
+        {view_all}
+      </Container>
     );
   }
 
@@ -51,12 +107,18 @@ export function SearchComponent(props){
 
   if (results.length === 0){
     return (
-      <div className={styles.searchpage}>
+      <Container fluid>
         {search_bar}
-        <div className={styles.message}>
-          No match.
-        </div>
-      </div>
+        <Row>
+          <Col>
+            <div className={styles.message}>
+              No match.
+            </div>
+          </Col>
+        </Row>
+        {divider}
+        {view_all}
+      </Container>
     );
   }
 
@@ -98,12 +160,10 @@ export function SearchComponent(props){
               <Card.Title style={{fontSize: "medium", fontStyle: "italic"}}>
                 {r.getInstitution()}
               </Card.Title>
-              <Card.Text style={{fontSize: "small", textAlign: "left"}}>
-                <div className={styles.markdown}>
+              <div className={styles.markdown}>
                   <ReactMarkdown remarkPlugins={[gfm]}
                                 children={r.getAbstract()} />
-                </div>
-              </Card.Text>
+              </div>
             </Card.Body>
           </Card>
         </Col>
@@ -112,10 +172,12 @@ export function SearchComponent(props){
   }
 
   return (
-    <div className={styles.searchpage}>
+    <Container fluid>
       {search_bar}
-      <div className={styles.results}>{formatted_results}</div>
-    </div>
+      {formatted_results}
+      {divider}
+      {view_all}
+    </Container>
   );
 }
 
