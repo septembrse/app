@@ -12,6 +12,8 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
+import { Redirect } from "react-router-dom";
+
 export function LoginComponent(props) {
   const [credentials, setCredentials] = React.useState({
     email: null,
@@ -104,17 +106,7 @@ export function LoginComponent(props) {
 
   if (account && account.isLoggedIn()) {
     return (
-      <Card bg="primary" border="primary" text="primary"
-            style={{minWidth: "768px"}}>
-        <Card.Body>
-          <Button
-            variant="secondary"
-            style={{width: "100%"}}
-            onClick={() => logout()}>
-              Logout
-          </Button>
-        </Card.Body>
-      </Card>
+      <Redirect to="/" />
     );
   } else {
     let alert = null;

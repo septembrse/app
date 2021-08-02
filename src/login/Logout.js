@@ -11,6 +11,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
+import { Redirect } from "react-router-dom";
 
 export function LogoutComponent(props) {
 
@@ -55,6 +56,12 @@ export function LogoutComponent(props) {
                        marginBottom: "10px"}}>
             You are now logged out.
           </div>
+          <Button
+            variant="secondary"
+            style={{width: "100%"}}
+            onClick={() => props.history.push("/")}>
+              Return Home
+          </Button>
         </Card.Body>
       </Card>
     );
@@ -75,7 +82,8 @@ export function Logout(props){
         <Row>
           <Col>&nbsp;</Col>
           <Col md="auto" style={{maxWidth:"768px"}}>
-            <LogoutComponent  account={account} setAccount={setAccount} />
+            <LogoutComponent account={account} setAccount={setAccount}
+                             history={props.history} />
           </Col>
           <Col>&nbsp;</Col>
         </Row>
