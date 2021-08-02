@@ -11,6 +11,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
+import ButtonGroup from "react-bootstrap/ButtonGroup";
 
 import ReactMarkdown from 'react-markdown'
 
@@ -26,11 +27,13 @@ export function SearchComponent(props){
 
   const search_bar = (
     <Row>
-      <Col>
+      <Col>&nbsp;</Col>
+      <Col md="auto" style={{minWidth: "75%"}}>
         <input key="input" className={styles.searchBar} type="search"
                onChange={(e) => setSearchText(e.target.value)}
                placeholder="Search..." />
       </Col>
+      <Col>&nbsp;</Col>
     </Row>
   );
 
@@ -40,56 +43,60 @@ export function SearchComponent(props){
 
   const view_all = (
     <Row>
-      <Col>
-        <Button variant="primary"
-                style={{width: "100%",
-                        marginTop: "5px"}}
-                onClick={() => setSearchText("all")}>
-          View all submissions
-        </Button>
-        <Button variant="secondary"
-                style={{width: "100%",
-                        marginTop: "5px"}}
-                onClick={() => setSearchText("talks")}>
-          View all talks
-        </Button>
-        <Button variant="info"
-                style={{width: "100%",
-                        marginTop: "5px"}}
-                onClick={() => setSearchText("walkthroughs")}>
-          View all walkthroughs
-        </Button>
-        <Button variant="primary"
-                style={{width: "100%",
-                        marginTop: "5px"}}
-                onClick={() => setSearchText("posters")}>
-          View all posters
-        </Button>
-        <Button variant="secondary"
-                style={{width: "100%",
-                        marginTop: "5px"}}
-                onClick={() => setSearchText("workshops")}>
-          View all workshops
-        </Button>
-        <Button variant="info"
-                style={{width: "100%",
-                        marginTop: "5px"}}
-                onClick={() => setSearchText("panels")}>
-          View all panels
-        </Button>
-        <Button variant="primary"
-                style={{width: "100%",
-                        marginTop: "5px"}}
-                onClick={() => setSearchText("discussions")}>
-          View all discussions
-        </Button>
-        <Button variant="danger"
-                style={{width: "100%",
-                marginTop: "5px"}}
-                onClick={() => setSearchText(null)}>
-          Clear
-        </Button>
+      <Col>&nbsp;</Col>
+      <Col md="auto" style={{minWidth: "75%"}}>
+        <ButtonGroup vertical style={{width: "100%"}}>
+          <Button variant="primary"
+                  style={{borderRadius: "5px",
+                          marginTop: "5px"}}
+                  onClick={() => setSearchText("all")}>
+            View all submissions
+          </Button>
+          <Button variant="secondary"
+                  style={{borderRadius: "5px",
+                  marginTop: "5px"}}
+                  onClick={() => setSearchText("talks")}>
+            View all talks
+          </Button>
+          <Button variant="info"
+                  style={{borderRadius: "5px",
+                          marginTop: "5px"}}
+                  onClick={() => setSearchText("walkthroughs")}>
+            View all walkthroughs
+          </Button>
+          <Button variant="primary"
+                  style={{borderRadius: "5px",
+                          marginTop: "5px"}}
+                  onClick={() => setSearchText("posters")}>
+            View all posters
+          </Button>
+          <Button variant="secondary"
+                  style={{borderRadius: "5px",
+                          marginTop: "5px"}}
+                  onClick={() => setSearchText("workshops")}>
+            View all workshops
+          </Button>
+          <Button variant="info"
+                  style={{borderRadius: "5px",
+                          marginTop: "5px"}}
+                  onClick={() => setSearchText("panels")}>
+            View all panels
+          </Button>
+          <Button variant="primary"
+                  style={{borderRadius: "5px",
+                          marginTop: "5px"}}
+                  onClick={() => setSearchText("discussions")}>
+            View all discussions
+          </Button>
+          <Button variant="danger"
+                  style={{borderRadius: "5px",
+                          marginTop: "5px"}}
+                  onClick={() => setSearchText(null)}>
+            Clear
+          </Button>
+        </ButtonGroup>
       </Col>
+      <Col>&nbsp;</Col>
     </Row>
   );
 
@@ -145,7 +152,7 @@ export function SearchComponent(props){
           <Card className="text-center"
                 bg={variant} border={variant} text={variant}
                 key={r.getID()}
-                style={{marginTop: "5px", borderRadius: "5px"}}>
+                style={{borderRadius: "5px", marginTop:"10px"}}>
             <Card.Header style={{color: "rgb(220,220,220)",
                          fontWeight: "bold"}}>
               {r.getFormat()}: {r.getID()}
