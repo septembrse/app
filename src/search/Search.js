@@ -152,7 +152,10 @@ export function SearchComponent(props){
           <Card className="text-center"
                 bg={variant} border={variant} text={variant}
                 key={r.getID()}
-                style={{borderRadius: "5px", marginTop:"10px"}}>
+                style={{borderRadius: "5px", marginTop:"10px",
+                        maxWidth: "1024px",
+                        marginLeft: "auto",
+                        marginRight: "auto"}}>
             <Card.Header style={{color: "rgb(220,220,220)",
                          fontWeight: "bold"}}>
               {r.getFormat()}: {r.getID()}
