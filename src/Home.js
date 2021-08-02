@@ -20,6 +20,31 @@ function Home(props){
     setAccount(Account.get_account());
   }, [account]);
 
+  let admin_links = null;
+
+  if (account && account.isAdmin()){
+    admin_links = (
+      <Row>
+        <Col>&nbsp;</Col>
+        <Col md="auto" style={{minWidth: "75%"}}>
+          <ButtonGroup vertical style={{width: "100%"}}>
+            <Button onClick={() => props.history.push("/interstitial")}
+                    variant="danger"
+                    style={{borderRadius: "5px", marginTop: "5px"}}>
+              Conference interstitial page
+            </Button>
+            <Button onClick={() => props.history.push("/generate")}
+                    variant="danger"
+                    style={{borderRadius: "5px", marginTop: "5px"}}>
+              Generate tickets.json file
+            </Button>
+          </ButtonGroup>
+        </Col>
+        <Col>&nbsp;</Col>
+      </Row>
+    );
+  }
+
   return (
     <SimplePage account={account} setAccount={setAccount}>
       <Container fluid>
@@ -71,6 +96,7 @@ function Home(props){
           </Col>
           <Col>&nbsp;</Col>
         </Row>
+        {admin_links}
       </Container>
     </SimplePage>
   );

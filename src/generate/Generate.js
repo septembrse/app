@@ -3,13 +3,21 @@ import React from "react";
 
 import SimplePage from "../SimplePage";
 
+import Account from "../model/Account";
+
 import {CopyToClipboard} from 'react-copy-to-clipboard';
+
+import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Form from "react-bootstrap/Form";
+import Card from "react-bootstrap/Card";
 
 import {get_key, get_day_secret,
         get_user_key, mangle_email} from "../model/Secret";
 
 import styles from "./Generate.module.css";
-
 
 class Generate extends React.Component {
   constructor(props){
@@ -160,30 +168,85 @@ class Generate extends React.Component {
   }
 
   render = () => {
-    return (
-      <SimplePage>
-        <div className={styles.inputbox}>
-          <div className={styles.inputtext}>
-            Choose a JSON file containing the secrets
-          </div>
-          <div className={styles.inputdiv}>
-            <input className={styles.input} type="file"
-                   onChange={(e) => this.readJSON(e)}
-                   placeholder="Choose a JSON file containing the secrets">
-            </input>
-          </div>
-        </div>
-        <div className={styles.output}>
+
+    let account = Account.get_account();
+
+    if (account && account.isAdmin()){
+      let copy_button = null;
+
+      if (this.state.output){
+        copy_button = (
           <CopyToClipboard text={this.state.output}
                            onCopy={() => this.setState({copied: true})}>
-            <button className={styles.copybutton}>
+            <Button variant="secondary"
+                    style={{margin: "10px"}}>
               Copy to clipboard
-            </button>
-          </CopyToClipboard>
-          <div className={styles.outputtext}>{this.state.output}</div>
-        </div>
-      </SimplePage>
-    )
+            </Button>
+          </CopyToClipboard>);
+      }
+
+      return (
+        <SimplePage>
+          <Container fluid>
+            <Row>
+              <Col>&nbsp;</Col>
+              <Col md="auto" style={{maxWidth:"768px"}}>
+                <Card bg="primary" border="primary" text="primary">
+                  <Card.Body style={{align_items:"center"}}>
+                    <Form>
+                      <Card.Title>Choose a JSON file containing the secrets</Card.Title>
+                      <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Control type="file"
+                                      placeholder="Enter the json filename"
+                                      onChange={(e) => this.readJSON(e)} />
+                      </Form.Group>
+                    </Form>
+                  </Card.Body>
+                </Card>
+              </Col>
+              <Col>&nbsp;</Col>
+            </Row>
+            <Row>
+              <Col>&nbsp;</Col>
+              <Col md="auto" style={{maxWidth:"768px"}}>
+                {copy_button}
+              </Col>
+              <Col>&nbsp;</Col>
+            </Row>
+            <Row>
+              <Col>&nbsp;</Col>
+              <Col md="auto" style={{maxWidth:"768px"}}>
+                <div className={styles.outputtext}>{this.state.output}</div>
+              </Col>
+              <Col>&nbsp;</Col>
+            </Row>
+          </Container>
+        </SimplePage>
+      );
+    } else {
+      return (
+        <SimplePage>
+          <Container fluid>
+            <Row>
+              <Col>&nbsp;</Col>
+                <Col md="auto" style={{maxWidth:"768px"}}>
+                  <Card bg="danger" border="danger" text="danger">
+                    <Card.Body style={{align_items:"center"}}>
+                        <Card.Title>Forbidden page!</Card.Title>
+                        <Card.Text>
+                          You don't have permission to view this page.
+                          Please log in using an admin or committee
+                          member account.
+                        </Card.Text>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              <Col>&nbsp;</Col>
+            </Row>
+          </Container>
+        </SimplePage>
+      );
+    }
   }
 };
 

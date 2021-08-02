@@ -3,8 +3,6 @@ import React from 'react';
 
 import Navigation from './Navigation';
 
-import Container from "react-bootstrap/Container";
-
 import styles from "./SimplePage.module.css";
 
 class SimplePage extends React.Component {

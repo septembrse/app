@@ -31,6 +31,28 @@ class Account {
     return this._is_logged_in;
   }
 
+  getDayKey(date=null){
+    if (!this.isLoggedIn()){
+      return null;
+    }
+
+    if (!date){
+      date = new Date();
+    }
+
+    console.log("Get day key!");
+
+    return null;
+  }
+
+  isAdmin(){
+    if (this.isLoggedIn()){
+      return this._secret.ticket === "committee";
+    }
+
+    return false;
+  }
+
   static get_account(){
     // have we loaded the account into memory?
     if (Account._logged_in_account){
@@ -41,7 +63,6 @@ class Account {
     let email = localStorage.getItem("septembrse_user");
 
     if (email){
-      console.log(`Loading from local login: ${email}`);
       let local_data = localStorage.getItem("septembrse_secret_data");
 
       if (local_data){
@@ -50,9 +71,9 @@ class Account {
         try{
           let secret = key.decrypt(local_data);
 
-          console.log("Successfully retrieved secret from localStorage");
+          let parsed = JSON.parse(secret);
 
-          let account = new Account(email, secret);
+          let account = new Account(email, parsed);
           Account._logged_in_account = account;
           return account;
 
@@ -86,12 +107,14 @@ class Account {
       let key = get_user_key(email, password);
       let secret = key.decrypt(encrypted_secret);
 
+      let parsed = JSON.parse(secret);
+
       // cache this to localStorage
       key = get_local_key(email);
       localStorage.setItem("septembrse_user", email);
       localStorage.setItem("septembrse_secret_data", key.encrypt(secret));
 
-      let account = new Account(email, secret);
+      let account = new Account(email, parsed);
 
       // save this to memory
       Account._logged_in_account = account;
