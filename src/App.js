@@ -12,6 +12,11 @@ import Interstitial from './interstitial/Interstitial';
 import {Search} from './search/Search';
 import {Login} from './login/Login';
 import {Logout} from "./login/Logout";
+import {Ticket} from "./ticket/Ticket";
+import {Timetable} from "./timetable/Timetable";
+import {Today} from "./today/Today";
+import {Guide} from "./guide/Guide";
+
 import Generate from "./generate/Generate";
 
 function App() {
@@ -25,6 +30,10 @@ function App() {
               <Route exact path="/search" component = {Search} />
               <Route exact path="/login" component = {Login} />
               <Route exact path="/logout" component = {Logout} />
+              <Route exact path="/ticket" component = {Ticket} />
+              <Route exact path="/timetable" component = {Timetable} />
+              <Route exact path="/today" component = {Today} />
+              <Route exact path="/venue" component = {Guide} />
               <Route exact path="/generate" component = {Generate} />
               <Route render={() => <h1>404: page not found</h1>} />
             </Switch>
