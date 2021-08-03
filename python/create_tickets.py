@@ -87,6 +87,12 @@ for i in range(0, len(purchased_tickets)):
                                   "ticket": "full",
                                   "name": get_name(email)},
                                  ignore_index=True)
+    else:
+        # make sure that they are recorded as having bought a ticket
+        ticket_type = tickets.at[i, "ticket"]
+
+        if ticket_type == "day":
+            tickets.at[i, "ticket"] = "general"
 
 # Go through all of the emails of people who made submissions and make
 # sure that they are in the main spreadsheet - if not, then add them.
@@ -114,7 +120,7 @@ for i in range(0, len(submissions)):
         current = presentation
         tickets.at[idx, "presentations"] = current
     elif current.find(presentation) == -1:
-        current = f"{current}, {presentation}"
+        current = f"{current},{presentation}"
         tickets.at[idx, "presentations"] = current
 
 # Create the JSON file that is needed for the JS conference info system
@@ -147,8 +153,7 @@ for i in range(0, len(links)):
     drive_links[link["ID"]] = {"read": link["RO_link"],
                                "write": link["RW_link"]}
 
-
-# Now read all of the zoom links and add them to the json
+# Now read all of the zoom links and add them to the json
 zoom_links = {}
 
 for i in range(0, len(zoom)):

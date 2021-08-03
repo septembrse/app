@@ -115,7 +115,7 @@ class Generate extends React.Component {
         // the days that this person is attending and give
         // them the day key
         for (let j in attendee.presentations){
-          let presentation = attendee.presentations[j];
+          let presentation = attendee.presentations[j].trim();
 
           // look up the session for this presentation
           let session = sessions[presentation];
@@ -139,7 +139,7 @@ class Generate extends React.Component {
 
       // now add in any drive links for the presentations
       for (let j in attendee.presentations){
-        let presentation = attendee.presentations[j];
+        let presentation = attendee.presentations[j].trim();
 
         //look up the drive write link for the presentation
         let link = drive_links[presentation];

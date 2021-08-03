@@ -1,6 +1,9 @@
 
 import sessions from "../sessions.json";
 
+let _sessions = null;
+let _presentations = null;
+
 class Session {
   constructor(data = {}){
     if (data["starts"]){
@@ -28,6 +31,17 @@ class Session {
     }
 
     this.delay_minutes = 5;
+  }
+
+  static getSession(id){
+    if (_sessions === null){
+      for (let session in sessions){
+        let s = new Session(sessions[session]);
+        _sessions[s.getID()] = s;
+      }
+    }
+
+    return _sessions[id];
   }
 
   static getNextSession(test_date=null){
