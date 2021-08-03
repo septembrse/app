@@ -23,7 +23,7 @@ export function TimetableComponent(props){
 
 export function Timetable(props){
 
-  let [account, setAccount] = React.useState(null);
+  let [account, setAccount] = React.useState(Account.get_account());
 
   React.useEffect(() => {
     setAccount(Account.get_account());

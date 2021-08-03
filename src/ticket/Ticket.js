@@ -1,16 +1,17 @@
 
 import React from 'react';
 
-import { Link } from "react-router-dom";
-
 import SimplePage from "../SimplePage";
 
 import Account from '../model/Account';
+import Submission from '../model/Submission';
 
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
+
+import { Redirect } from "react-router-dom";
 
 export function TicketComponent(props){
 
@@ -22,6 +23,76 @@ export function TicketComponent(props){
     if (account.isValidToday()){
       access_buttons = (
         <div>Access buttons here!</div>
+      );
+    }
+
+    let presentation_buttons = [];
+
+    let presentations = account.getPresentations();
+
+    for (let i in presentations){
+      try{
+        let id = presentations[i];
+        let drive_link = account.getDriveLink(id);
+
+        let submission = Submission.getSubmission(id);
+
+        let variant = "secondary";
+
+        if (i % 3 === 1){
+          variant = "info";
+        } else if (i % 3 === 2){
+          variant = "primary";
+        }
+
+        presentation_buttons.push(
+          <Row key={id}>
+            <Col>&nbsp;</Col>
+            <Col md="auto" style={{maxWidth:"768px"}}>
+              <Card className="text-center"
+                  bg={variant} border={variant} text={variant}
+                  style={{borderRadius: "5px", marginTop:"10px"}}>
+                <Card.Header style={{color: "rgb(220,220,220)",
+                                     fontWeight: "bold"}}>
+                  Your {submission.getFormat()}: {id}
+                </Card.Header>
+                <Card.Body>
+                  <Card.Title style={{fontSize: "large"}}>
+                    {submission.getTitle()}
+                  </Card.Title>
+                  <Card.Title style={{fontSize: "medium", fontStyle: "italic"}}>
+                    <a href={drive_link}>Upload your slides here</a>
+                  </Card.Title>
+                  <Card.Text>
+                     Place your slides / materials into the 'public'
+                     folder in the above-linked Drive.
+                  </Card.Text>
+                  <Card.Text>
+                     Materials should
+                     not exceed 100 MB in size.
+                     Please <a href="mailto:conference-2021@society-rse.org">contact us</a> if you
+                     need more space.
+                  </Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
+            <Col>&nbsp;</Col>
+          </Row>
+        );
+
+      } catch (error){
+        console.log(error);
+      }
+    }
+
+    let presenter = null;
+
+    if (account.isPresenter()){
+      presenter = (
+        <li>
+          You are a presenter at SeptembRSE. Links to upload any
+          presentation materials are given below.
+        </li>
       );
     }
 
@@ -46,42 +117,27 @@ export function TicketComponent(props){
                     <li>
                       {account.getTicketDetails()}
                     </li>
+                    {presenter}
                   </ul>
                 </Card.Body>
               </Card>
             </Col>
           <Col>&nbsp;</Col>
         </Row>
+        {presentation_buttons}
         {access_buttons}
       </Container>
     );
   } else {
     return (
-      <Container fluid>
-        <Row>
-          <Col>&nbsp;</Col>
-            <Col md="auto" style={{maxWidth:"768px"}}>
-              <Card bg="danger" border="danger" text="danger">
-                <Card.Body style={{align_items:"center"}}>
-                    <Card.Title>Please log in!</Card.Title>
-                    <Card.Text>
-                      You need
-                      to <Link to="/login">login</Link> to be
-                      able to see your ticket.
-                    </Card.Text>
-                </Card.Body>
-              </Card>
-            </Col>
-          <Col>&nbsp;</Col>
-        </Row>
-      </Container>
+      <Redirect to="/login" />
     )
   }
 }
 
 export function Ticket(props){
 
-  let [account, setAccount] = React.useState(null);
+  let [account, setAccount] = React.useState(Account.get_account());
 
   React.useEffect(() => {
     setAccount(Account.get_account());

@@ -39,6 +39,20 @@ class Account {
     return this._secret.ticket;
   }
 
+  isPresenter(){
+    if (!this.isLoggedIn()){
+      return false;
+    }
+
+    if (this.isLoggedIn()){
+      if (this._secret.drive_links){
+        return Object.keys(this._secret.drive_links).length > 0;
+      }
+    }
+
+    return false;
+  }
+
   getTicketDetails(){
     if (!this.isLoggedIn()){
       return null;
@@ -87,9 +101,31 @@ class Account {
       date = new Date();
     }
 
-    console.log("Get day key!");
-
     return null;
+  }
+
+  getDriveLink(id){
+    if (!this.isLoggedIn()){
+      return null;
+    }
+
+    if (this._secret.drive_links){
+      return this._secret.drive_links[id];
+    } else {
+      return null;
+    }
+  }
+
+  getPresentations(){
+    if (!this.isLoggedIn()){
+      return [];
+    }
+
+    if (this._secret.drive_links){
+      return Object.keys(this._secret.drive_links);
+    } else {
+      return [];
+    }
   }
 
   isAdmin(){
