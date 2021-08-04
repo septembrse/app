@@ -36,7 +36,7 @@ export function TicketComponent(props){
               Uploading your slides or other materials
             </Card.Title>,
             <Card.Text key="t2">
-              <a href={drive_link}>Upload your slides into this Google Drive</a>.
+              <a href={drive_link}>Upload your slides or other materials into this Google Drive</a>.
             </Card.Text>,
             <Card.Text key="t3">
               Materials should
@@ -202,7 +202,7 @@ export function TicketComponent(props){
         <li>
           You are a presenter at SeptembRSE. Links to upload any
           presentation materials, access Zoom and Sli.do, and
-          information about scheduling of your events are
+          information about scheduling of your event(s) are
           given in the event cards below.
         </li>
       );

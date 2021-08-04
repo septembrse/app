@@ -96,7 +96,7 @@ class Session {
   }
 
   getLink(){
-    return `/session:${this.getID()}`;
+    return `/session/${this.getID()}`;
   }
 
   getZoomLink(account){
