@@ -22,6 +22,9 @@ purchased_tickets = pd.read_excel("Email addresses of ticket holders.xlsx")
 # All of the sessions associated with someone's email address
 submissions = pd.read_csv("sessions_and_emails.tsv", delimiter="\t")
 
+# All of the extra sessions associated with someone's email address
+extras = pd.read_excel("Extra Presentations.xlsx")
+
 # Diversity data, so that we can get names
 diversity = pd.read_excel("diversity.xlsx")
 
@@ -32,6 +35,13 @@ links = pd.read_excel("Drive Links.xlsx")
 # Zoom links, so that we can add the zoom links for each day
 # (there is a different zoom link each day)
 zoom = pd.read_excel("Zoom links.xlsx")
+
+
+def clean(s):
+    if pd.isna(s) or s is None:
+        return None
+    else:
+        return str(s)
 
 
 def get_name(email):
@@ -92,7 +102,8 @@ for i in range(0, len(purchased_tickets)):
         ticket_type = tickets.at[i, "ticket"]
 
         if ticket_type == "day":
-            tickets.at[i, "ticket"] = "general"
+            tickets.at[idx, "ticket"] = "general"
+
 
 # Go through all of the emails of people who made submissions and make
 # sure that they are in the main spreadsheet - if not, then add them.
@@ -123,6 +134,41 @@ for i in range(0, len(submissions)):
         current = f"{current},{presentation}"
         tickets.at[idx, "presentations"] = current
 
+
+# Go through all of the emails of people who involved in extra sessions and
+# make sure that they are in the main spreadsheet - if not, then add them.
+# Also add their sessions to the tickets spreadsheet
+for i in range(0, len(extras)):
+    submission = extras.loc[i]
+    email = submission["Presenter"]
+
+    if pd.isna(email) or email is None:
+        print(f"No presenter for {submission['Title']}")
+        continue
+
+    idx = get_row_in_tickets(email)
+
+    if idx is None:
+        tickets = tickets.append({"email": email,
+                                  "password": generate_password(),
+                                  "ticket": "day",
+                                  "name": get_name(email)},
+                                 ignore_index=True)
+
+        idx = get_row_in_tickets(email)
+
+    presentation = submission["ID"]
+
+    current = tickets.loc[idx]["presentations"]
+
+    if pd.isna(current):
+        current = presentation
+        tickets.at[idx, "presentations"] = current
+    elif current.find(presentation) == -1:
+        current = f"{current},{presentation}"
+        tickets.at[idx, "presentations"] = current
+
+
 # Create the JSON file that is needed for the JS conference info system
 attendees = []
 
@@ -150,8 +196,8 @@ drive_links = {}
 for i in range(0, len(links)):
     link = links.loc[i]
 
-    drive_links[link["ID"]] = {"read": link["RO_link"],
-                               "write": link["RW_link"]}
+    drive_links[link["ID"]] = {"read": clean(link["RO_link"]),
+                               "write": clean(link["RW_link"])}
 
 # Now read all of the zoom links and add them to the json
 zoom_links = {}

@@ -64,7 +64,7 @@ export function TicketComponent(props){
                     <a href={drive_link}>Upload your slides here</a>
                   </Card.Title>
                   <Card.Text>
-                     Place your slides / materials into the 'public'
+                     Place your slides / materials into the
                      folder in the above-linked Drive.
                   </Card.Text>
                   <Card.Text>

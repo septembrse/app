@@ -83,21 +83,6 @@ export function LoginComponent(props) {
     }
   }
 
-  function logout() {
-    let account = Account.get_account();
-
-    if (account) {
-      account.logout();
-    }
-
-    setAccount(null);
-    setCredentials({
-      email: null,
-      password: null,
-      message: null
-    });
-  }
-
   function enterOnEnter(e) {
     if (e.key === "Enter") {
       login();

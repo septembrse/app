@@ -88,6 +88,18 @@ export function SearchComponent(props){
                   onClick={() => setSearchText("discussions")}>
             View all discussions
           </Button>
+          <Button variant="secondary"
+                  style={{borderRadius: "5px",
+                          marginTop: "5px"}}
+                  onClick={() => setSearchText("keynotes")}>
+            View all keynotes
+          </Button>
+          <Button variant="info"
+                  style={{borderRadius: "5px",
+                          marginTop: "5px"}}
+                  onClick={() => setSearchText("specials")}>
+            View all Special events
+          </Button>
           <Button variant="danger"
                   style={{borderRadius: "5px",
                           marginTop: "5px"}}

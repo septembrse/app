@@ -107,6 +107,26 @@ class Submission {
           results.push(r);
         }
       }
+    } else if (text === "keynote" || text === "keynotes"){
+      for (let submission in submissions){
+        let s = submissions[submission];
+
+        if (s.format === "Keynote"){
+          let r = new Submission(s);
+          r.id = submission;
+          results.push(r);
+        }
+      }
+    } else if (text === "special" || text === "specials"){
+      for (let submission in submissions){
+        let s = submissions[submission];
+
+        if (s.format === "Special event"){
+          let r = new Submission(s);
+          r.id = submission;
+          results.push(r);
+        }
+      }
     } else {
       for (let submission in submissions){
         let s = submissions[submission];

@@ -107,6 +107,7 @@ class Generate extends React.Component {
 
       if (attendee.ticket === "committee" ||
           attendee.ticket === "volunteer" ||
+          attendee.ticket === "general" ||
           attendee.ticket === "full"){
         // general ticket - can access everything every day
         ticket["god_key"] = god_key;
