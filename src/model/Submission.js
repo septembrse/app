@@ -1,6 +1,10 @@
 
 import submissions from "../submissions.json";
 
+import submission_to_session from "../";
+
+import Session from "./Session";
+
 class Submission {
   constructor(data = {}){
     this.title = data.title;
@@ -9,6 +13,14 @@ class Submission {
     this.institution = data.institution;
     this.format = data.format;
     this.id = null;
+  }
+
+  getSession(){
+    if (this.id === null){
+      return null;
+    } else {
+      return Session.getSessionForPresentation(this.id);
+    }
   }
 
   static getSubmission(id){

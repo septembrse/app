@@ -45,10 +45,13 @@ export function TicketComponent(props){
           variant = "primary";
         }
 
+        let session = submission.getSession();
+        console.log(session);
+
         presentation_buttons.push(
           <Row key={id}>
             <Col>&nbsp;</Col>
-            <Col md="auto" style={{maxWidth:"768px"}}>
+            <Col md="auto" style={{minWidth: "80%", maxWidth:"768px"}}>
               <Card className="text-center"
                   bg={variant} border={variant} text={variant}
                   style={{borderRadius: "5px", marginTop:"10px"}}>
@@ -100,7 +103,7 @@ export function TicketComponent(props){
       <Container fluid>
         <Row>
           <Col>&nbsp;</Col>
-            <Col md="auto" style={{maxWidth:"768px"}}>
+            <Col md="auto" style={{minWidth: "80%", maxWidth:"768px"}}>
               <Card bg="primary" border="primary" text="primary"
                     style={{borderRadius: "5px"}}>
                 <Card.Header style={{textAlign: "center"}}>

@@ -1,11 +1,15 @@
 
-import sessions from "../sessions.json";
+import sessions_data from "../sessions.json";
 
 let _sessions = null;
 let _presentations = null;
 
 class Session {
   constructor(data = {}){
+    if (data["id"]){
+      this.id = data["id"];
+    }
+
     if (data["starts"]){
       this.start_time = new Date(data["starts"]);
     } else {
@@ -33,8 +37,16 @@ class Session {
     this.delay_minutes = 5;
   }
 
+  getID(){
+    return this.id;
+  }
+
   static getSession(id){
     if (_sessions === null){
+      _sessions = {};
+
+      let sessions = sessions_data["sessions"];
+
       for (let session in sessions){
         let s = new Session(sessions[session]);
         _sessions[s.getID()] = s;
@@ -42,6 +54,20 @@ class Session {
     }
 
     return _sessions[id];
+  }
+
+  static getSessionForPresentation(id){
+    if (_presentations === null){
+      let presentations = sessions_data["presentations"];
+
+      let session = presentations[id];
+
+      if (session){
+        return Session.getSession(session);
+      }
+    }
+
+    return null;
   }
 
   static getNextSession(test_date=null){
@@ -52,6 +78,8 @@ class Session {
     } else {
       now = new Date();
     }
+
+    let sessions = sessions_data["sessions"];
 
     for (let session in sessions){
       let s = new Session(sessions[session]);
