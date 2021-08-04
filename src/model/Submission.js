@@ -188,6 +188,14 @@ class Submission {
   getID(){
     return this.id;
   }
+
+  getSlidoLink(account){
+    if (account && account.isLoggedIn()){
+      return null;
+    }
+
+    return null;
+  }
 };
 
 export default Submission;

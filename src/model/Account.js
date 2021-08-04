@@ -80,6 +80,14 @@ class Account {
     return false;
   }
 
+  getGatherTownLink(){
+    if (!this.isLoggedIn()){
+      return null;
+    }
+
+    return null;
+  }
+
   isValidToday(){
     if (!this.isLoggedIn()){
       return false;

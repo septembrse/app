@@ -95,6 +95,18 @@ class Session {
     return this.title;
   }
 
+  getLink(){
+    return `/session:${this.getID()}`;
+  }
+
+  getZoomLink(account){
+    if (account && account.isLoggedIn()){
+      return null;
+    }
+
+    return null;
+  }
+
   hasDescription(){
     return this.description !== null;
   }
