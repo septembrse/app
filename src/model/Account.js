@@ -1,9 +1,12 @@
 
 
-import {get_local_key,
-        get_user_key, mangle_email} from "./Secret";
+import {get_local_key, get_day_key, get_day_string,
+        get_user_key, mangle_email, get_key} from "./Secret";
 
 import secrets from "./secrets.json";
+
+
+let _test_day = new Date("2021-09-10");
 
 
 class Account {
@@ -115,6 +118,58 @@ class Account {
 
     if (!date){
       date = new Date();
+    }
+
+    console.log(date);
+    console.log(this._secret);
+
+    if (this._secret.god_key){
+      return get_day_key(this._secret.god_key, date);
+    } else if (this._secret.day_keys) {
+      let day_string = get_day_string(date);
+      let day_secret = this._secret.day_keys[day_string];
+
+      if (day_secret){
+        return get_key(day_secret);
+      }
+    }
+
+    return null;
+  }
+
+  getZoomLink(){
+    if (!this.isLoggedIn()){
+      return null;
+    }
+
+    let zoom_links = secrets["zoom_links"];
+
+    if (!zoom_links){
+      return null;
+    }
+
+    // can only return the zoom link for today!
+    let today = new Date();
+
+    if (_test_day){
+      today = _test_day;
+      console.log(`USING TEST DAY ${_test_day.toISOString()}`);
+    }
+
+    let link = zoom_links[get_day_string(today)];
+
+    if (link){
+      try{
+        // can only return today's zoom link
+        let key = this.getDayKey(today);
+        return key.decrypt(link);
+      } catch(error){
+        console.log("Error decrypting the zoom link?");
+        console.log(error);
+      }
+    } else {
+      console.log(`ERROR - NO ZOOM LINK FOR ${get_day_string(today)}`);
+      console.log(zoom_links);
     }
 
     return null;

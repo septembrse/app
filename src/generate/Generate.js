@@ -67,7 +67,8 @@ class Generate extends React.Component {
     }
 
     // next, encrypt all of the zoom and slido links using the god key
-    let zoom_links = data.zoom_links;
+    let zoom_data = data.zoom_links;
+    let zoom_links = {};
 
     if (!zoom_links){
       throw new Error("No zoom links!");
@@ -76,22 +77,23 @@ class Generate extends React.Component {
     // get a list of day keys
     let day_secrets = {};
 
-    for (let i in zoom_links){
+    for (let i in zoom_data){
       let day = new Date(i);
       let day_secret = get_day_secret(god_key, day);
       day_secrets[get_day_string(day)] = day_secret;
       let key = get_key(day_secret);
-      let zoom_link = zoom_links[i];
+      let zoom_link = zoom_data[i];
 
       if (zoom_link){
-        zoom_links[i] = key.encrypt(zoom_link);
+        zoom_links[get_day_string(day)] = key.encrypt(zoom_link);
       }
     }
 
-    let slido_links = data.slido_links;
+    let slido_data = data.slido_links;
+    let slido_links = {};
 
     // get a list of slido links
-    for (let i in slido_links){
+    for (let i in slido_data){
       let session = Session.getSessionForPresentation(i);
 
       if (session){
@@ -101,7 +103,7 @@ class Generate extends React.Component {
           let day_secret = get_day_secret(god_key, day);
           day_secrets[get_day_string(day)] = day_secret;
           let key = get_key(day_secret);
-          let slido_link = slido_links[i];
+          let slido_link = slido_data[i];
 
           if (slido_link){
             console.log(slido_link);

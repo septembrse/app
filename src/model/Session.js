@@ -101,10 +101,8 @@ class Session {
 
   getZoomLink(account){
     if (account && account.isLoggedIn()){
-      return null;
+      return account.getZoomLink();
     }
-
-    return null;
   }
 
   hasDescription(){

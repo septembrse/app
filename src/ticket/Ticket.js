@@ -73,7 +73,7 @@ export function TicketComponent(props){
         let zoom_link = null;
 
         if (session){
-          zoom_link = session.getZoomLink();
+          zoom_link = session.getZoomLink(account);
 
           session = [
             <Card.Title key="s1" style={{fontSize: "medium",
