@@ -27,13 +27,13 @@ export function SearchComponent(props){
 
   const search_bar = (
     <Row>
-      <Col>&nbsp;</Col>
-      <Col md="auto" style={{minWidth: "75%"}}>
+      <Col style={{marginTop:"10px",
+                   maxWidth: "768px",
+                   marginLeft: "auto", marginRight: "auto"}}>
         <input key="input" className={styles.searchBar} type="search"
                onChange={(e) => setSearchText(e.target.value)}
                placeholder="Search..." />
       </Col>
-      <Col>&nbsp;</Col>
     </Row>
   );
 
@@ -43,8 +43,9 @@ export function SearchComponent(props){
 
   const view_all = (
     <Row>
-      <Col>&nbsp;</Col>
-      <Col md="auto" style={{minWidth: "75%"}}>
+      <Col style={{marginTop:"10px",
+                   maxWidth: "768px",
+                   marginLeft: "auto", marginRight: "auto"}}>
         <ButtonGroup vertical style={{width: "100%"}}>
           <Button variant="primary"
                   style={{borderRadius: "5px",
@@ -108,7 +109,6 @@ export function SearchComponent(props){
           </Button>
         </ButtonGroup>
       </Col>
-      <Col>&nbsp;</Col>
     </Row>
   );
 
@@ -129,7 +129,9 @@ export function SearchComponent(props){
       <Container fluid>
         {search_bar}
         <Row>
-          <Col>
+          <Col style={{marginTop:"10px",
+                       maxWidth: "768px",
+                       marginLeft: "auto", marginRight: "auto"}}>
             <div className={styles.message}>
               No match.
             </div>
@@ -160,14 +162,13 @@ export function SearchComponent(props){
 
     formatted_results.push(
       <Row key={r.getID()}>
-        <Col>
+        <Col style={{marginTop:"10px",
+                     maxWidth: "768px",
+                     marginLeft: "auto", marginRight: "auto"}}>
           <Card className="text-center"
                 bg={variant} border={variant} text={variant}
                 key={r.getID()}
-                style={{borderRadius: "5px", marginTop:"10px",
-                        maxWidth: "1024px",
-                        marginLeft: "auto",
-                        marginRight: "auto"}}>
+                style={{borderRadius: "5px"}}>
             <Card.Header style={{color: "rgb(220,220,220)",
                          fontWeight: "bold"}}>
               {r.getFormat()}: {r.getID()}
@@ -199,6 +200,7 @@ export function SearchComponent(props){
       {formatted_results}
       {divider}
       {view_all}
+      {divider}
     </Container>
   );
 }

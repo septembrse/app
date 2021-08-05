@@ -25,8 +25,9 @@ function Home(props){
   if (account && account.isAdmin()){
     admin_links = (
       <Row>
-        <Col>&nbsp;</Col>
-        <Col md="auto" style={{minWidth: "75%"}}>
+        <Col style={{marginTop:"10px",
+                     maxWidth: "768px",
+                     marginLeft: "auto", marginRight: "auto"}}>
           <ButtonGroup vertical style={{width: "100%"}}>
             <Button onClick={() => props.history.push("/interstitial")}
                     variant="danger"
@@ -40,7 +41,6 @@ function Home(props){
             </Button>
           </ButtonGroup>
         </Col>
-        <Col>&nbsp;</Col>
       </Row>
     );
   }
@@ -59,8 +59,9 @@ function Home(props){
           </Col>
         </Row>
         <Row>
-          <Col>&nbsp;</Col>
-          <Col md="auto" style={{minWidth: "75%"}}>
+          <Col style={{marginTop:"10px",
+                       maxWidth: "768px",
+                       marginLeft: "auto", marginRight: "auto"}}>
             <ButtonGroup vertical style={{width: "100%"}}>
               <Button onClick={() => props.history.push("/venue")}
                       variant="primary"
@@ -94,7 +95,6 @@ function Home(props){
               </Button>
             </ButtonGroup>
           </Col>
-          <Col>&nbsp;</Col>
         </Row>
         {admin_links}
       </Container>

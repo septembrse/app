@@ -24,24 +24,24 @@ export function SessionCard(props){
 
   return (
     <Row>
-      <Col>&nbsp;</Col>
-        <Col md="auto" style={{minWidth: "80%", maxWidth:"768px"}}>
-          <Card bg={variant} border={variant} text={variant}
-                style={{borderRadius: "5px"}}>
-            <Card.Header style={{textAlign: "center"}}>
-              {session.getStartTimeString()} - {session.getEndTimeString()}
-            </Card.Header>
-            <Card.Body style={{align_items:"center"}}>
-              <Card.Title style={{textAlign: "center"}}>
-                Session {session.getID()}: {session.getTitle()}
-              </Card.Title>
-              <Card.Text>
-                {session.getDescription()}
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-      <Col>&nbsp;</Col>
+      <Col style={{marginTop:"10px",
+                   maxWidth: "768px",
+                   marginLeft: "auto", marginRight: "auto"}}>
+        <Card bg={variant} border={variant} text={variant}
+              style={{borderRadius: "5px"}}>
+          <Card.Header style={{textAlign: "center"}}>
+            {session.getStartTimeString()} - {session.getEndTimeString()}
+          </Card.Header>
+          <Card.Body style={{align_items:"center"}}>
+            <Card.Title style={{textAlign: "center"}}>
+              Session {session.getID()}: {session.getTitle()}
+            </Card.Title>
+            <Card.Text>
+              {session.getDescription()}
+            </Card.Text>
+          </Card.Body>
+        </Card>
+      </Col>
     </Row>
   );
 }

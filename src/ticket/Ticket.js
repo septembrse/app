@@ -32,7 +32,8 @@ export function TicketComponent(props){
         if (drive_link){
           drive_link = [
             <Card.Title key="t1"
-                        style={{fontSize: "medium", fontStyle: "bold"}}>
+                        style={{fontSize: "medium", fontStyle: "bold",
+                                textAlign: "center"}}>
               Uploading your slides or other materials
             </Card.Title>,
             <Card.Text key="t2">
@@ -48,7 +49,8 @@ export function TicketComponent(props){
         } else {
           drive_link = [
             <Card.Title key="t1" style={{fontSize: "medium",
-                                         fontStyle: "bold"}}>
+                                         fontStyle: "bold",
+                                         textAlign: "center"}}>
               Uploading your slides or other materials
             </Card.Title>,
             <Card.Text key="t2">
@@ -89,7 +91,8 @@ export function TicketComponent(props){
           session = [
             <Card.Title key="s1" style={{fontSize: "medium",
                                          fontStyle: "bold",
-                                         color: "red"}}>
+                                         color: "red",
+                                         textAlign: "center"}}>
               Your event has not yet been scheduled.
             </Card.Title>,
             <Card.Text key="s2">
@@ -105,7 +108,8 @@ export function TicketComponent(props){
         if (zoom_link){
           zoom_link = [
             <Card.Title key="z1" style={{fontSize: "medium",
-                                         fontStyle: "bold"}}>
+                                         fontStyle: "bold",
+                                         textAlign: "center"}}>
               Zoom link
             </Card.Title>,
             <Card.Text key="z2">
@@ -121,7 +125,8 @@ export function TicketComponent(props){
         } else {
           zoom_link = [
             <Card.Title key="z1" style={{fontSize: "medium",
-                                         fontStyle: "bold"}}>
+                                         fontStyle: "bold",
+                                         textAlign: "center"}}>
               Zoom link
             </Card.Title>,
             <Card.Text key="z2">
@@ -140,7 +145,8 @@ export function TicketComponent(props){
         if (slido_link){
           slido_link = [
             <Card.Title key="l1" style={{fontSize: "medium",
-                                         fontStyle: "bold"}}>
+                                         fontStyle: "bold",
+                                         textAlign: "center"}}>
               Sli.do link
             </Card.Title>,
             <Card.Text key="l2">
@@ -166,17 +172,20 @@ export function TicketComponent(props){
 
         presentation_buttons.push(
           <Row key={id}>
-            <Col>&nbsp;</Col>
-            <Col md="auto" style={{minWidth: "80%", maxWidth:"768px"}}>
+            <Col>
               <Card
                   bg={variant} border={variant} text={variant}
-                  style={{borderRadius: "5px", marginTop:"10px"}}>
+                  style={{borderRadius: "5px", marginTop:"10px",
+                          maxWidth: "768px",
+                          marginLeft: "auto", marginRight: "auto"}}>
                 <Card.Header style={{color: "rgb(220,220,220)",
-                                     fontWeight: "bold"}}>
+                                     fontWeight: "bold",
+                                     textAlign: "center"}}>
                   Your {submission.getFormat()}: {id}
                 </Card.Header>
                 <Card.Body>
-                  <Card.Title style={{fontSize: "large"}}>
+                  <Card.Title style={{fontSize: "large",
+                                      textAlign: "center"}}>
                     {submission.getTitle()}
                   </Card.Title>
                   {session}
@@ -186,7 +195,6 @@ export function TicketComponent(props){
                 </Card.Body>
               </Card>
             </Col>
-            <Col>&nbsp;</Col>
           </Row>
         );
 
@@ -237,37 +245,37 @@ export function TicketComponent(props){
     return (
       <Container fluid>
         <Row>
-          <Col>&nbsp;</Col>
-            <Col md="auto" style={{minWidth: "80%", maxWidth:"768px"}}>
-              <Card bg="primary" border="primary" text="primary"
-                    style={{borderRadius: "5px"}}>
-                <Card.Header style={{textAlign: "center"}}>
-                  {account.getEmail()}
-                </Card.Header>
-                <Card.Body style={{align_items:"center"}}>
-                  <Card.Title style={{textAlign: "center"}}>
-                    Your SeptembRSE Ticket
-                  </Card.Title>
-                  <ul>
-                    <li>
-                      Ticket type: {account.getTicket()}
-                    </li>
-                    <li>
-                      {account.getTicketDetails()}
-                    </li>
-                    {gathertown}
-                    <li>
-                      When the conference is running you will be able
-                      to get direct links to Zoom meetings and Sli.do
-                      boards for today's events by visiting
-                      the <Link to="/today">What's on Today?</Link> page.
-                    </li>
-                    {presenter}
-                  </ul>
-                </Card.Body>
-              </Card>
-            </Col>
-          <Col>&nbsp;</Col>
+          <Col>
+            <Card bg="primary" border="primary" text="primary"
+                  style={{borderRadius: "5px", marginTop:"10px",
+                          maxWidth: "768px",
+                          marginLeft: "auto", marginRight: "auto"}}>
+              <Card.Header style={{textAlign: "center"}}>
+                {account.getEmail()}
+              </Card.Header>
+              <Card.Body style={{align_items:"center"}}>
+                <Card.Title style={{textAlign: "center"}}>
+                  Your SeptembRSE Ticket
+                </Card.Title>
+                <ul>
+                  <li>
+                    Ticket type: {account.getTicket()}
+                  </li>
+                  <li>
+                    {account.getTicketDetails()}
+                  </li>
+                  {gathertown}
+                  <li>
+                    When the conference is running you will be able
+                    to get direct links to Zoom meetings and Sli.do
+                    boards for today's events by visiting
+                    the <Link to="/today">What's on Today?</Link> page.
+                  </li>
+                  {presenter}
+                </ul>
+              </Card.Body>
+            </Card>
+          </Col>
         </Row>
         {access_buttons}
         {presentation_buttons}

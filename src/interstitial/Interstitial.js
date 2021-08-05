@@ -118,20 +118,20 @@ const Interstitial = () => {
       <SimplePage>
         <Container fluid>
           <Row>
-            <Col>&nbsp;</Col>
-              <Col md="auto" style={{maxWidth:"768px"}}>
-                <Card bg="danger" border="danger" text="danger">
-                  <Card.Body style={{align_items:"center"}}>
-                      <Card.Title>Forbidden page!</Card.Title>
-                      <Card.Text>
-                        You don't have permission to view this page.
-                        Please log in using an admin or committee
-                        member account.
-                      </Card.Text>
-                  </Card.Body>
-                </Card>
-              </Col>
-            <Col>&nbsp;</Col>
+            <Col style={{marginTop:"10px",
+                     maxWidth: "768px",
+                     marginLeft: "auto", marginRight: "auto"}}>
+              <Card bg="danger" border="danger" text="danger">
+                <Card.Body style={{align_items:"center"}}>
+                    <Card.Title>Forbidden page!</Card.Title>
+                    <Card.Text>
+                      You don't have permission to view this page.
+                      Please log in using an admin or committee
+                      member account.
+                    </Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
           </Row>
         </Container>
       </SimplePage>

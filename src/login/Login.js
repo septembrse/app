@@ -159,11 +159,11 @@ export function Login(props){
     <SimplePage account={account} setAccount={setAccount}>
       <Container fluid>
         <Row>
-          <Col>&nbsp;</Col>
-          <Col md="auto" style={{maxWidth:"768px"}}>
+          <Col style={{marginTop:"10px",
+                       maxWidth: "768px",
+                       marginLeft: "auto", marginRight: "auto"}}>
             <LoginComponent account={account} setAccount={setAccount} />
           </Col>
-          <Col>&nbsp;</Col>
         </Row>
       </Container>
     </SimplePage>

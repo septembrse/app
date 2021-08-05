@@ -183,7 +183,7 @@ class Generate extends React.Component {
           <CopyToClipboard text={this.state.output}
                            onCopy={() => this.setState({copied: true})}>
             <Button variant="secondary"
-                    style={{margin: "10px"}}>
+                    style={{width:"100%"}}>
               Copy to clipboard
             </Button>
           </CopyToClipboard>);
@@ -193,8 +193,9 @@ class Generate extends React.Component {
         <SimplePage>
           <Container fluid>
             <Row>
-              <Col>&nbsp;</Col>
-              <Col md="auto" style={{maxWidth:"768px"}}>
+              <Col style={{marginTop:"10px",
+                           maxWidth: "768px",
+                           marginLeft: "auto", marginRight: "auto"}}>
                 <Card bg="primary" border="primary" text="primary">
                   <Card.Body style={{align_items:"center"}}>
                     <Form>
@@ -208,21 +209,20 @@ class Generate extends React.Component {
                   </Card.Body>
                 </Card>
               </Col>
-              <Col>&nbsp;</Col>
             </Row>
             <Row>
-              <Col>&nbsp;</Col>
-              <Col md="auto" style={{maxWidth:"768px"}}>
+              <Col style={{marginTop:"10px",
+                           maxWidth: "768px",
+                           marginLeft: "auto", marginRight: "auto"}}>
                 {copy_button}
               </Col>
-              <Col>&nbsp;</Col>
             </Row>
             <Row>
-              <Col>&nbsp;</Col>
-              <Col md="auto" style={{maxWidth:"768px"}}>
+              <Col style={{marginTop:"10px",
+                           maxWidth: "768px",
+                           marginLeft: "auto", marginRight: "auto"}}>
                 <div className={styles.outputtext}>{this.state.output}</div>
               </Col>
-              <Col>&nbsp;</Col>
             </Row>
           </Container>
         </SimplePage>
@@ -232,20 +232,20 @@ class Generate extends React.Component {
         <SimplePage>
           <Container fluid>
             <Row>
-              <Col>&nbsp;</Col>
-                <Col md="auto" style={{maxWidth:"768px"}}>
-                  <Card bg="danger" border="danger" text="danger">
-                    <Card.Body style={{align_items:"center"}}>
-                        <Card.Title>Forbidden page!</Card.Title>
-                        <Card.Text>
-                          You don't have permission to view this page.
-                          Please log in using an admin or committee
-                          member account.
-                        </Card.Text>
-                    </Card.Body>
-                  </Card>
-                </Col>
-              <Col>&nbsp;</Col>
+              <Col style={{marginTop:"10px",
+                           maxWidth: "768px",
+                           marginLeft: "auto", marginRight: "auto"}}>
+                <Card bg="danger" border="danger" text="danger">
+                  <Card.Body style={{align_items:"center"}}>
+                      <Card.Title>Forbidden page!</Card.Title>
+                      <Card.Text>
+                        You don't have permission to view this page.
+                        Please log in using an admin or committee
+                        member account.
+                      </Card.Text>
+                  </Card.Body>
+                </Card>
+              </Col>
             </Row>
           </Container>
         </SimplePage>
