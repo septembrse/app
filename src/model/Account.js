@@ -93,7 +93,7 @@ class Account {
       return null;
     }
 
-    return null;
+    return this._secret["gather_link"];
   }
 
   isValidToday(){
@@ -234,7 +234,7 @@ class Account {
       throw new Error("Missing email or password");
     }
 
-    let encrypted_secret = secrets[mangle_email(email)];
+    let encrypted_secret = secrets["attendees"][mangle_email(email)];
 
     if (!encrypted_secret){
       throw new Error(

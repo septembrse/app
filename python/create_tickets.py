@@ -36,6 +36,13 @@ links = pd.read_excel("Drive Links.xlsx")
 # (there is a different zoom link each day)
 zoom = pd.read_excel("Zoom links.xlsx")
 
+# Slido links, so that we can add the slido links for each
+# session (there is one per session)
+slido = pd.read_excel("Slido links.xlsx")
+
+# The gather.town link
+gather_link = open("gathertown_link.txt", "r").readline().lstrip().rstrip()
+
 
 def clean(s):
     if pd.isna(s) or s is None:
@@ -205,12 +212,23 @@ zoom_links = {}
 for i in range(0, len(zoom)):
     link = zoom.loc[i]
 
-    zoom_links[link["Date"].date().isoformat()] = link["Link"]
+    zoom_links[link["Date"].date().isoformat()] = clean(link["Link"])
+
+# Now read all of the slido links and add them to the json
+slido_links = {}
+
+for i in range(0, len(slido)):
+    link = slido.loc[i]
+
+    slido_links[link["ID"]] = clean(link["Link"])
+
 
 with open("passwords.json", "w") as FILE:
     json.dump({"attendees": attendees,
                "drive_links": drive_links,
                "zoom_links": zoom_links,
+               "slido_links": slido_links,
+               "gather_link": gather_link,
                "god_key": get_god_key()}, FILE)
 
 print(tickets)

@@ -9,7 +9,7 @@ class SimplePage extends React.Component {
 
   render(){
     return (
-      <div>
+      <div style={{marginBottom: "30px"}}>
         <Navigation account={this.props.account}
                     setAccount={this.props.setAccount} />
         {this.props.children}

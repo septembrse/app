@@ -4,6 +4,7 @@ import React from "react";
 import SimplePage from "../SimplePage";
 
 import Account from "../model/Account";
+import Session from "../model/Session";
 
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 
@@ -15,7 +16,7 @@ import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
 
 import {get_key, get_day_secret,
-        get_user_key, mangle_email} from "../model/Secret";
+        get_user_key, mangle_email, get_day_string} from "../model/Secret";
 
 import styles from "./Generate.module.css";
 
@@ -47,6 +48,12 @@ class Generate extends React.Component {
 
     console.log("Generate output...");
 
+    const gather_link = data.gather_link;
+
+    if (!gather_link){
+      throw new Error("No gather link!");
+    }
+
     const god_key = data.god_key;
 
     if (!god_key){
@@ -70,10 +77,42 @@ class Generate extends React.Component {
     let day_secrets = {};
 
     for (let i in zoom_links){
-      let day_secret = get_day_secret(god_key, i);
-      day_secrets[i] = day_secret;
+      let day = new Date(i);
+      let day_secret = get_day_secret(god_key, day);
+      day_secrets[get_day_string(day)] = day_secret;
       let key = get_key(day_secret);
-      zoom_links[i] = key.encrypt(zoom_links[i]);
+      let zoom_link = zoom_links[i];
+
+      if (zoom_link){
+        zoom_links[i] = key.encrypt(zoom_link);
+      }
+    }
+
+    let slido_links = data.slido_links;
+
+    // get a list of slido links
+    for (let i in slido_links){
+      let session = Session.getSessionForPresentation(i);
+
+      if (session){
+        let day = session.getStartTime();
+
+        if (day){
+          let day_secret = get_day_secret(god_key, day);
+          day_secrets[get_day_string(day)] = day_secret;
+          let key = get_key(day_secret);
+          let slido_link = slido_links[i];
+
+          if (slido_link){
+            console.log(slido_link);
+            slido_links[i] = key.encrypt(slido_link);
+          }
+        } else {
+          console.log(`No day for session ${session.getID()} : ${i}`);
+        }
+      } else {
+        console.log(`No session for slido link at ${i}`);
+      }
     }
 
     // next, we need to create a key for every user based on
@@ -85,14 +124,9 @@ class Generate extends React.Component {
       throw new Error("No attendees!");
     }
 
-    let sessions = data.sessions;
-
-    if (!sessions){
-      console.log("Sessions are not loaded!");
-      sessions = {};
-    }
-
-    let tickets = {};
+    let tickets = {"zoom_links": zoom_links,
+                   "slido_links": slido_links,
+                   "attendees": {}};
 
     for (let i in attendees){
       let attendee = attendees[i];
@@ -103,7 +137,8 @@ class Generate extends React.Component {
         throw Error(`Duplicate mangled email? ${email} : ${attendee.email}`);
       }
 
-      let ticket = {"ticket": attendee.ticket};
+      let ticket = {"ticket": attendee.ticket,
+                    "gather_link": data.gather_link };
 
       if (attendee.ticket === "committee" ||
           attendee.ticket === "volunteer" ||
@@ -115,22 +150,25 @@ class Generate extends React.Component {
         // we need to supply day tickets - loop over all of
         // the days that this person is attending and give
         // them the day key
+        let day_keys = {};
+
         for (let j in attendee.presentations){
           let presentation = attendee.presentations[j].trim();
 
           // look up the session for this presentation
-          let session = sessions[presentation];
-
-          let day_keys = [];
+          let session = Session.getSessionForPresentation(presentation);
 
           if (!session){
             console.log(`No session assigned to ${presentation}`);
           } else {
-            day_keys[session.date] = day_secrets[session.date];
+            let day_string = get_day_string(session.getStartTime());
+            day_keys[day_string] = day_secrets[day_string];
           }
-
-          ticket["day_keys"] = day_keys;
         }
+
+        ticket["day_keys"] = day_keys;
+        console.log(ticket);
+
       } else {
         throw new Error(`Unrecognised ticket type? ${attendee.ticket}`);
       }
@@ -148,7 +186,15 @@ class Generate extends React.Component {
         if (!link){
           console.log(`No drive link for presentation ${presentation}`);
         } else {
-          links[presentation] = link.write;
+          link = link.write;
+
+          if (!link){
+            console.log(`No write drive link for presentation ${presentation}`);
+          }
+
+          // still write the null link, as the key is used to
+          // get the list of presentations for this attendee
+          links[presentation] = link;
           has_links = true;
         }
       }
@@ -160,9 +206,7 @@ class Generate extends React.Component {
       let key = get_user_key(attendee.email, attendee.password);
       ticket = key.encrypt(JSON.stringify(ticket));
 
-      console.log(attendee.email, attendee.password, ticket);
-
-      tickets[email] = ticket;
+      tickets["attendees"][email] = ticket;
     }
 
     //add the time of generation so we know if we need to update

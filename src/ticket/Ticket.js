@@ -91,7 +91,6 @@ export function TicketComponent(props){
           session = [
             <Card.Title key="s1" style={{fontSize: "medium",
                                          fontStyle: "bold",
-                                         color: "red",
                                          textAlign: "center"}}>
               Your event has not yet been scheduled.
             </Card.Title>,
@@ -99,8 +98,8 @@ export function TicketComponent(props){
               More information about the scheduling of your event will
               appear here, once it is available. If you still don't
               have scheduling information once SeptembRSE has started
-              then please <a href="mailto:conference-2021@society-rse.org">email us</a>
-              to let us know, and we will fix this as soon as possible.
+              then please <a href="mailto:conference-2021@society-rse.org">email us</a> to
+              let us know, and we will fix this as soon as possible.
             </Card.Text>
           ];
         }

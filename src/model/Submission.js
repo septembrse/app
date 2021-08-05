@@ -1,8 +1,6 @@
 
 import submissions from "../submissions.json";
 
-import submission_to_session from "../";
-
 import Session from "./Session";
 
 class Submission {
