@@ -129,12 +129,12 @@ export function TicketComponent(props){
               Zoom link
             </Card.Title>,
             <Card.Text key="z2">
-              On the day of your event there will be a zoom link
+              Within 30 minutes of your event there will be a zoom link
               here that you can click to get direct access to the
               Zoom meeting. You can also enter the meeting by
               walking to the lecture theatre in the virtual
               conference centre and pressing 'x' to join Zoom.
-              If today is the day of your presentation and you can't
+              If your event is about to start and you can't
               find this link, then
               please <a href="mailto:conference-2021@society-rse.org">email us</a>.
             </Card.Text>

@@ -99,9 +99,31 @@ class Session {
     return `/session/${this.getID()}`;
   }
 
+  isWithinMinutes(date, minutes=30){
+    let delta_start = date - this.getStartTime();
+
+    const buffer = minutes * 60 * 1000;
+
+    if (delta_start < -buffer){
+      return false;
+    }
+
+    let delta_end = date - this.getEndTime();
+
+    if (delta_end > buffer){
+      return false;
+    }
+
+    return true;
+  }
+
   getZoomLink(account){
     if (account && account.isLoggedIn()){
-      return account.getZoomLink();
+      // allow connection up to 30 minutes before and 30 minutes
+      // after the session
+      if (this.isWithinMinutes(account.getNow(), 30)){
+        return account.getZoomLink();
+      }
     }
   }
 

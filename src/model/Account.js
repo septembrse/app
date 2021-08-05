@@ -8,7 +8,7 @@ import Session from "./Session";
 import secrets from "./secrets.json";
 
 
-let _test_day = new Date("2021-09-10");
+let _test_day = new Date("2021-09-27T16:29:00");
 
 
 class Account {
@@ -104,12 +104,7 @@ class Account {
       return false;
     }
 
-    let today = new Date();
-
-    if (_test_day){
-      today = _test_day;
-      console.log(`USING TEST DAY ${_test_day.toISOString()}`);
-    }
+    let today = this.getNow();
 
     let conference_start = new Date("2021-09-02");
     let conference_end = new Date("2021-10-02");
@@ -201,6 +196,16 @@ class Account {
     return null;
   }
 
+  getNow(){
+    let today = new Date();
+
+    if (_test_day){
+      today = _test_day;
+    }
+
+    return today;
+  }
+
   getZoomLink(){
     if (!this.isLoggedIn()){
       return null;
@@ -213,12 +218,7 @@ class Account {
     }
 
     // can only return the zoom link for today!
-    let today = new Date();
-
-    if (_test_day){
-      today = _test_day;
-      console.log(`USING TEST DAY ${_test_day.toISOString()}`);
-    }
+    let today = this.getNow();
 
     let link = zoom_links[get_day_string(today)];
 
