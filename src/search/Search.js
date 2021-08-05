@@ -15,6 +15,8 @@ import ButtonGroup from "react-bootstrap/ButtonGroup";
 
 import ReactMarkdown from 'react-markdown'
 
+import { Link } from 'react-router-dom';
+
 import styles from "./Search.module.css";
 
 const gfm = require('remark-gfm');
@@ -171,7 +173,7 @@ export function SearchComponent(props){
                 style={{borderRadius: "5px"}}>
             <Card.Header style={{color: "rgb(220,220,220)",
                          fontWeight: "bold"}}>
-              {r.getFormat()}: {r.getID()}
+              <Link to={r.getLink()}>{r.getFormat()}: {r.getID()}</Link>
             </Card.Header>
             <Card.Body>
               <Card.Title style={{fontSize: "large"}}>

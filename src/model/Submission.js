@@ -187,6 +187,10 @@ class Submission {
     return this.id;
   }
 
+  getLink(){
+    return `/event/${this.getID()}`;
+  }
+
   getZoomLink(account){
     if (account && account.isLoggedIn()){
       return account.getZoomLinkForSubmission(this.getID());

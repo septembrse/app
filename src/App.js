@@ -17,6 +17,7 @@ import {Timetable} from "./timetable/Timetable";
 import {Today} from "./today/Today";
 import {Guide} from "./guide/Guide";
 import {SessionPage} from "./session/SessionPage";
+import {EventPage} from "./search/EventPage";
 
 import Generate from "./generate/Generate";
 
@@ -38,6 +39,8 @@ function App() {
               <Route exact path="/generate" component = {Generate} />
               <Route exact path="/session" component = {SessionPage} />
               <Route exact path="/session/:session_id" component = {SessionPage} />
+              <Route exact path="/event" component = {EventPage} />
+              <Route exact path="/event/:event_id" component = {EventPage} />
               <Route render={() => <h1>404: page not found</h1>} />
             </Switch>
         </Router>
