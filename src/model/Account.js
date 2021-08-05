@@ -206,6 +206,73 @@ class Account {
     return today;
   }
 
+  isInGather(id){
+    if (!this.isLoggedIn()){
+      return false;
+    }
+
+    // look up this session ID in the extra zoom link database
+    let extra_zoom_links = secrets["extra_zoom_links"];
+
+    if (extra_zoom_links){
+      let link = extra_zoom_links[id];
+
+      if (link){
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  getZoomLinkForSubmission(id){
+    if (!this.isLoggedIn()){
+      return null;
+    }
+
+    // look up this session ID in the extra zoom link database
+    let extra_zoom_links = secrets["extra_zoom_links"];
+
+    if (extra_zoom_links){
+      let link = extra_zoom_links[id];
+
+      if (link){
+        let session = Session.getSessionForPresentation(id);
+
+        if (!session){
+          return null;
+        }
+
+        let today = this.getNow();
+
+        if (!session.isWithinMinutes(today, 30)){
+          return false;
+        }
+
+        try{
+          // can only return today's zoom link
+          let key = this.getDayKey(today);
+
+          if (key){
+            return key.decrypt(link);
+          }
+        } catch(error){
+          console.log("Error decrypting the zoom link?");
+          console.log(error);
+        }
+      }
+    }
+
+    // this is not a parallel link, so return the general session link
+    let session = Session.getSessionForPresentation(id);
+
+    if (session){
+      return session.getZoomLink(this);
+    } else {
+      return null;
+    }
+  }
+
   getZoomLink(){
     if (!this.isLoggedIn()){
       return null;

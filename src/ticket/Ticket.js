@@ -70,11 +70,10 @@ export function TicketComponent(props){
 
         let session = submission.getSession();
         let slido_link = submission.getSlidoLink(account);
-        let zoom_link = null;
+        let zoom_link = submission.getZoomLink(account);
+        let is_in_gather = submission.isInGather(account);
 
         if (session){
-          zoom_link = session.getZoomLink(account);
-
           session = [
             <Card.Title key="s1" style={{fontSize: "medium",
                                          fontStyle: "italic"}}>
@@ -105,40 +104,77 @@ export function TicketComponent(props){
         }
 
         if (zoom_link){
-          zoom_link = [
-            <Card.Title key="z1" style={{fontSize: "medium",
-                                         fontStyle: "bold",
-                                         textAlign: "center"}}>
-              Zoom link
-            </Card.Title>,
-            <Card.Text key="z2">
-              Please <a href={zoom_link}>click here</a> to access
-              the Zoom meeting in which you will present your session.
-              You can also enter the meeting by
-              walking to the lecture theatre in the virtual
-              conference centre and pressing 'x' to join Zoom.
-              Please <a href="mailto:conference-2021@society-rse.org">email us</a> if
-              you are unable to connect.
-            </Card.Text>
-          ];
+          if (is_in_gather){
+            zoom_link = [
+              <Card.Title key="z1" style={{fontSize: "medium",
+                                          fontStyle: "bold",
+                                          textAlign: "center"}}>
+                Zoom link
+              </Card.Title>,
+              <Card.Text key="z2">
+                Please <a href={zoom_link}>click here</a> to access
+                the Zoom meeting in which you will present your session.
+                You can also enter the meeting by
+                walking to the lecture theatre in the virtual
+                conference centre and pressing 'x' to join Zoom.
+                Please <a href="mailto:conference-2021@society-rse.org">email us</a> if
+                you are unable to connect.
+              </Card.Text>
+            ];
+          } else {
+            zoom_link = [
+              <Card.Title key="z1" style={{fontSize: "medium",
+                          fontStyle: "bold",
+                        textAlign: "center"}}>
+                Zoom link
+              </Card.Title>,
+              <Card.Text key="z2">
+                Please <a href={zoom_link}>click here</a> to access
+                the Zoom meeting in which you will present your session.
+                This is a parallel session, and cannot be reached
+                from within the virtual conference center.
+                Please <a href="mailto:conference-2021@society-rse.org">email us</a> if
+                you are unable to connect.
+              </Card.Text>
+            ];
+          }
         } else {
-          zoom_link = [
-            <Card.Title key="z1" style={{fontSize: "medium",
-                                         fontStyle: "bold",
-                                         textAlign: "center"}}>
-              Zoom link
-            </Card.Title>,
-            <Card.Text key="z2">
-              Within 30 minutes of your event there will be a zoom link
-              here that you can click to get direct access to the
-              Zoom meeting. You can also enter the meeting by
-              walking to the lecture theatre in the virtual
-              conference centre and pressing 'x' to join Zoom.
-              If your event is about to start and you can't
-              find this link, then
-              please <a href="mailto:conference-2021@society-rse.org">email us</a>.
-            </Card.Text>
-          ];
+          if (is_in_gather){
+            zoom_link = [
+              <Card.Title key="z1" style={{fontSize: "medium",
+                                          fontStyle: "bold",
+                                          textAlign: "center"}}>
+                Zoom link
+              </Card.Title>,
+              <Card.Text key="z2">
+                Within 30 minutes of your event there will be a zoom link
+                here that you can click to get direct access to the
+                Zoom meeting. You can also enter the meeting by
+                walking to the lecture theatre in the virtual
+                conference centre and pressing 'x' to join Zoom.
+                If your event is about to start and you can't
+                find this link, then
+                please <a href="mailto:conference-2021@society-rse.org">email us</a>.
+              </Card.Text>
+            ];
+          } else {
+            zoom_link = [
+              <Card.Title key="z1" style={{fontSize: "medium",
+                                          fontStyle: "bold",
+                                          textAlign: "center"}}>
+                Zoom link
+              </Card.Title>,
+              <Card.Text key="z2">
+                Within 30 minutes of your event there will be a zoom link
+                here that you can click to get direct access to the
+                Zoom meeting. This is a parallel session so cannot be
+                reached from the virtual conference center.
+                If your event is about to start and you can't
+                find this link, then
+                please <a href="mailto:conference-2021@society-rse.org">email us</a>.
+              </Card.Text>
+            ];
+          }
         }
 
         if (slido_link){
@@ -234,7 +270,7 @@ export function TicketComponent(props){
       } else {
         gathertown = (
           <li>A link to connect to the gather.town virtual conference center
-              will appear here on the days on which your ticket is valid.
+              will appear here on the day(s) on which your ticket is valid.
               This will on the day(s) of your event(s) as you hold
               a day ticket.</li>
         );

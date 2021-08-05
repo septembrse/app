@@ -36,6 +36,10 @@ links = pd.read_excel("Drive Links.xlsx")
 # (there is a different zoom link each day)
 zoom = pd.read_excel("Zoom links.xlsx")
 
+# Extra zoom links - these are when a parallel session needs its
+# own zoom link
+extra_zoom = pd.read_excel("Extra Zoom links.xlsx")
+
 # Slido links, so that we can add the slido links for each
 # session (there is one per session)
 slido = pd.read_excel("Slido links.xlsx")
@@ -211,8 +215,14 @@ zoom_links = {}
 
 for i in range(0, len(zoom)):
     link = zoom.loc[i]
-
     zoom_links[link["Date"].date().isoformat()] = clean(link["Link"])
+
+# Now read all of the extra zoom links and add them to the json
+extra_zoom_links = {}
+
+for i in range(0, len(extra_zoom)):
+    link = extra_zoom.loc[i]
+    extra_zoom_links[link["ID"]] = clean(link["Link"])
 
 # Now read all of the slido links and add them to the json
 slido_links = {}
@@ -227,6 +237,7 @@ with open("passwords.json", "w") as FILE:
     json.dump({"attendees": attendees,
                "drive_links": drive_links,
                "zoom_links": zoom_links,
+               "extra_zoom_links": extra_zoom_links,
                "slido_links": slido_links,
                "gather_link": gather_link,
                "god_key": get_god_key()}, FILE)

@@ -89,6 +89,31 @@ class Generate extends React.Component {
       }
     }
 
+    // get a list of extra zoom links
+    let extra_zoom_data = data.extra_zoom_links;
+    let extra_zoom_links = {}
+
+    for (let i in extra_zoom_data){
+      let session = Session.getSessionForPresentation(i);
+
+      if (session){
+        let day = session.getStartTime();
+
+        if (day){
+          let day_secret = get_day_secret(god_key, day);
+          day_secrets[get_day_string(day)] = day_secret;
+          let key = get_key(day_secret);
+          let extra_zoom_link = extra_zoom_data[i];
+
+          if (extra_zoom_link){
+            extra_zoom_links[i] = key.encrypt(extra_zoom_link);
+          }
+        } else {
+          console.log(`No day for session ${session.getID()} : ${i}`);
+        }
+      }
+    }
+
     let slido_data = data.slido_links;
     let slido_links = {};
 
@@ -106,7 +131,6 @@ class Generate extends React.Component {
           let slido_link = slido_data[i];
 
           if (slido_link){
-            console.log(slido_link);
             slido_links[i] = key.encrypt(slido_link);
           }
         } else {
@@ -127,6 +151,7 @@ class Generate extends React.Component {
     }
 
     let tickets = {"zoom_links": zoom_links,
+                   "extra_zoom_links": extra_zoom_links,
                    "slido_links": slido_links,
                    "attendees": {}};
 

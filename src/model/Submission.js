@@ -187,6 +187,22 @@ class Submission {
     return this.id;
   }
 
+  getZoomLink(account){
+    if (account && account.isLoggedIn()){
+      return account.getZoomLinkForSubmission(this.getID());
+    }
+
+    return null;
+  }
+
+  isInGather(account){
+    if (account && account.isLoggedIn()){
+      return account.isInGather(this.getID());
+    }
+
+    return null;
+  }
+
   getSlidoLink(account){
     if (account && account.isLoggedIn()){
       return account.getSlidoLink(this.getID());
