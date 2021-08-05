@@ -11,8 +11,6 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-import { Redirect } from "react-router-dom";
-
 export function LogoutComponent(props) {
 
   let account = props.account;

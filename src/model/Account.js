@@ -7,7 +7,7 @@ import secrets from "./secrets.json";
 
 
 class Account {
-  constructor(email=null, secret=null){
+  constructor(email, secret){
     if (!email){
       secret = null;
     }
@@ -29,6 +29,14 @@ class Account {
 
   isLoggedIn(){
     return this._is_logged_in;
+  }
+
+  getVersion(){
+    if (!this.isLoggedIn()){
+      return null;
+    }
+
+    return this._secret.version;
   }
 
   getTicket(){
@@ -147,6 +155,25 @@ class Account {
   static get_account(){
     // have we loaded the account into memory?
     if (Account._logged_in_account){
+      let version = localStorage.getItem("septembrse_version");
+
+      if (version !== secrets["version"]){
+        // we need to update the data
+        try{
+          console.log("Logging in again due to change of version");
+          console.log(`${version} : ${secrets["version"]}`);
+          let local_email = localStorage.getItem("septembrse_user");
+          let key = get_local_key(local_email);
+          let local_password = key.decrypt(
+                          localStorage.getItem("septembrse_secret"));
+          Account.login(local_email, local_password);
+        } catch (error){
+          console.log("Error logging in again!")
+          console.log(error);
+          Account._logged_in_account.logout();
+        }
+      }
+
       return Account._logged_in_account;
     }
 
@@ -154,6 +181,30 @@ class Account {
     let email = localStorage.getItem("septembrse_user");
 
     if (email){
+      let version = localStorage.getItem("septembrse_version");
+
+      if (version !== secrets["version"]){
+        console.log("Need to update secret as there has been a change");
+        console.log(`${version} vs ${secrets["version"]}`);
+
+        try {
+          let key = get_local_key(email);
+          let password = key.decrypt(localStorage.getItem(
+                                              "septembrse_secret"));
+          Account.login(email, password);
+          return Account._logged_in_account;
+        } catch (error){
+          console.log("Cannot relogin from old login data!");
+          console.log(error);
+          Account._logged_in_account = null;
+          localStorage.removeItem("septembrse_user");
+          localStorage.removeItem("septembrse_secret_data");
+          localStorage.removeItem("septembrse_secret");
+          localStorage.removeItem("septembrse_version");
+          return null;
+        }
+      }
+
       let local_data = localStorage.getItem("septembrse_secret_data");
 
       if (local_data){
@@ -164,9 +215,10 @@ class Account {
 
           let parsed = JSON.parse(secret);
 
-          let account = new Account(email, parsed);
-          Account._logged_in_account = account;
-          return account;
+          let new_account = new Account(email, parsed);
+          Account._logged_in_account = new_account;
+
+          return new_account;
 
         } catch(error){
           console.log("Cannot load saved data...?");
@@ -199,11 +251,15 @@ class Account {
       let secret = key.decrypt(encrypted_secret);
 
       let parsed = JSON.parse(secret);
+      parsed["version"] = secrets["version"];
 
       // cache this to localStorage
       key = get_local_key(email);
+
       localStorage.setItem("septembrse_user", email);
+      localStorage.setItem("septembrse_version", secrets["version"]);
       localStorage.setItem("septembrse_secret_data", key.encrypt(secret));
+      localStorage.setItem("septembrse_secret", key.encrypt(password));
 
       let account = new Account(email, parsed);
 
@@ -224,9 +280,12 @@ class Account {
 
   logout(){
     if (this.isLoggedIn()){
+      console.log("LOGOUT");
       Account._logged_in_account = null;
       localStorage.removeItem("septembrse_user");
       localStorage.removeItem("septembrse_secret_data");
+      localStorage.removeItem("septembrse_secret");
+      localStorage.removeItem("septembrse_version");
       this._email = null;
       this._secret = null;
       this._is_logged_in = false;

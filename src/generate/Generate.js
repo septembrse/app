@@ -165,6 +165,9 @@ class Generate extends React.Component {
       tickets[email] = ticket;
     }
 
+    //add the time of generation so we know if we need to update
+    tickets["version"] = new Date().toISOString();
+
     return JSON.stringify(tickets);
   }
 
