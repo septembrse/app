@@ -189,7 +189,7 @@ class Submission {
 
   getSlidoLink(account){
     if (account && account.isLoggedIn()){
-      return null;
+      return account.getSlidoLink(this.getID());
     }
 
     return null;

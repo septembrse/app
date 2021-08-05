@@ -69,7 +69,7 @@ export function TicketComponent(props){
         }
 
         let session = submission.getSession();
-        let slido_link = submission.getSlidoLink();
+        let slido_link = submission.getSlidoLink(account);
         let zoom_link = null;
 
         if (session){

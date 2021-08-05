@@ -3,6 +3,8 @@
 import {get_local_key, get_day_key, get_day_string,
         get_user_key, mangle_email, get_key} from "./Secret";
 
+import Session from "./Session";
+
 import secrets from "./secrets.json";
 
 
@@ -92,11 +94,9 @@ class Account {
   }
 
   getGatherTownLink(){
-    if (!this.isLoggedIn()){
-      return null;
+    if (this.isValidToday()){
+      return this._secret["gather_link"];
     }
-
-    return this._secret["gather_link"];
   }
 
   isValidToday(){
@@ -104,9 +104,36 @@ class Account {
       return false;
     }
 
+    let today = new Date();
+
+    if (_test_day){
+      today = _test_day;
+      console.log(`USING TEST DAY ${_test_day.toISOString()}`);
+    }
+
+    let conference_start = new Date("2021-09-02");
+    let conference_end = new Date("2021-10-02");
+
+    if (today - conference_start < 0){
+      console.log("The conference hasn't started yet...");
+      return false;
+    } else if (conference_end - today < 0){
+      console.log("The conference has already finished.");
+      return false;
+    }
+
     if (this.isGeneralTicket()){
       return true;
+    } else if (this._secret.day_keys){
+      if (this._secret.day_keys[get_day_string(today)]){
+        return true;
+      } else {
+        console.log("Your day ticket is not valid today.");
+        return false;
+      }
     }
+
+    console.log("You don't appear to have a valid ticket.");
 
     return false;
   }
@@ -120,9 +147,6 @@ class Account {
       date = new Date();
     }
 
-    console.log(date);
-    console.log(this._secret);
-
     if (this._secret.god_key){
       return get_day_key(this._secret.god_key, date);
     } else if (this._secret.day_keys) {
@@ -131,6 +155,46 @@ class Account {
 
       if (day_secret){
         return get_key(day_secret);
+      }
+    }
+
+    return null;
+  }
+
+  getSlidoLink(id){
+    if (!this.isLoggedIn()){
+      return null;
+    }
+
+    let slido_links = secrets["slido_links"];
+
+    if (!slido_links){
+      return null;
+    }
+
+    let link = slido_links[id];
+
+    if (link) {
+      // need to get the day key for the session containing this link
+      let session = Session.getSessionForPresentation(id);
+
+      if (!session){
+        console.log(`There is no session for event ${id}?`);
+        return null;
+      }
+
+      let key = this.getDayKey(session.getStartTime());
+
+      if (!key){
+        console.log(`No day key for ${session.getStartTime().toISOString()}`);
+        return null;
+      }
+
+      try{
+        return key.decrypt(link);
+      } catch(error){
+        console.log("Cannot decrypt the slido link?");
+        console.log(error);
       }
     }
 
@@ -162,14 +226,16 @@ class Account {
       try{
         // can only return today's zoom link
         let key = this.getDayKey(today);
-        return key.decrypt(link);
+
+        if (key){
+          return key.decrypt(link);
+        }
       } catch(error){
         console.log("Error decrypting the zoom link?");
         console.log(error);
       }
     } else {
       console.log(`ERROR - NO ZOOM LINK FOR ${get_day_string(today)}`);
-      console.log(zoom_links);
     }
 
     return null;
