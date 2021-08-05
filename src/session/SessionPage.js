@@ -5,11 +5,14 @@ import SimplePage from "../SimplePage";
 
 import Account from '../model/Account';
 import Session from '../model/Session';
+import Submission from '../model/Submission';
 
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
+
+import { EventCard } from "../search/EventPage";
 
 import { useParams } from "react-router-dom";
 
@@ -23,7 +26,7 @@ export function SessionCard(props){
   }
 
   return (
-    <Row>
+    <Row key={session.getID()}>
       <Col style={{marginTop:"10px",
                    maxWidth: "768px",
                    marginLeft: "auto", marginRight: "auto"}}>
@@ -53,10 +56,30 @@ export function SessionComponent(props){
   let session = Session.getSession(session_id);
 
   if (session){
+    let events = [];
+
+    let event_ids = session.getEventIDs();
+
+    for (let i in event_ids){
+      let event_id = event_ids[i];
+
+      let event = Submission.getSubmission(event_id);
+
+      if (event){
+        events.push(<EventCard key={event_id}
+                               event={event}
+                               hide_session={true} hide_zoom={true}
+                               account={props.account}
+                               setAccount={props.setAccount}
+                               variant="secondary" />);
+      }
+    }
+
     return (
       <Container fluid>
         <SessionCard account={props.account} setAccount={props.setAccount}
                      session={session} />
+        {events}
       </Container>
     );
   } else {

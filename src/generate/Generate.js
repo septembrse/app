@@ -236,6 +236,19 @@ class Generate extends React.Component {
       tickets["attendees"][email] = ticket;
     }
 
+    //finally(!) add in all of the drive read links
+    let drive_read_links = {}
+
+    for (let i in drive_links){
+      let link = drive_links[i].read;
+
+      if (link){
+        drive_read_links[i] = link;
+      }
+    }
+
+    tickets["drive_links"] = drive_read_links;
+
     //add the time of generation so we know if we need to update
     tickets["version"] = new Date().toISOString();
 

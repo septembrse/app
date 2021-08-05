@@ -2,7 +2,6 @@
 import sessions_data from "../sessions.json";
 
 let _sessions = null;
-let _presentations = null;
 
 class Session {
   constructor(data = {}){
@@ -57,14 +56,12 @@ class Session {
   }
 
   static getSessionForPresentation(id){
-    if (_presentations === null){
-      let presentations = sessions_data["presentations"];
+    let presentations = sessions_data["presentations"];
 
-      let session = presentations[id];
+    let session = presentations[id];
 
-      if (session){
-        return Session.getSession(session);
-      }
+    if (session){
+      return Session.getSession(session);
     }
 
     return null;
@@ -125,6 +122,27 @@ class Session {
         return account.getZoomLink();
       }
     }
+  }
+
+  getEventIDs(){
+    if (this._event_ids){
+      return this._event_ids;
+    }
+
+    let event_ids = [];
+    let my_id = this.getID();
+
+    let presentations = sessions_data["presentations"];
+
+    for (let i in presentations){
+      if (my_id === presentations[i]){
+        event_ids.push(i);
+      }
+    }
+
+    this._event_ids = event_ids;
+
+    return this._event_ids;
   }
 
   hasDescription(){

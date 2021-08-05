@@ -320,6 +320,18 @@ class Account {
     }
   }
 
+  static getDriveReadLink(id){
+    let drive_links = secrets["drive_links"];
+
+    if (drive_links) {
+      if (drive_links[id]){
+        return drive_links[id];
+      }
+    }
+
+    return null;
+  }
+
   getPresentations(){
     if (!this.isLoggedIn()){
       return [];

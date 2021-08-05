@@ -22,7 +22,18 @@ const gfm = require('remark-gfm');
 
 export function EventCard(props){
   let event = props.event;
-  let session = Session.getSessionForPresentation(event.getID());
+
+  if (!event){
+    console.log("NULL EVENT");
+    return null;
+  }
+
+  let session = null;
+
+  if (!props.hide_session){
+    session = Session.getSessionForPresentation(event.getID());
+  }
+
   let variant = props.variant;
 
   if (!variant){
@@ -34,10 +45,14 @@ export function EventCard(props){
   let zoom_link = null;
   let is_in_gather = null;
   let slido_link = null;
+  let drive_link = Account.getDriveReadLink(event.getID());
 
   if (account && account.isLoggedIn()){
-    zoom_link = event.getZoomLink(account);
-    is_in_gather = event.isInGather(account);
+    if (!props.hide_zoom){
+      zoom_link = event.getZoomLink(account);
+      is_in_gather = event.isInGather(account);
+    }
+
     slido_link = event.getSlidoLink(account);
   }
 
@@ -54,7 +69,7 @@ export function EventCard(props){
         <li>{session.getEndTimeString()}</li>
       </ul>
     ];
-  } else {
+  } else if (!props.hide_session) {
     session = [
       <Card.Title key="s1" style={{fontSize: "medium",
                                    fontStyle: "bold",
@@ -106,7 +121,7 @@ export function EventCard(props){
         </Card.Text>
       ];
     }
-  } else {
+  } else if (account) {
     if (is_in_gather){
       zoom_link = [
         <Card.Title key="z1" style={{fontSize: "medium",
@@ -125,7 +140,7 @@ export function EventCard(props){
           please <a href="mailto:conference-2021@society-rse.org">email us</a>.
         </Card.Text>
       ];
-    } else {
+    } else if (!props.hide_zoom) {
       zoom_link = [
         <Card.Title key="z1" style={{fontSize: "medium",
                                     fontStyle: "bold",
@@ -143,6 +158,13 @@ export function EventCard(props){
         </Card.Text>
       ];
     }
+  } else if (!props.hide_zoom) {
+    zoom_link = [
+      <Card.Text key="z3" style={{textAlign: "center"}}>
+        <Link to="/login">Login</Link> to get the Zoom, Sli.do and
+        Google Drive links associated with this event.
+      </Card.Text>
+    ];
   }
 
   if (slido_link){
@@ -164,8 +186,44 @@ export function EventCard(props){
     ];
   }
 
+  if (drive_link){
+    drive_link = [
+      <Card.Title key="l1" style={{fontSize: "medium",
+                                   fontStyle: "bold",
+                                   textAlign: "center"}}>
+        Slides / other materials
+      </Card.Title>,
+      <Card.Text key="l2">
+        Please <a href={drive_link}>click here</a> to access a drive
+        in which the presenter may have uploaded slides or associated
+        materials. These will be in the 'content' folder in this drive.
+      </Card.Text>,
+      <Card.Text key="l3">
+        If you can't access this drive, then
+        please <a href="mailto:conference-2021@society-rse.org">email us</a> and
+        we will do our best to fix things.
+      </Card.Text>
+    ];
+  }
+
+  let abstract = null;
+
+  if (event.getAbstract()){
+    abstract = [
+      <Card.Title key="d1"
+                  style={{fontSize: "medium", fontStyle: "italic",
+                          textAlign: "center"}}>
+        Abstract
+      </Card.Title>,
+      <div key="d2" className={styles.markdown}>
+        <ReactMarkdown remarkPlugins={[gfm]}
+                       children={event.getAbstract()} />
+      </div>
+    ];
+  }
+
   return (
-    <Row>
+    <Row key={event.getID()}>
       <Col style={{marginTop:"10px",
                    maxWidth: "768px",
                    marginLeft: "auto", marginRight: "auto"}}>
@@ -189,17 +247,15 @@ export function EventCard(props){
                                 textAlign: "center"}}>
               {event.getInstitution()}
             </Card.Title>
+            {abstract}
+            <Card.Title style={{fontSize: "large", fontWeight: "bold",
+                                textAlign: "center"}}>
+              Extra information
+            </Card.Title>
             {session}
+            {drive_link}
             {zoom_link}
             {slido_link}
-            <Card.Title style={{fontSize: "medium", fontStyle: "italic",
-                                textAlign: "center"}}>
-              Abstract
-            </Card.Title>
-            <div className={styles.markdown}>
-                <ReactMarkdown remarkPlugins={[gfm]}
-                              children={event.getAbstract()} />
-            </div>
           </Card.Body>
         </Card>
       </Col>
