@@ -104,7 +104,7 @@ class Account {
       return false;
     }
 
-    let today = this.getNow();
+    let today = Account.getNow();
 
     let conference_start = new Date("2021-09-02");
     let conference_end = new Date("2021-10-02");
@@ -196,7 +196,7 @@ class Account {
     return null;
   }
 
-  getNow(){
+  static getNow(){
     let today = new Date();
 
     if (_test_day){
@@ -204,6 +204,10 @@ class Account {
     }
 
     return today;
+  }
+
+  thisGetNow(){
+    return Account.getNow();
   }
 
   isInGather(id){
@@ -243,7 +247,7 @@ class Account {
           return null;
         }
 
-        let today = this.getNow();
+        let today = Account.getNow();
 
         if (!session.isWithinMinutes(today, 30)){
           return false;
@@ -285,7 +289,7 @@ class Account {
     }
 
     // can only return the zoom link for today!
-    let today = this.getNow();
+    let today = Account.getNow();
 
     let link = zoom_links[get_day_string(today)];
 

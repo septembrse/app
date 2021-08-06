@@ -34,6 +34,7 @@ function App() {
               <Route exact path="/logout" component = {Logout} />
               <Route exact path="/ticket" component = {Ticket} />
               <Route exact path="/timetable" component = {Timetable} />
+              <Route exact path="/timetable/:day_or_week" component = {Timetable} />
               <Route exact path="/today" component = {Today} />
               <Route exact path="/venue" component = {Guide} />
               <Route exact path="/generate" component = {Generate} />

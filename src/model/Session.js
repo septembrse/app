@@ -172,7 +172,7 @@ class Session {
     if (account && account.isLoggedIn()){
       // allow connection up to 30 minutes before and 30 minutes
       // after the session
-      if (this.isWithinMinutes(account.getNow(), 30)){
+      if (this.isWithinMinutes(account.thisGetNow(), 30)){
         return account.getZoomLink();
       }
     }
