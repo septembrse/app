@@ -235,7 +235,7 @@ export function TimetableComponent(props){
               <LinkContainer to="/timetable/week4">
                 <Dropdown.Item href="#">Week 4</Dropdown.Item>
               </LinkContainer>
-              <LinkContainer to="/timetable">
+              <LinkContainer to="/timetable/all">
                 <Dropdown.Item href="#">Complete program</Dropdown.Item>
               </LinkContainer>
             </Dropdown.Menu>
