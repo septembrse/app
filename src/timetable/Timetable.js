@@ -138,36 +138,39 @@ export function TimetableComponent(props){
 
   let dw_text = null;
 
+  let today = Account.getNow();
+  let today_string = `Today: ${Session.getDayString(today)}`;
+
   if (day_or_week === "week1"){
     view_days = [new Date("2021-09-06"),
                  new Date("2021-09-07"),
                  new Date("2021-09-08"),
                  new Date("2021-09-09"),
                  new Date("2021-09-10")];
-    dw_text = "Week 1";
+    dw_text = "Week 1: 6-10 September";
   } else if (day_or_week === "week2"){
     view_days = [new Date("2021-09-13"),
                  new Date("2021-09-14"),
                  new Date("2021-09-15"),
                  new Date("2021-09-16"),
                  new Date("2021-09-17")];
-    dw_text = "Week 2";
+    dw_text = "Week 2: 13-17 September";
   } else if (day_or_week === "week3"){
     view_days = [new Date("2021-09-20"),
                  new Date("2021-09-21"),
                  new Date("2021-09-22"),
                  new Date("2021-09-23"),
                  new Date("2021-09-24")];
-    dw_text = "Week 3";
+    dw_text = "Week 3: 20-24 September";
   } else if (day_or_week === "week4"){
     view_days = [new Date("2021-09-27"),
                  new Date("2021-09-28"),
                  new Date("2021-09-29"),
                  new Date("2021-09-30")];
-    dw_text = "Week 4";
+    dw_text = "Week 4: 27-30 September";
   } else if (day_or_week === "today"){
-    view_days = [Account.getNow()];
-    dw_text = "Today";
+    view_days = [today];
+    dw_text = today_string;
   } else {
     dw_text = "Complete Program";
   }
@@ -246,19 +249,19 @@ export function TimetableComponent(props){
             </Dropdown.Toggle>
             <Dropdown.Menu style={{width: "100%", textAlign: "center"}}>
               <LinkContainer to="/timetable/today">
-                <Dropdown.Item href="#">Today</Dropdown.Item>
+                <Dropdown.Item href="#">{today_string}</Dropdown.Item>
               </LinkContainer>
               <LinkContainer to="/timetable/week1">
-                <Dropdown.Item href="#">Week 1</Dropdown.Item>
+                <Dropdown.Item href="#">Week 1: 6-10 September</Dropdown.Item>
               </LinkContainer>
               <LinkContainer to="/timetable/week2">
-                <Dropdown.Item href="#">Week 2</Dropdown.Item>
+                <Dropdown.Item href="#">Week 2: 13-17 September</Dropdown.Item>
               </LinkContainer>
               <LinkContainer to="/timetable/week3">
-                <Dropdown.Item href="#">Week 3</Dropdown.Item>
+                <Dropdown.Item href="#">Week 3: 20-24 September</Dropdown.Item>
               </LinkContainer>
               <LinkContainer to="/timetable/week4">
-                <Dropdown.Item href="#">Week 4</Dropdown.Item>
+                <Dropdown.Item href="#">Week 4: 27-30 September</Dropdown.Item>
               </LinkContainer>
               <LinkContainer to="/timetable/all">
                 <Dropdown.Item href="#">Complete program</Dropdown.Item>

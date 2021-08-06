@@ -47,7 +47,7 @@ with open("accepted_submissions.tsv") as FILE:
 # now add in any extra sessions, also any fixes to the
 # data from the submissions system
 extra_data = pd.read_excel("Extra Presentations.xlsx")
-diversity = pd.read_excel("diversity.xlsx")
+diversity = pd.read_excel("Presenter Details and Diversity Form (Responses).xlsx")
 
 
 def get_name(email):

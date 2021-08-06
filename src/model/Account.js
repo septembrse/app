@@ -8,7 +8,7 @@ import Session from "./Session";
 import secrets from "./secrets.json";
 
 
-let _test_day = new Date("2021-09-06T12:00:00");
+let _test_day = null; //new Date("2021-09-06T12:00:00");
 
 
 class Account {

@@ -26,7 +26,7 @@ submissions = pd.read_csv("sessions_and_emails.tsv", delimiter="\t")
 extras = pd.read_excel("Extra Presentations.xlsx")
 
 # Diversity data, so that we can get names
-diversity = pd.read_excel("diversity.xlsx")
+diversity = pd.read_excel("Presenter Details and Diversity Form (Responses).xlsx")
 
 # Drive links, so that we can add links to write and read presentation
 # files
