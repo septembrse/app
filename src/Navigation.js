@@ -32,36 +32,44 @@ function Navigation(props){
   }
 
   return (
-    <Navbar expand="lg">
+    <Container>
+    <Navbar variant="dark" expand="md" collapseOnSelect>
       <Container>
-        <Nav.Item>
-          <LinkContainer to="/">
-            <Nav.Link>Home</Nav.Link>
-          </LinkContainer>
-        </Nav.Item>
-        <Nav.Item>
-          <LinkContainer to="/today">
-            <Nav.Link>Today</Nav.Link>
-          </LinkContainer>
-        </Nav.Item>
-        <Nav.Item>
-          <LinkContainer to="/timetable">
-            <Nav.Link>Timetable</Nav.Link>
-          </LinkContainer>
-        </Nav.Item>
-        <Nav.Item>
-          <LinkContainer to="/venue">
-            <Nav.Link>Venue</Nav.Link>
-          </LinkContainer>
-        </Nav.Item>
-        <Nav.Item>
-          <LinkContainer to="/ticket">
-            <Nav.Link>Ticket</Nav.Link>
-          </LinkContainer>
-        </Nav.Item>
-        {login_logout}
+        <LinkContainer to="/">
+          <Navbar.Brand>SeptembRSE</Navbar.Brand>
+        </LinkContainer>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav.Item>
+            <LinkContainer to="/today">
+              <Nav.Link>Today</Nav.Link>
+            </LinkContainer>
+          </Nav.Item>
+          <Nav.Item>
+            <LinkContainer to="/timetable">
+              <Nav.Link>Timetable</Nav.Link>
+            </LinkContainer>
+          </Nav.Item>
+          <Nav.Item>
+            <LinkContainer to="/search">
+              <Nav.Link>Search</Nav.Link>
+            </LinkContainer>
+          </Nav.Item>
+          <Nav.Item>
+            <LinkContainer to="/venue">
+              <Nav.Link>Venue</Nav.Link>
+            </LinkContainer>
+          </Nav.Item>
+          <Nav.Item>
+            <LinkContainer to="/ticket">
+              <Nav.Link>Ticket</Nav.Link>
+            </LinkContainer>
+          </Nav.Item>
+          {login_logout}
+        </Navbar.Collapse>
       </Container>
     </Navbar>
+    </Container>
   );
 }
 
