@@ -11,6 +11,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
 
 import { Link } from "react-router-dom";
 
@@ -233,8 +234,67 @@ export function TodayComponent(props){
     );
   }
 
+  let gather_link = null;
+
+  let account = props.account;
+
+  if (account && account.isLoggedIn()){
+    if (account.isValidToday()){
+      gather_link = (
+        <Row>
+          <Col style={{marginTop:"10px",
+                      maxWidth: "768px",
+                      marginLeft: "auto", marginRight: "auto"}}>
+            <Button variant="dark"
+                    style={{width: "100%", borderRadius: "5px"}}
+                    href={account.getGatherTownLink()}>
+              Connect to the gather.town Virtual Conference Center
+            </Button>
+          </Col>
+        </Row>
+      );
+    } else {
+      gather_link = (
+        <Row>
+          <Col style={{marginTop:"10px",
+                      maxWidth: "768px",
+                      marginLeft: "auto", marginRight: "auto"}}>
+            <Button variant="dark"
+                    style={{width: "100%", borderRadius: "5px"}}>
+              Your ticket is not valid today
+            </Button>
+          </Col>
+        </Row>
+      );
+    }
+  } else {
+    gather_link = (
+      <Row>
+        <Col style={{marginTop:"10px",
+                    maxWidth: "768px",
+                    marginLeft: "auto", marginRight: "auto"}}>
+          <Button variant="dark"
+                  style={{width: "100%", borderRadius: "5px"}}
+                  onClick={() => props.history.push("/login")}>
+            Login to get the link to connect to the gather.town
+            Virtual Conference Center
+          </Button>
+        </Col>
+      </Row>
+    );
+  }
+
   return (
     <Container fluid>
+      <Row>
+        <Col style={{marginTop:"10px",
+                     maxWidth: "768px",
+                     marginLeft: "auto", marginRight: "auto"}}>
+          <h1 style={{textAlign: "center"}}>What is on today?</h1>
+          <h3 style={{textAlign: "center"}}>{Session.getDayString(today)}</h3>
+        </Col>
+      </Row>
+      {gather_link}
       {session_components}
     </Container>
   );
@@ -250,7 +310,8 @@ export function Today(props){
 
   return (
     <SimplePage account={account} setAccount={setAccount}>
-      <TodayComponent account={account} setAccount={setAccount} />
+      <TodayComponent account={account} setAccount={setAccount}
+                      history={props.history} />
     </SimplePage>
   );
 }
