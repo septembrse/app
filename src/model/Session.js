@@ -3,6 +3,12 @@ import sessions_data from "../sessions.json";
 
 let _sessions = null;
 
+function get_day(date){
+  let d = new Date(date);
+  d.setHours(0, 0, 0, 0);
+  return d;
+}
+
 class Session {
   constructor(data = {}){
     if (data["id"]){
@@ -40,7 +46,7 @@ class Session {
     return this.id;
   }
 
-  static getSession(id){
+  static _getSessions(){
     if (_sessions === null){
       _sessions = {};
 
@@ -52,7 +58,55 @@ class Session {
       }
     }
 
-    return _sessions[id];
+    return _sessions;
+  }
+
+  static getConferenceDays(){
+    let days = {}
+
+    let sessions = this._getSessions();
+
+    let start = new Date("2021-09-06");
+
+    for (let i in sessions){
+      let session = sessions[i];
+
+      if (session.getStartTime() - start >= 0){
+        days[get_day(session.getStartTime())] = 1;
+      }
+    }
+
+    let keys = Object.keys(days);
+    keys.sort((a, b) => {return (a - b)});
+
+    return keys;
+  }
+
+  static getSessionsOnDay(date){
+    let sessions = this._getSessions();
+
+    let day = get_day(date);
+
+    let s = [];
+
+    for (let i in sessions){
+      let session = sessions[i];
+
+      let session_day = get_day(session.getStartTime());
+
+      if (session_day - day === 0){
+        s.push(session);
+      }
+    }
+
+    s.sort((a, b) => {return a.getStartTime() - b.getStartTime()});
+
+    return s;
+  }
+
+  static getSession(id){
+    let sessions = Session._getSessions();
+    return sessions[id];
   }
 
   static getSessionForPresentation(id){
@@ -134,9 +188,9 @@ class Session {
 
     let presentations = sessions_data["presentations"];
 
-    for (let i in presentations){
-      if (my_id === presentations[i]){
-        event_ids.push(i);
+    for (let event_id in presentations){
+      if (my_id === presentations[event_id]){
+        event_ids.push(event_id);
       }
     }
 
@@ -173,16 +227,29 @@ class Session {
     return new Date(this.start_time.getTime() + (this.delay_minutes*60*1000));
   }
 
-  _getDateString(d){
+  static getDayString(d){
+    d = new Date(d);
+    return `${d.toLocaleString('en-GB', { weekday:"long", year:"numeric", month:"long", day:"numeric"})}`;
+  }
+
+  static getDateString(d){
+    d = new Date(d);
     return `${d.toLocaleString('en-US', {hour:"numeric", minute:"numeric", hour12:true})} on ${d.toLocaleString('en-GB', { weekday:"long", year:"numeric", month:"long", day:"numeric"})}`;
   }
 
+  getDurationString(){
+    let s = new Date(this.getStartTime());
+    let e = new Date(this.getEndTime());
+
+    return `${s.toLocaleString('en-US', {hour:"numeric", minute:"numeric", hour12:true})}-${e.toLocaleString('en-US', {hour:"numeric", minute:"numeric", hour12:true})}`;
+  }
+
   getStartTimeString(){
-    return this._getDateString(this.getStartTime());
+    return Session.getDateString(this.getStartTime());
   }
 
   getEndTimeString(){
-    return this._getDateString(this.getEndTime());
+    return Session.getDateString(this.getEndTime());
   }
 
   getHoursDuration(){
