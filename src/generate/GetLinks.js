@@ -5,7 +5,6 @@ import SimplePage from "../SimplePage";
 
 import Account from "../model/Account";
 import Session from "../model/Session";
-import Submission from "../model/Submission";
 
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
