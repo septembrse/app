@@ -117,6 +117,7 @@ export function SearchComponent(props){
   if (search_text === "" || !search_text){
     return (
       <Container fluid>
+        <h1 style={{textAlign: "center"}}>Search for an event</h1>
         {search_bar}
         {divider}
         {view_all}
@@ -129,6 +130,7 @@ export function SearchComponent(props){
   if (results.length === 0){
     return (
       <Container fluid>
+        <h1 style={{textAlign: "center"}}>Search for an event</h1>
         {search_bar}
         <Row>
           <Col style={{marginTop:"10px",
@@ -198,6 +200,14 @@ export function SearchComponent(props){
 
   return (
     <Container fluid>
+      <Row>
+        <Col style={{marginTop:"10px",
+                     maxWidth: "768px",
+                     marginLeft: "auto", marginRight: "auto"}}>
+          <h1 style={{textAlign: "center"}}>Search for an event</h1>
+        </Col>
+      </Row>
+
       {search_bar}
       {formatted_results}
       {divider}

@@ -232,7 +232,7 @@ export function EventCard(props){
           <Card.Header style={{color: "rgb(220,220,220)",
                                fontWeight: "bold",
                                textAlign: "center"}}>
-            {event.getFormat()}: {event.getID()}
+            <Link to={event.getLink()}>{event.getFormat()}: {event.getID()}</Link>
           </Card.Header>
           <Card.Body>
             <Card.Title style={{fontSize: "large",
@@ -272,6 +272,13 @@ export function EventComponent(props){
   if (event){
     return (
       <Container fluid>
+        <Row>
+          <Col style={{marginTop:"10px",
+                      maxWidth: "768px",
+                      marginLeft: "auto", marginRight: "auto"}}>
+            <h1 style={{textAlign: "center"}}>Event Information</h1>
+          </Col>
+        </Row>
         <EventCard account={props.account} setAccount={props.setAccount}
                    event={event} />
       </Container>

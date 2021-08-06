@@ -34,6 +34,11 @@ function Home(props){
                     style={{borderRadius: "5px", marginTop: "5px"}}>
               Conference interstitial page
             </Button>
+            <Button onClick={() => props.history.push("/getlinks")}
+                    variant="danger"
+                    style={{borderRadius: "5px", marginTop: "5px"}}>
+              View today's Zoom and Sli.do links
+            </Button>
             <Button onClick={() => props.history.push("/generate")}
                     variant="danger"
                     style={{borderRadius: "5px", marginTop: "5px"}}>

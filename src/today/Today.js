@@ -284,13 +284,30 @@ export function TodayComponent(props){
     );
   }
 
+  if (session_components.length === 0){
+    session_components.push(
+      <Row>
+        <Col style={{marginTop:"10px",
+                     maxWidth: "768px",
+                     marginLeft: "auto", marginRight: "auto"}}>
+          <Card.Text style={{textAlign: "center"}}>
+            SeptembRSE runs from the 6th-30th September 2021.
+          </Card.Text>
+          <Card.Text style={{textAlign: "center"}}>
+            There is nothing scheduled to run today.
+          </Card.Text>
+        </Col>
+      </Row>
+    )
+  }
+
   return (
     <Container fluid>
       <Row>
         <Col style={{marginTop:"10px",
                      maxWidth: "768px",
                      marginLeft: "auto", marginRight: "auto"}}>
-          <h1 style={{textAlign: "center"}}>What is on today?</h1>
+          <h1 style={{textAlign: "center"}}>What is happening today?</h1>
           <h3 style={{textAlign: "center"}}>{Session.getDayString(today)}</h3>
         </Col>
       </Row>

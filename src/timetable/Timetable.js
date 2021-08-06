@@ -207,8 +207,33 @@ export function TimetableComponent(props){
     }
   }
 
+  if (day_views.length === 0){
+    day_views.push(
+      <Row>
+        <Col style={{marginTop:"10px",
+                    maxWidth: "768px",
+                    marginLeft: "auto", marginRight: "auto"}}>
+          <Card.Text style={{textAlign: "center"}}>
+            SeptembRSE runs from the 6th-30th September 2021.
+          </Card.Text>
+          <Card.Text style={{textAlign: "center"}}>
+            There is nothing scheduled to run today.
+          </Card.Text>
+        </Col>
+      </Row>
+    );
+  }
+
   return (
     <Container fluid>
+      <Row>
+        <Col style={{marginTop:"10px",
+                     maxWidth: "768px",
+                     marginLeft: "auto", marginRight: "auto"}}>
+          <h1 style={{textAlign: "center"}}>Conference Timetable</h1>
+        </Col>
+      </Row>
+
       <Row>
         <Col style={{marginTop:"10px",
                      maxWidth: "768px",

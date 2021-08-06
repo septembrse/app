@@ -280,7 +280,8 @@ class Generate extends React.Component {
               <Col style={{marginTop:"10px",
                            maxWidth: "768px",
                            marginLeft: "auto", marginRight: "auto"}}>
-                <Card bg="primary" border="primary" text="primary">
+                <Card bg="primary" border="primary" text="primary"
+                      style={{borderRadius: "5px"}}>
                   <Card.Body style={{align_items:"center"}}>
                     <Form>
                       <Card.Title>Choose a JSON file containing the secrets</Card.Title>

@@ -20,6 +20,7 @@ import {SessionPage} from "./session/SessionPage";
 import {EventPage} from "./search/EventPage";
 
 import Generate from "./generate/Generate";
+import GetLinks from "./generate/GetLinks";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
               <Route exact path="/today" component = {Today} />
               <Route exact path="/venue" component = {Guide} />
               <Route exact path="/generate" component = {Generate} />
+              <Route exact path="/getlinks" component = {GetLinks} />
               <Route exact path="/session" component = {SessionPage} />
               <Route exact path="/session/:session_id" component = {SessionPage} />
               <Route exact path="/event" component = {EventPage} />

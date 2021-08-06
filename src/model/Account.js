@@ -8,7 +8,7 @@ import Session from "./Session";
 import secrets from "./secrets.json";
 
 
-let _test_day = new Date("2021-09-10T12:00:00");
+let _test_day = new Date("2021-09-06T12:00:00");
 
 
 class Account {
@@ -227,6 +227,43 @@ class Account {
     }
 
     return true;
+  }
+
+  getZoomLinkIfDifferent(id){
+    if (!this.isLoggedIn()){
+      return null;
+    }
+
+    // look up this session ID in the extra zoom link database
+    let extra_zoom_links = secrets["extra_zoom_links"];
+
+    if (extra_zoom_links){
+      let link = extra_zoom_links[id];
+
+      if (link){
+        let session = Session.getSessionForPresentation(id);
+
+        if (!session){
+          return null;
+        }
+
+        let today = Account.getNow();
+
+        try{
+          // can only return today's zoom link
+          let key = this.getDayKey(today);
+
+          if (key){
+            return key.decrypt(link);
+          }
+        } catch(error){
+          console.log("Error decrypting the zoom link?");
+          console.log(error);
+        }
+      }
+    }
+
+    return null;
   }
 
   getZoomLinkForSubmission(id){

@@ -14,12 +14,13 @@ import Card from "react-bootstrap/Card";
 
 import { EventCard } from "../search/EventPage";
 
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 
 export function SessionCard(props){
   let session = props.session;
   let variant = props.variant;
+  let zoom_text = props.zoom_text;
 
   if (!variant){
     variant = "primary";
@@ -39,6 +40,7 @@ export function SessionCard(props){
             <Card.Title style={{textAlign: "center"}}>
               Session {session.getID()}: {session.getTitle()}
             </Card.Title>
+            {zoom_text}
             <Card.Text>
               {session.getDescription()}
             </Card.Text>
@@ -52,10 +54,15 @@ export function SessionCard(props){
 export function SessionComponent(props){
 
   let session_id = props.session_id;
+  let account = props.account;
 
   let session = Session.getSession(session_id);
 
+  let zoom_link = null;
+  let zoom_text = null;
+
   if (session){
+
     let events = [];
 
     let event_ids = session.getEventIDs();
@@ -66,6 +73,51 @@ export function SessionComponent(props){
       let event = Submission.getSubmission(event_id);
 
       if (event){
+        if (account && account.isLoggedIn()){
+
+          if (!zoom_text){
+            zoom_link = event.getZoomLink(account);
+
+            if (zoom_link){
+              if (event.isInGather(account)){
+                zoom_text = (
+                  <Card.Text style={{textAlign: "center", color: "white"}}>
+                    <a href={zoom_link}>
+                      Connect to the Zoom meeting for this session.
+                    </a><br/>Alternatively you can walk to the lecture theatre
+                    in the <a href={account.getGatherTownLink()}>virtual conference center</a> and press 'x' to connect
+                    to Zoom.
+                  </Card.Text>
+                );
+              } else {
+                zoom_text = (
+                  <Card.Text style={{textAlign: "center", color: "white"}}>
+                    <a href={zoom_link}>
+                      Connect to the Zoom meeting for this session.
+                    </a><br/>This is a parallel session, so it cannot be
+                    reached from within the <a href={account.getGatherTownLink()}>virtual conference center</a>.
+                  </Card.Text>
+                );
+              }
+            } else if (!account.isValidToday()){
+              zoom_text = (
+                <Card.Text style={{textAlign: "center", color: "white"}}>
+                  Your ticket is not valid today, so you cannot connect
+                  to the Zoom session.
+                </Card.Text>
+              );
+            } else {
+              zoom_text = (
+                <Card.Text style={{textAlign: "center", color: "white"}}>
+                  The link to the Zoom meeting for this session will appear
+                  from 30 minutes before the session starts, and will be available
+                  until 30 minutes after it has finished.
+                </Card.Text>
+              );
+            }
+          }
+        }
+
         events.push(<EventCard key={event_id}
                                event={event}
                                hide_session={true} hide_zoom={true}
@@ -75,10 +127,57 @@ export function SessionComponent(props){
       }
     }
 
+    if (!zoom_text){
+      if (account && account.isLoggedIn()){
+        zoom_link = session.getZoomLink(account);
+
+        if (zoom_link){
+          zoom_text = (
+            <Card.Text style={{textAlign: "center", color: "white"}}>
+              <a href={zoom_link}>
+                Connect to the Zoom meeting for this session.
+              </a><br/>Or connect to Zoom by visiting the lecture theatre
+              in the <a href={account.getGatherTownLink()}>virtual conference center</a>.
+            </Card.Text>
+          );
+        } else if (!account.isValidToday()){
+          zoom_text = (
+            <Card.Text style={{textAlign: "center", color: "white"}}>
+              Your ticket is not valid today, so you cannot connect
+              to the Zoom session.
+            </Card.Text>
+          );
+        } else {
+          zoom_text = (
+            <Card.Text style={{textAlign: "center", color: "white"}}>
+              The link to the Zoom meeting for this session will appear
+              from 30 minutes before the session starts, and will be available
+              until 30 minutes after it has finished.
+            </Card.Text>
+          );
+        }
+      } else {
+        zoom_text = (
+          <Card.Text style={{textAlign: "center", color: "white"}}>
+            <Link to="/login">Log in</Link> to get the Zoom and Sli.do
+            links associated with this session.
+          </Card.Text>
+        )
+      }
+    }
+
     return (
       <Container fluid>
+        <Row>
+          <Col style={{marginTop:"10px",
+                      maxWidth: "768px",
+                      marginLeft: "auto", marginRight: "auto"}}>
+            <h1 style={{textAlign: "center"}}>Session Information</h1>
+          </Col>
+        </Row>
+
         <SessionCard account={props.account} setAccount={props.setAccount}
-                     session={session} />
+                     session={session} zoom_text={zoom_text} />
         {events}
       </Container>
     );

@@ -280,6 +280,13 @@ export function TicketComponent(props){
     return (
       <Container fluid>
         <Row>
+          <Col style={{marginTop:"10px",
+                      maxWidth: "768px",
+                      marginLeft: "auto", marginRight: "auto"}}>
+            <h1 style={{textAlign: "center"}}>Your SeptembRSE Ticket</h1>
+          </Col>
+        </Row>
+        <Row>
           <Col>
             <Card bg="primary" border="primary" text="primary"
                   style={{borderRadius: "5px", marginTop:"10px",
