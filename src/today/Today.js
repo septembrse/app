@@ -124,6 +124,13 @@ function SessionToday(props){
                 </Card.Text>
               );
             }
+          } else if (!account.isValidToday()){
+            zoom_text = (
+              <Card.Text style={{textAlign: "center", color: "white"}}>
+                Your ticket is not valid today, so you cannot connect
+                to the Zoom session.
+              </Card.Text>
+            );
           } else {
             zoom_text = (
               <Card.Text style={{textAlign: "center", color: "white"}}>
@@ -155,6 +162,13 @@ function SessionToday(props){
               Connect to the Zoom meeting for this session.
             </a><br/>Or connect to Zoom by visiting the lecture theatre
             in the <a href={account.getGatherTownLink()}>virtual conference center</a>.
+          </Card.Text>
+        );
+      } else if (!account.isValidToday()){
+        zoom_text = (
+          <Card.Text style={{textAlign: "center", color: "white"}}>
+            Your ticket is not valid today, so you cannot connect
+            to the Zoom session.
           </Card.Text>
         );
       } else {
