@@ -1,6 +1,0 @@
-This is a test to see if the markdown works.
-
-[This is a link](https://septembrse.society-rse.org).
-
-![Alt text](https://septembrse.society-rse.org/wp-content/uploads/sites/3/2021/07/septembRSE_official_banner_no_background_moved.png "a title")
-

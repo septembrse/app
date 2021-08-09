@@ -1,0 +1,46 @@
+# Quick Start Guide
+
+![](https://github.com/septembrse/septembrse.github.io/blob/main/images/conference_hall.jpg?raw=true)
+
+You join the Virtual Conference Center by clicking the link in the
+[Today Page](/#app/today) (the link will only appear from Friday 3rd September
+onwards, if you are logged in, and your ticket is valid that day).
+
+It is strongly recommended that you connect using a
+[Chromium-based browser](https://en.wikipedia.org/wiki/Chromium_(web_browser)),
+e.g. Microsoft Edge, Google Chrome, Vivaldi etc. We have had success
+with Firefox, but have seen slow rendering. Safari does not work well
+and is not recommended.
+
+# Signing in
+
+The Virtual Conference Center is built using [gather.town](https://gather.town).
+Access is managed via a Guest List. When you first connect you will see
+a screen that looks something like this;
+
+![](https://raw.githubusercontent.com/septembrse/septembrse.github.io/main/images/guest_list.jpg)
+
+Click connect, and you will be asked to sign in. Use the "Email" option
+and sign in using the email address to which your SeptembRSE ticket was sent.
+
+![](https://github.com/septembrse/septembrse.github.io/blob/main/images/sign_in.jpg?raw=true)
+
+Gather.town will email you a one-time code that you can use to sign in.
+Check your email (including your spam folder) to see if it arrives. If
+it doesn't arrive within 5 minutes then get in contact with us,
+e.g. [via email](mailto:conference-2021@society-rse.org) or via the
+#septembrse channel in the RSE Slack.
+
+Enter your code where requested;
+
+![](https://github.com/septembrse/septembrse.github.io/blob/main/images/email_code.jpg?raw=true)
+
+You will next be taken to a page to choose your avatar.
+
+![](https://github.com/septembrse/septembrse.github.io/blob/main/images/choose_avatar.jpg?raw=true)
+
+This page lets you edit your Avatar (by clicking the "Edit" button), and
+to choose your video camera, microphone and speakers. Once you are ready,
+click "Join the Gathering" to enter the Virtual Conference Center.
+
+### [Previous](/#/app/venue)  |  [Up](/#/app/venue)  |  [Next](/#/app/venue/keys)
