@@ -43,4 +43,4 @@ This page lets you edit your Avatar (by clicking the "Edit" button), and
 to choose your video camera, microphone and speakers. Once you are ready,
 click "Join the Gathering" to enter the Virtual Conference Center.
 
-### [Previous](/#/app/venue)  |  [Up](/#/app/venue)  |  [Next](/#/app/venue/keys)
+### [Previous](/#/venue)  |  [Up](/#/venue)  |  [Next](/#/venue/keys)
