@@ -32,13 +32,13 @@ export function GetLinks(props){
 
     if (!zoom_link){
       zoom_links.push(
-        <Card.Text>
+        <Card.Text key="no_zoom_link">
           The conference is not running today. There is no link for Zoom.
         </Card.Text>
       );
     } else {
       zoom_links.push(
-        <Card.Text>
+        <Card.Text key="zoom_link">
           Conference Zoom Link: {zoom_link}<br/>
           <a href={zoom_link}>Click to start Zoom</a>
         </Card.Text>
@@ -56,7 +56,7 @@ export function GetLinks(props){
 
         if (l){
           zoom_links.push(
-            <Card.Text>
+            <Card.Text key={`zoom_link_${l}`}>
               Event {event_id} has its own Zoom link: {l}<br/>
               <a href={l}>Click to start Zoom</a>
             </Card.Text>
@@ -67,7 +67,7 @@ export function GetLinks(props){
 
         if (l){
           slido_links.push(
-            <Card.Text>
+            <Card.Text key={`slido_link_${l}`}>
               Slido board for {event_id}: {l}<br/>
               <a href={l}>Click to visit this board</a>
             </Card.Text>
@@ -78,13 +78,13 @@ export function GetLinks(props){
 
     if (zoom_links.length === 0){
       zoom_links.push(
-        <Card.Text>There are no Zoom links for today.</Card.Text>
+        <Card.Text key="no_zoom_links">There are no Zoom links for today.</Card.Text>
       );
     }
 
     if (slido_links.length === 0){
       slido_links.push(
-        <Card.Text>There are no Sli.do links for today.</Card.Text>
+        <Card.Text key="no_slido_links">There are no Sli.do links for today.</Card.Text>
       )
     }
 
@@ -107,6 +107,13 @@ export function GetLinks(props){
               <Card bg="primary" border="primary" text="primary"
                     style={{borderRadius: "5px"}}>
                 <Card.Body style={{align_items:"center"}}>
+                  <Card.Title key="gather_title">
+                    Virtual Conference Center Link
+                  </Card.Title>
+                  <Card.Text key="gather_link">
+                    gather.town<br/>
+                    <a href={account._getGatherTownLink()}>Click to visit the Virtual Conference Center</a>
+                  </Card.Text>
                   <Card.Title>
                     Zoom Links
                   </Card.Title>

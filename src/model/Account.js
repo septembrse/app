@@ -93,6 +93,12 @@ class Account {
     return false;
   }
 
+  _getGatherTownLink(){
+    if (this.isAdmin()){
+      return this._secret["gather_link"];
+    }
+  }
+
   getGatherTownLink(){
     if (this.isValidToday()){
       return this._secret["gather_link"];

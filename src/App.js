@@ -38,6 +38,7 @@ function App() {
               <Route exact path="/timetable/:day_or_week" component = {Timetable} />
               <Route exact path="/today" component = {Today} />
               <Route exact path="/venue" component = {Guide} />
+              <Route exact path="/venue/:page" component = {Guide} />
               <Route exact path="/generate" component = {Generate} />
               <Route exact path="/getlinks" component = {GetLinks} />
               <Route exact path="/session" component = {SessionPage} />

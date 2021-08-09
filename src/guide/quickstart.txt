@@ -1,0 +1,21 @@
+
+
+# Quick Start Guide
+
+You join the Virtual Conference Center by clicking the link in the
+[Today Page](/#app/today) (the link will only appear on the days the
+conference is open, if you are logged in, and your ticket is valid
+that day).
+
+It is strongly recommended that you connect using a
+[Chromium-based browser](https://en.wikipedia.org/wiki/Chromium_(web_browser)),
+e.g. Microsoft Edge, Google Chrome, Vivaldi etc. We have had success
+with Firefox, but have seen slow rendering. Safari does not work well
+and is not recommended.
+
+# Signing in
+
+
+
+
+### [Previous](/#/app/venue/keys)  |  [Up](/#/app/venue)  |  [Next](/#/app/venue/treasure)
