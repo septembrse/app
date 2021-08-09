@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/static/css/main.942390b4.chunk.css",
-    "main.js": "/static/js/main.1b8db913.chunk.js",
-    "main.js.map": "/static/js/main.1b8db913.chunk.js.map",
+    "main.js": "/static/js/main.3b4324b1.chunk.js",
+    "main.js.map": "/static/js/main.3b4324b1.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.be265e1d.js",
     "runtime-main.js.map": "/static/js/runtime-main.be265e1d.js.map",
     "static/js/2.3d661df3.chunk.js": "/static/js/2.3d661df3.chunk.js",
@@ -13,13 +13,13 @@
     "static/media/interstitial_bg.097b37a5.png": "/static/media/interstitial_bg.097b37a5.png",
     "static/media/keys.3b9b46f9.txt": "/static/media/keys.3b9b46f9.txt",
     "static/media/quickstart.b8d87d56.txt": "/static/media/quickstart.b8d87d56.txt",
-    "static/media/treasure.0733cac1.txt": "/static/media/treasure.0733cac1.txt",
+    "static/media/treasure.24420728.txt": "/static/media/treasure.24420728.txt",
     "static/media/venue.96fafef0.txt": "/static/media/venue.96fafef0.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.be265e1d.js",
     "static/js/2.3d661df3.chunk.js",
     "static/css/main.942390b4.chunk.css",
-    "static/js/main.1b8db913.chunk.js"
+    "static/js/main.3b4324b1.chunk.js"
   ]
 }
