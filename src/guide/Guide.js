@@ -86,7 +86,7 @@ export function GuideComponent(props){
             <Button onClick={() => props.history.push("/venue/keys")}
                     variant="secondary"
                     style={{borderRadius: "5px", marginTop: "5px"}}>
-              What can I do? Useful keys and features
+              How do I navigate? Useful keys and features
             </Button>
             <Button onClick={() => props.history.push("/venue/features")}
                     variant="info"

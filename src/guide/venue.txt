@@ -1,7 +1,4 @@
-
 # What can I do in the Virtual Conference Center?
-
-Hello, this is the venue detailed guide.
 
 
 ### [Previous](/#/app/venue/keys)  |  [Up](/#/app/venue)  |  [Next](/#/app/venue/treasure)

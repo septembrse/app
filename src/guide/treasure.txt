@@ -1,2 +1,4 @@
+# The Cryptic Code Treasure Hunt
 
-Hello - this is the treasure hunt guide
+
+### [Previous](/#/app/venue/guide)  |  [Up](/#/app/venue)  |  [Next](/#/app/venue)

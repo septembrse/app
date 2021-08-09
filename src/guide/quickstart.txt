@@ -1,11 +1,10 @@
-
-
 # Quick Start Guide
 
+![](https://github.com/septembrse/septembrse.github.io/blob/main/images/conference_hall.jpg?raw=true)
+
 You join the Virtual Conference Center by clicking the link in the
-[Today Page](/#app/today) (the link will only appear on the days the
-conference is open, if you are logged in, and your ticket is valid
-that day).
+[Today Page](/#app/today) (the link will only appear from Friday 3rd September
+onwards, if you are logged in, and your ticket is valid that day).
 
 It is strongly recommended that you connect using a
 [Chromium-based browser](https://en.wikipedia.org/wiki/Chromium_(web_browser)),
@@ -44,4 +43,4 @@ This page lets you edit your Avatar (by clicking the "Edit" button), and
 to choose your video camera, microphone and speakers. Once you are ready,
 click "Join the Gathering" to enter the Virtual Conference Center.
 
-### [Previous](/#/app/venue/keys)  |  [Up](/#/app/venue)  |  [Next](/#/app/venue/treasure)
+### [Previous](/#/app/venue)  |  [Up](/#/app/venue)  |  [Next](/#/app/venue/keys)

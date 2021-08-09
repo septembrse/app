@@ -1,2 +1,4 @@
+# What do I navigate? Useful keys and features
 
-Hello - this is the keys guide
+### [Previous](/#/app/venue/quickstart)  |  [Up](/#/app/venue)  |  [Next](/#/app/venue/features)
+
