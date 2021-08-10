@@ -132,16 +132,41 @@ class Session {
 
     let sessions = sessions_data["sessions"];
 
-    console.log("WARNING - NEED TO COPE WITH PARALLEL SESSIONS!");
+    let running_sessions = [];
+    let upcoming_sessions = {};
 
     for (let session in sessions){
       let s = new Session(sessions[session]);
-      if (s.getEndTime() - now > 0){
-        return s;
+
+      if (s.getID().startsWith("NW")){
+        // skip the networking sessions
+        continue;
+      }
+
+      let delta_end = s.getEndTime() - now;
+      let delta_start = s.getStartTime() - now;
+
+      if (delta_end > 0 && delta_start > -10*60*1000){
+        running_sessions.push(s);
+      }
+
+      if (delta_start >= 0){
+        upcoming_sessions[delta_start] = s;
       }
     }
 
-    return new Session();
+    let keys = Object.keys(upcoming_sessions);
+
+    if (running_sessions.length > 0){
+      return running_sessions[0];
+    } else if (keys.length > 0){
+      keys.sort((a, b)=>{return a - b});
+      console.log(keys);
+      console.log(keys[0]);
+      return upcoming_sessions[keys[0]];
+    } else {
+      return new Session();
+    }
   }
 
   getTitle(){
