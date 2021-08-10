@@ -21,6 +21,7 @@ import quick_markdown from "./quickstart.txt";
 import guide_markdown from "./venue.txt";
 import keys_markdown from "./keys.txt";
 import treasure_markdown from "./treasure.txt";
+import sponsor_markdown from "./sponsor.txt";
 
 const gfm = require('remark-gfm');
 
@@ -96,7 +97,12 @@ export function GuideComponent(props){
             <Button onClick={() => props.history.push("/venue/treasure")}
                     variant="primary"
                     style={{borderRadius: "5px", marginTop: "5px"}}>
-              Cryptic Code Treasure Hunt
+              Oracle Cryptic Code Treasure Hunt
+            </Button>
+            <Button onClick={() => props.history.push("/venue/sponsors")}
+                    variant="primary"
+                    style={{borderRadius: "5px", marginTop: "5px"}}>
+              Information for Sponsors
             </Button>
           </ButtonGroup>
         </Col>
@@ -139,8 +145,11 @@ export function Guide(props){
     fetch(treasure_markdown)
       .then((response) => response.text())
       .then((textContent) => {setText(textContent)});
+  } else if (page === "sponsors"){
+    fetch(sponsor_markdown)
+      .then((response) => response.text())
+      .then((textContent) => {setText(textContent)});
   } else {
-    console.log("NULL PAGE?");
     page = null;
   }
 
