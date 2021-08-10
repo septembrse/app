@@ -132,6 +132,8 @@ class Session {
 
     let sessions = sessions_data["sessions"];
 
+    console.log("WARNING - NEED TO COPE WITH PARALLEL SESSIONS!");
+
     for (let session in sessions){
       let s = new Session(sessions[session]);
       if (s.getEndTime() - now > 0){
@@ -166,6 +168,10 @@ class Session {
     }
 
     return true;
+  }
+
+  isNetworking(){
+    return this.getID().startsWith("NW");
   }
 
   getZoomLink(account){
@@ -204,6 +210,16 @@ class Session {
   }
 
   getDescription(){
+    if (this.isNetworking()){
+      if (this.description){
+        return this.description;
+      }
+
+      return "This is a designated networking session. Please feel free to " +
+             "join and explore the virtual conference center and to network " +
+             "with other attendees."
+    }
+
     return this.description;
   }
 

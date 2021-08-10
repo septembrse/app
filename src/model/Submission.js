@@ -191,6 +191,10 @@ class Submission {
     return `/event/${this.getID()}`;
   }
 
+  isPoster(){
+    return this.getID().startsWith("P1");
+  }
+
   getZoomLink(account){
     if (account && account.isLoggedIn()){
       return account.getZoomLinkForSubmission(this.getID());

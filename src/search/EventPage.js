@@ -56,7 +56,15 @@ export function EventCard(props){
     slido_link = event.getSlidoLink(account);
   }
 
-  if (session){
+  if (event.isPoster()){
+    session = [
+      <Card.Text key="z2">
+        This poster can be viewed at the poster boards in the
+        Virtual Conference Center. Lightning talks for this poster
+        will be shown as part of the poster sessions.
+      </Card.Text>
+    ];
+  } else if (session){
     session = [
       <Card.Title key="s1" style={{fontSize: "medium",
                                    fontStyle: "italic"}}>
@@ -86,7 +94,9 @@ export function EventCard(props){
     ];
   }
 
-  if (zoom_link){
+  if (event.isPoster()){
+    zoom_link = null;
+  } else if (zoom_link){
     if (is_in_gather){
       zoom_link = [
         <Card.Title key="z1" style={{fontSize: "medium",

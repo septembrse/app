@@ -60,18 +60,26 @@ export function SessionTimetableComponent(props){
     variant = "secondary";
   }
 
-  if (session){
-    let event_ids = session.getEventIDs();
 
+  if (session){
     let events = [];
 
-    for (let i in event_ids){
-      let event = Submission.getSubmission(event_ids[i]);
+    if (session.isNetworking()){
+      events = [
+        <li key="e1">This is a designated networking session.</li>,
+        <li key="e2">Please feel free to <a href="#/today">join and explore the virtual conference center</a> and to network with other attendees.</li>
+      ];
+    } else {
+      let event_ids = session.getEventIDs();
 
-      if (event){
-        events.push(
-          <li key={event.getID()}><Link to={event.getLink()}>{event.getFormat()}: {event.getTitle()}</Link></li>
-        );
+      for (let i in event_ids){
+        let event = Submission.getSubmission(event_ids[i]);
+
+        if (event){
+          events.push(
+            <li key={event.getID()}><Link to={event.getLink()}>{event.getTitle()}</Link></li>
+          );
+        }
       }
     }
 

@@ -26,6 +26,10 @@ export function SessionCard(props){
     variant = "primary";
   }
 
+  if (session.isNetworking()){
+    zoom_text = null;
+  }
+
   return (
     <Row key={session.getID()}>
       <Col style={{marginTop:"10px",
