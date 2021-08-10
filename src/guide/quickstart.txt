@@ -1,9 +1,9 @@
-# Quick Start Guide
+# How do I connect to the Virtual Conference Center?
 
 ![](https://github.com/septembrse/septembrse.github.io/blob/main/images/conference_hall.jpg?raw=true)
 
 You join the Virtual Conference Center by clicking the link in the
-[Today Page](/#app/today) (the link will only appear from Friday 3rd September
+[Today Page](/#/today) (the link will only appear from Friday 3rd September
 onwards, if you are logged in, and your ticket is valid that day).
 
 It is strongly recommended that you connect using a
@@ -20,7 +20,7 @@ a screen that looks something like this;
 
 ![](https://raw.githubusercontent.com/septembrse/septembrse.github.io/main/images/guest_list.jpg)
 
-Click connect, and you will be asked to sign in. Use the "Email" option
+Click "Sign In", and you will be asked to sign in. Use the "Sign in with email" option
 and sign in using the email address to which your SeptembRSE ticket was sent.
 
 ![](https://github.com/septembrse/septembrse.github.io/blob/main/images/sign_in.jpg?raw=true)
@@ -39,7 +39,7 @@ You will next be taken to a page to choose your avatar.
 
 ![](https://github.com/septembrse/septembrse.github.io/blob/main/images/choose_avatar.jpg?raw=true)
 
-This page lets you edit your Avatar (by clicking the "Edit" button), and
+This page lets you edit your Avatar (by clicking the "Edit Character" button), and
 to choose your video camera, microphone and speakers. Once you are ready,
 click "Join the Gathering" to enter the Virtual Conference Center.
 

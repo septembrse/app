@@ -81,7 +81,7 @@ export function GuideComponent(props){
             <Button onClick={() => props.history.push("/venue/quickstart")}
                     variant="primary"
                     style={{borderRadius: "5px", marginTop: "5px"}}>
-              Quick Start
+              How do I connect to the Virtual Conference Center?
             </Button>
             <Button onClick={() => props.history.push("/venue/keys")}
                     variant="secondary"
