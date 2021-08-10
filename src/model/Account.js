@@ -8,9 +8,6 @@ import Session from "./Session";
 import secrets from "./secrets.json";
 
 
-let _test_day = null; //new Date("2021-09-06T15:00:00");
-
-
 class Account {
   constructor(email, secret){
     if (!email){
@@ -205,9 +202,8 @@ class Account {
   static getNow(){
     let today = new Date();
 
-    if (_test_day){
-      today = _test_day;
-    }
+    // uncomment to test different dates
+    //today = new Date("2021-09-28T10:31:00");
 
     return today;
   }

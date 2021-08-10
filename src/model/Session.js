@@ -143,14 +143,9 @@ class Session {
         continue;
       }
 
-      let delta_end = s.getEndTime() - now;
       let delta_start = s.getStartTime() - now;
 
-      if (delta_end > 0 && delta_start > -10*60*1000){
-        running_sessions.push(s);
-      }
-
-      if (delta_start >= 0){
+      if (delta_start >= -10*60*1000){
         upcoming_sessions[delta_start] = s;
       }
     }
@@ -158,6 +153,7 @@ class Session {
     let keys = Object.keys(upcoming_sessions);
 
     if (running_sessions.length > 0){
+      console.log(running_sessions);
       return running_sessions[0];
     } else if (keys.length > 0){
       keys.sort((a, b)=>{return a - b});
