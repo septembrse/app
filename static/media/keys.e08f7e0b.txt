@@ -1,0 +1,104 @@
+# How do I navigate? Useful keys and features
+
+* Use arrow keys to move
+* Hold "g" to become a ghost (walk through others)
+* Hold "z" to dance
+* Press "x" to interact with things
+* Press numbers 1-6 to show emoticons above your avatar.
+* Open the bottom menu and click "Respawn" to return your avatar
+  to the respawn zone.
+
+## Tell me more!
+
+When you first connect, your avatar will be spawned into the respawn
+zone at the top of the map.
+
+![](https://github.com/septembrse/septembrse.github.io/blob/main/images/respawn_point.jpg?raw=true)
+
+From here, you can use the arrow keys on your keyboard to move your avatar
+around the map.
+
+If you click your name at the bottom of the screen, you can open a menu.
+
+![](https://github.com/septembrse/septembrse.github.io/blob/main/images/menu_options.jpg?raw=true)
+
+You can use this to set your status (e.g. here I am "Exploring").
+If you ever get stuck, click "Respawn" and your avatar will be returned
+to the respawn zone. If you get lost, you can view a minimap of the
+entire venue by clicking on the map icon at the bottom of the screen
+(the folded paper next to your name).
+
+# How do I talk to other people?
+
+You will be able to see and hear people whose avatars are near your avatar on the map.
+Personally, we find it a better experience to switch off cameras and only
+hear other people. We've found that this helps you look at the avatar
+of the other person when you are speaking to them, and are not distracted
+by the video. You can turn your camera on and off by clicking on the camera
+icon in the box in the bottom right of the screen.
+
+![](https://github.com/septembrse/septembrse.github.io/blob/main/images/mute.jpg?raw=true)
+
+You can also click the microphone icon here to toggle mute.
+
+By default, you will hear and be heard by everyone who is near your avatar.
+You can limit this to only the people who are immediately adjacent to your
+avatar by turning on "Quiet Mode" (an option in the same menu above
+that was used to respawn).
+
+The map is also filled with zones where only people whose avatars are
+in those zones can communicate with one another. For example, there
+is a zone for each table in the cafe;
+
+![](https://github.com/septembrse/septembrse.github.io/blob/main/images/cafe.jpg?raw=true)
+
+Only the person whose avatar is sat at the same table as you can hear and
+interact with you. If you see someone sat alone at a table, as I am here,
+then please feel free to sit in the next chair and introduce
+yourself and have a chat.
+
+There are also meeting rooms;
+
+![](https://github.com/septembrse/septembrse.github.io/blob/main/images/meeting_room.jpg?raw=true)
+
+Only people whose avatars are in the meeting room can interact with each other.
+
+# Is there text chat?
+
+Yes! There is a text chat facility accessed via the speech bubble icon
+at the left of the screen. The chat is persistent. By default, you text
+chat with people whose avatars are near your own. You can chat with
+everyone if you wish.
+
+# How do I interact with things?
+
+You interact with items by walking next to them. They will light up. To
+interact, you press the "x" key on your keyboard.
+
+![](https://github.com/septembrse/septembrse.github.io/blob/main/images/info_point.jpg?raw=true)
+
+For example, near the respawn zone are a number of Info Points. These
+are information points that give you access to this Conference Information
+System. Press "x" to interact. This will open a view containing
+the CIS. To close the view, either click outside and press "x" again, or
+click the cross at the top right of the screen.
+
+# What else can I do?
+
+You can do a lot! If you hold "z", you will dance! Of course, you will
+need a dance zone too to show off those moves...
+
+![](https://github.com/septembrse/septembrse.github.io/blob/main/images/dancing.jpg?raw=true)
+
+(yes, you really can play those pianos)
+
+# What if I get stuck?
+
+Normally, you can't walk through the avatars of other people. This can mean
+that you may get stuck in a queue. To get out, hold the "g" key and you
+will ghost. As a ghost, you can walk through other avatars and you
+become invisible and cannot be interacted with by others. If only
+this was possible in real life ;-)
+
+### [Previous](/#/venue/quickstart)  |  [Up](/#/venue)  |  [Next](/#/venue/features)
+

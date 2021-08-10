@@ -1,0 +1,79 @@
+# Information for Sponsors
+
+Contributor, Partner and Networker sponsors have virtual booths in the
+main conference hall. For example, here is what the Society's booth
+could look like;
+
+![](https://github.com/septembrse/septembrse.github.io/blob/main/images/booth.jpg?raw=true)
+
+Booths are constructed from tiles. Each tile is 32x32 pixels. Each tile
+can only contain one avatar and/or interactable item.
+
+* Contributer booths are 10x10 tiles (320x320 pixels)
+* Partner booths are 8x8 tiles (256x256 pixels)
+* Networker booths are 6x6 tiles (192x192 pixels)
+
+# How can I design our booth?
+
+Booths can be entirely designed by you, e.g. by creating an image of the
+required pixel size, and taking into account that avatars will occupy
+single tiles (32x32 pixels wide). Alternatively, you can supply us with
+graphics and we can build a booth by putting furniture on top of those
+graphics (e.g. as we have done here for the Society - standard booth
+furniture has been placed over the Society logo, and a name tag
+added to the bottom right).
+
+When you are ready, [email us your graphics and instructions](mailto:conference-2021@society-rse.org)
+and we will build it into the conference center as quickly as possible.
+We will invite you to have a look at your booth before the conference, if you
+would like, and can iterate the design if needed.
+
+# What should I put in the booth?
+
+We recommend that the best things to put in your booth are things that
+can be interacted with. For example, in the Society booth we have added
+a board that contains a hyperlink to the Society sign-up page. We have also
+added computers on the desk that contain hyperlinks to the Society
+web pages.
+
+Your booth can contain links to anything you want. You can link to videos,
+websites, images, login pages for free trials, or to sign-up pages that
+you can use to arrange meetings with conference attendees. You can even
+embed Zoom links (or similar) to have people join demonstrations or
+other events at your booth. If you have an idea, then please
+[get in touch with us to discuss](mailto:conference-2021@society-rse.org)
+and we can let you know if it will work.
+
+# What if I don't have time to design a booth?
+
+We are happy to create a general booth for you based on any logos or
+other graphics you email to us. Please also send a link to a web page
+or similar that the booth can link to, if you want people to be able
+to interact with your booth.
+
+# Do I need to stand in my booth?
+
+We recommend that you don't have someone permanently staffing your booth.
+Instead, leave a sign-up page, Zoom link or other mechanism to get attention and
+feel free to explore and walk around the conference center. People are
+more likely to interact with your booth if they don't feel like they are being
+watched. Equally, you will have more meaningful interactions
+and build stronger relationships with conference
+attendees by mixing with them and taking part in the various activities.
+This is your conference as much as anyone elses - enjoy it and get as
+much out of it as everyone else :-)
+
+# How long will my booth be up?
+
+The virtual conference center will remain up and open long after the
+conference. Attendance will be limited after the conference to just
+25 people. If you want, we can leave your booth up after the conference.
+Alternatively, if you want us to remove it, we can remove your booth
+when you request. Just [email us](mailto:conference-2021@society-rse.org) to let us know.
+
+# What if I don't want a booth?
+
+Just [email us](mailto:conference-2021@society-rse.org) to let us know and
+we will remove your booth from the conference hall.
+
+### [Previous](/#/venue/treasure)  |  [Up](/#/venue)  |  [Next](/#/venue)

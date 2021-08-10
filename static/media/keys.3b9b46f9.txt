@@ -1,4 +1,0 @@
-# What do I navigate? Useful keys and features
-
-### [Previous](/#/venue/quickstart)  |  [Up](/#/venue)  |  [Next](/#/venue/features)
-

@@ -1,0 +1,20 @@
+# The Oracle Cryptic Code Treasure Hunt
+
+We will be running a treasure hunt throughout the conference.
+Each week, various clues will be hidden throughout the map. Your task,
+as an individual or as part of a team, will be to find each clue by
+decoding the one previous. There will be a leaderboard of which
+people or teams are finding the clues the quickest, and a prize
+for the winning team(s) that will be awarded at the end of the
+conference.
+
+Clues will be encoded by an increasinly sophisticated algorithm that
+you will have to write a program to decode. This will be a challenge
+of both your ability to solve riddles, write code, and find objects.
+
+Are you or your team up to the challenge?
+
+If so, more details will be made available at the start of the
+conference. Good luck!
+
+### [Previous](/#/venue/features)  |  [Up](/#/venue)  |  [Next](/#/venue/sponsors)
