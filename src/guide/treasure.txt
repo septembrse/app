@@ -17,4 +17,4 @@ Are you or your team up to the challenge?
 If so, more details will be made available at the start of the
 conference. Good luck!
 
-### [Previous](/#/venue/features)  |  [Up](/#/venue)  |  [Next](/#/venue)
+### [Previous](/#/venue/features)  |  [Up](/#/venue)  |  [Next](/#/venue/sponsors)

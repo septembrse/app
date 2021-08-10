@@ -100,7 +100,7 @@ export function GuideComponent(props){
               Oracle Cryptic Code Treasure Hunt
             </Button>
             <Button onClick={() => props.history.push("/venue/sponsors")}
-                    variant="primary"
+                    variant="secondary"
                     style={{borderRadius: "5px", marginTop: "5px"}}>
               Information for Sponsors
             </Button>
