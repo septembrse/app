@@ -351,6 +351,67 @@ class Account {
     return null;
   }
 
+  hasSignUpFormForSubmission(ID){
+    if (!this.isLoggedIn()){
+      return false;
+    }
+
+    let wshop_links = secrets["workshop_links"];
+
+    if (wshop_links){
+      if (wshop_links[ID]){
+        let link = this.getSignUpLink(ID);
+
+        if (link){
+          return true;
+        }
+      }
+    }
+
+    return false;
+  }
+
+  getSignUpLink(id){
+    if (!this.isLoggedIn()){
+      return null;
+    }
+
+    let links = secrets["workshop_links"];
+
+    if (!links){
+      return null;
+    }
+
+    let link = links[id];
+
+    if (link) {
+      // need to get the day key for the session containing this link
+      let session = Session.getSessionForPresentation(id);
+
+      if (!session){
+        console.log(`There is no session for event ${id}?`);
+        return null;
+      }
+
+      let key = this.getDayKey(session.getStartTime());
+
+      if (!key){
+        console.log(`No day key for ${session.getStartTime().toISOString()}`);
+        return null;
+      }
+
+      try{
+        link = JSON.parse(key.decrypt(link));
+        return link["link"];
+      } catch(error){
+        console.log("Cannot decrypt the workshop link?");
+        console.log(error);
+      }
+    }
+
+    return null;
+  }
+
   hasSuccessfulSignUp(ID){
     if (!this.isLoggedIn()){
       return false;
@@ -363,7 +424,7 @@ class Account {
     return false;
   }
 
-  hasFailedSignUp(ID){
+  hasUnsuccessfulSignUp(ID){
     if (!this.isLoggedIn()){
       return false;
     }

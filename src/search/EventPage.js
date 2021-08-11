@@ -216,6 +216,60 @@ export function EventCard(props){
     ];
   }
 
+  let limited_attendance = event.hasLimitedAttendance(account);
+
+  console.log(limited_attendance);
+
+  if (limited_attendance){
+    if (event.hasSuccessfulSignUp(account)){
+      limited_attendance = [
+        <Card.Title key="l1" style={{fontSize: "medium", fontWeight: "bold",
+                                     textAlign: "center"}}>
+          You have successfully signed up for this event
+        </Card.Title>,
+        <Card.Text key="l2">
+          Places at this event are limited. Please <a href="mailto:conference-2021@society-rse.org">email us</a> at
+          least 48 hours before this event if you cannot attend. This will give us time
+          to allocate your seat to someone else.
+        </Card.Text>
+      ];
+    } else if (event.hasUnsuccessfulSignUp(account)){
+      limited_attendance = [
+        <Card.Title key="l1" style={{fontSize: "medium", fontWeight: "bold",
+                                     textAlign: "center"}}>
+          You were not successful in signing up for this event
+        </Card.Title>,
+        <Card.Text key="l2">
+          We are sorry to say that this event is now full and you were not
+          successful in signing up. We have put you into a wait list,
+          and may be able to give you a space if someone else pulls out
+          at least 48 hours before this event.
+        </Card.Text>
+      ];
+
+      zoom_link = null;
+    } else {
+        limited_attendance  = [
+          <Card.Title key="l1" style={{fontSize: "medium", fontWeight: "bold",
+                                      textAlign: "center"}}>
+            This session has an attendance limit.
+          </Card.Title>,
+          <Card.Text key="l2">
+            You need to register to reserve a seat at this event.
+            To do this, please fill
+            in <a href={event.getSignUpLink(account)}>this simple form</a>, providing your email
+            address ({account.getEmail()}). Signing up does not guarantee
+            a space. We will let you know within 48 hours if you have been
+            successful, via both this page and your Ticket page.
+          </Card.Text>
+        ];
+
+        zoom_link = null;
+    }
+  } else {
+    limited_attendance = null;
+  }
+
   let abstract = null;
 
   if (event.getAbstract()){
@@ -264,6 +318,7 @@ export function EventCard(props){
             </Card.Title>
             {session}
             {drive_link}
+            {limited_attendance}
             {zoom_link}
             {slido_link}
           </Card.Body>

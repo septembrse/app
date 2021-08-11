@@ -184,6 +184,7 @@ class Generate extends React.Component {
     let tickets = {"zoom_links": zoom_links,
                    "extra_zoom_links": extra_zoom_links,
                    "slido_links": slido_links,
+                   "workshop_links": wshop_links,
                    "attendees": {}};
 
     for (let i in attendees){

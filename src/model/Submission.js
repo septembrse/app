@@ -200,6 +200,30 @@ class Submission {
     return false;
   }
 
+  getSignUpLink(account){
+    if (account && account.isLoggedIn()){
+      return account.getSignUpLink(this.getID());
+    }
+
+    return null;
+  }
+
+  hasSuccessfulSignUp(account){
+    if (account && account.isLoggedIn()){
+      return account.hasSuccessfulSignUp(this.getID());
+    }
+
+    return false;
+  }
+
+  hasUnsuccessfulSignUp(account){
+    if (account && account.isLoggedIn()){
+      return account.hasUnsuccessfulSignUp(this.getID());
+    }
+
+    return false;
+  }
+
   isPoster(){
     return this.getID().startsWith("P1");
   }
