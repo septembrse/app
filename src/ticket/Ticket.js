@@ -332,44 +332,83 @@ export function TicketComponent(props){
       }
     }
 
-    let signups = account.getSignUps();
+    let signups = account.getMySignUps();
 
-    if (signups){
+    if (signups && signups.length > 0){
       let links = [];
 
       for (let i in signups){
         let ID = signups[i];
-        let link = `/#/event/${ID}`;
         links.push(
-          <span key={ID}><a href={link}>{ID}</a>&nbsp;</span>
+          <Row>
+            <Col>
+              <Card bg="dark" border="warning" text="warning"
+                    style={{borderRadius: "5px", marginTop:"10px",
+                            maxWidth: "768px",
+                            marginLeft: "auto", marginRight: "auto"}}>
+                <Card.Header style={{textAlign: "center"}}>
+                  Registered for Workshop {ID}
+                </Card.Header>
+                <Card.Body style={{align_items:"center"}}>
+                  <Card.Title style={{textAlign: "center"}}>
+                    You are successfully registered to attend workshop {ID}
+                  </Card.Title>
+                  <Card.Text>
+                    This workshop can only be accessed via the Zoom link
+                    that is provided on the <a href={`/#/event/${ID}`}>workshop page</a>.
+                  </Card.Text>
+                  <Card.Text>
+                    This workshop has limited space.
+                    Please <a href="mailto:conference-2021@society-rse.org">email us</a> at least
+                    48 hours before the workshop if you can no longer attend.
+                  </Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
         );
       }
 
-      signups = (
-        <li key="signups">
-          You have signed up to the following workshops; {links}
-        </li>
-      )
+      signups = links;
     }
 
-    let unsuccessful = account.getUnsuccessful();
+    let unsuccessful = account.getMyUnsuccessful();
 
-    if (unsuccessful){
+    if (unsuccessful && unsuccessful.length > 0){
       let links = [];
 
       for (let i in unsuccessful){
         let ID = unsuccessful[i];
-        let link = `/#/event/${ID}`;
         links.push(
-          <span key={ID}><a href={link}>{ID}</a>&nbsp;</span>
+          <Row>
+            <Col>
+              <Card bg="dark" border="danger" text="danger"
+                    style={{borderRadius: "5px", marginTop:"10px",
+                            maxWidth: "768px",
+                            marginLeft: "auto", marginRight: "auto"}}>
+                <Card.Header style={{textAlign: "center"}}>
+                  Sorry - you have not been able to register for Workshop {ID}
+                </Card.Header>
+                <Card.Body style={{align_items:"center"}}>
+                  <Card.Title style={{textAlign: "center"}}>
+                    You were unsuccessful in registering to attend workshop {ID}
+                  </Card.Title>
+                  <Card.Text>
+                    The workshop is full. We are sorry that there are no spaces remaining.
+                  </Card.Text>
+                  <Card.Text>
+                    You have been put into a wait list. You will be informed via
+                    this page at least 48 hours before the event if a space
+                    has opened up for you.
+                  </Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
         );
       }
 
-      unsuccessful = (
-        <li key="unsuccessful">
-          You were not able to sign up to these workshops because they were full; {links}
-        </li>
-      )
+      unsuccessful = links;
     }
 
     return (
@@ -409,13 +448,13 @@ export function TicketComponent(props){
                     the <Link to="/today">What's on Today?</Link> page.
                   </li>
                   {presenter}
-                  {signups}
-                  {unsuccessful}
                 </ul>
               </Card.Body>
             </Card>
           </Col>
         </Row>
+        {signups}
+        {unsuccessful}
         {access_buttons}
         {presentation_buttons}
       </Container>

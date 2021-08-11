@@ -203,7 +203,7 @@ class Account {
     let today = new Date();
 
     // uncomment to test different dates
-    today = new Date("2021-09-28T10:31:00");
+    //today = new Date("2021-09-28T10:31:00");
 
     return today;
   }
@@ -470,6 +470,30 @@ class Account {
     }
 
     return null;
+  }
+
+  getMySignUps(){
+    if (!this.isLoggedIn()){
+      return [];
+    }
+
+    if (this._secret.signed_up){
+      return this._secret.signed_up;
+    }
+
+    return [];
+  }
+
+  getMyUnsuccessful(){
+    if (!this.isLoggedIn()){
+      return [];
+    }
+
+    if (this._secret.unsuccessful){
+      return this._secret.unsuccessful;
+    }
+
+    return [];
   }
 
   getDriveLink(id){
