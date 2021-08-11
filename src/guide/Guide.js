@@ -27,8 +27,6 @@ const gfm = require('remark-gfm');
 
 export function MarkdownComponent(props){
 
-  console.log(props.text);
-
   return (
     <Container fluid>
       <Row>
@@ -55,8 +53,6 @@ export function MarkdownComponent(props){
 
 export function GuideComponent(props){
   let page = props.page;
-
-  console.log(props.page);
 
   if (page){
     return <MarkdownComponent text={props.text} history={props.history} />
@@ -126,8 +122,6 @@ export function Guide(props){
 
   let { page } = useParams();
 
-  console.log(page);
-
   if (page === "quickstart"){
     fetch(quick_markdown)
       .then((response) => response.text())
@@ -140,7 +134,7 @@ export function Guide(props){
   } else if (page === "features"){
     fetch(guide_markdown)
       .then((response) => response.text())
-      .then((textContent) => {console.log(textContent); setText(textContent)});
+      .then((textContent) => {setText(textContent)});
   } else if (page === "treasure"){
     fetch(treasure_markdown)
       .then((response) => response.text())

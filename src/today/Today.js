@@ -241,7 +241,7 @@ export function TodayComponent(props){
   if (account && account.isLoggedIn()){
     if (account.isValidToday()){
       gather_link = (
-        <Row>
+        <Row key="gather_link">
           <Col style={{marginTop:"10px",
                       maxWidth: "768px",
                       marginLeft: "auto", marginRight: "auto"}}>
@@ -255,7 +255,7 @@ export function TodayComponent(props){
       );
     } else {
       gather_link = (
-        <Row>
+        <Row key="gather_link">
           <Col style={{marginTop:"10px",
                       maxWidth: "768px",
                       marginLeft: "auto", marginRight: "auto"}}>
@@ -269,7 +269,7 @@ export function TodayComponent(props){
     }
   } else {
     gather_link = (
-      <Row>
+      <Row key="gather_link">
         <Col style={{marginTop:"10px",
                     maxWidth: "768px",
                     marginLeft: "auto", marginRight: "auto"}}>
@@ -286,7 +286,7 @@ export function TodayComponent(props){
 
   if (session_components.length === 0){
     session_components.push(
-      <Row>
+      <Row key="session_0">
         <Col style={{marginTop:"10px",
                      maxWidth: "768px",
                      marginLeft: "auto", marginRight: "auto"}}>

@@ -6,6 +6,13 @@ import csv
 submissions = {}
 
 
+def clean(s):
+    if pd.isna(s) or s is None:
+        return None
+    else:
+        return str(s)
+
+
 def get_format(id):
     if id.startswith("T"):
         return "Talk"
@@ -48,6 +55,7 @@ with open("accepted_submissions.tsv") as FILE:
 # data from the submissions system
 extra_data = pd.read_excel("Extra Presentations.xlsx")
 diversity = pd.read_excel("Presenter Details and Diversity Form (Responses).xlsx")
+workshops = pd.read_excel("Workshop Requirements.xlsx")
 
 
 def get_name(email):
@@ -104,6 +112,14 @@ for i in range(0, len(extra_data)):
             "institution": institution,
             "format": get_format(ID)
         }
+
+
+for i in range(0, len(workshops)):
+    d = workshops.loc[i]
+
+    ID = d["ID"]
+
+    submissions[ID]["requirements"] = clean(d["requirements"])
 
 
 with open("../src/submissions.json", "w") as FILE:

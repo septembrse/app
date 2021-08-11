@@ -1,6 +1,8 @@
 
 import json
 import pandas as pd
+import glob
+import re
 
 from create_passwords import generate_password, get_god_key
 
@@ -44,6 +46,18 @@ extra_zoom = pd.read_excel("Extra Zoom links.xlsx")
 # session (there is one per session)
 slido = pd.read_excel("Slido links.xlsx")
 
+# workshop form links so that we can provide sign-up pages for workshops
+wshop_forms = pd.read_excel("Workshop Requirements.xlsx")
+
+# all of the workshop responses
+wshop_responses = {}
+
+for wshop in glob.glob("workshop_responses/*.xlsx"):
+    m = re.search(r"(S\d\d\d\d)", wshop)
+
+    if (m):
+        wshop_responses[m.group(0)] = pd.read_excel(wshop)
+
 # The gather.town link
 gather_link = open("gathertown_link.txt", "r").readline().lstrip().rstrip()
 
@@ -53,6 +67,15 @@ def clean(s):
         return None
     else:
         return str(s)
+
+
+def clean_int(s):
+    s = clean(s)
+
+    if (s):
+        return int(float(s))
+    else:
+        return s
 
 
 def get_name(email):
@@ -183,6 +206,8 @@ for i in range(0, len(extras)):
 # Create the JSON file that is needed for the JS conference info system
 attendees = []
 
+all_emails = {}
+
 for i in range(0, len(tickets)):
     ticket = tickets.loc[i]
 
@@ -199,6 +224,7 @@ for i in range(0, len(tickets)):
                 "presentations": p}
 
     attendees.append(attendee)
+    all_emails[ticket["email"]] = 1
 
 # Now read all of the google drive links and add them to
 # the json
@@ -232,6 +258,44 @@ for i in range(0, len(slido)):
 
     slido_links[link["ID"]] = clean(link["Link"])
 
+# Now read all of the form links and add them to the json
+wshop_form_links = {}
+
+for i in range(0, len(wshop_forms)):
+    link = wshop_forms.loc[i]
+    ID = link["ID"]
+    max_attendees = clean_int(link["max_attendees"])
+
+    # get the emails of everyone who has registered
+    try:
+        responses = wshop_responses[ID]
+    except KeyError:
+        responses = None
+        print(f"No responses for workshop {ID}")
+
+    signed_up = []
+    unsuccessful = []
+
+    if responses is not None:
+        for j in range(0, len(responses)):
+            email = responses.loc[j]["Email address"]
+
+            if email not in all_emails:
+                print(f"\nProblem with workshop {ID}")
+                print(f"{email} has registered, but they don't have a ticket!")
+            elif max_attendees is not None and max_attendees <= len(signed_up):
+                print(f"\nProblem with workshop {ID}")
+                print(f"Too many sign ups! {email} cannot join!")
+                unsuccessful.append(email)
+            else:
+                signed_up.append(email)
+
+    wshop_form_links[ID] = {
+        "link": clean(link["form_link"]),
+        "max_attendees": max_attendees,
+        "signed_up": signed_up,
+        "unsuccessful": unsuccessful}
+
 
 with open("passwords.json", "w") as FILE:
     json.dump({"attendees": attendees,
@@ -239,6 +303,7 @@ with open("passwords.json", "w") as FILE:
                "zoom_links": zoom_links,
                "extra_zoom_links": extra_zoom_links,
                "slido_links": slido_links,
+               "wshop_form_links": wshop_form_links,
                "gather_link": gather_link,
                "god_key": get_god_key()}, FILE)
 
