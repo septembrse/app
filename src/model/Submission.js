@@ -208,6 +208,22 @@ class Submission {
     return null;
   }
 
+  getSignUps(account){
+    if (account && account.isLoggedIn()){
+      return account.getSignUps(this.getID());
+    }
+
+    return [];
+  }
+
+  getUnsuccessful(account){
+    if (account && account.isLoggedIn()){
+      return account.getUnsuccessful(this.getID());
+    }
+
+    return [];
+  }
+
   hasSuccessfulSignUp(account){
     if (account && account.isLoggedIn()){
       return account.hasSuccessfulSignUp(this.getID());

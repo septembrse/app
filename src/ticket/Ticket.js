@@ -72,6 +72,7 @@ export function TicketComponent(props){
         let slido_link = submission.getSlidoLink(account);
         let zoom_link = submission.getZoomLink(account);
         let is_in_gather = submission.isInGather(account);
+        let signup_link = submission.getSignUpLink(account);
 
         if (session){
           session = [
@@ -197,6 +198,57 @@ export function TicketComponent(props){
           ];
         }
 
+        let signups = null;
+        let unsuccessful = null;
+
+        if (signup_link){
+          signups = submission.getSignUps(account);
+          unsuccessful = submission.getUnsuccessful(account);
+
+          if (signups.length > 0){
+            signups = [
+              <Card.Text key="wl3">
+                The number of current sign ups is {signups.length}.
+              </Card.Text>,
+              <Card.Text key="wl4">
+                Email addresses of sign ups:
+              </Card.Text>,
+              <pre key="wl5">{signups.join(", ")}</pre>
+            ];
+          } else {
+            signups = [
+              <Card.Text key="wl3">
+                No-one has signed up yet. The email addresses of those that
+                do sign up will be shown here within 48 hours of them
+                filling in the above form.
+              </Card.Text>
+            ];
+          }
+
+          if (unsuccessful.length > 0){
+            unsuccessful = [
+              <Card.Text key="wu1">
+                There are more people registered ({unsuccessful.length}) than
+                there is space. You have a very popular workshop!
+              </Card.Text>
+            ];
+          } else {
+            unsuccessful = null;
+          }
+
+          signup_link = [
+            <Card.Title key="wl1" style={{fontSize: "medium",
+                                         fontStyle: "bold",
+                                         textAlign: "center"}}>
+              Workshop Signup Information
+            </Card.Title>,
+            <Card.Text key="wl2">
+              Registered ticket holders of SeptembRSE will sign up to
+              your workshop using <a href={signup_link}>this form</a>.
+            </Card.Text>
+          ];
+        }
+
         let variant = "secondary";
 
         if (i % 3 === 1){
@@ -225,6 +277,9 @@ export function TicketComponent(props){
                   </Card.Title>
                   {session}
                   {zoom_link}
+                  {signup_link}
+                  {signups}
+                  {unsuccessful}
                   {drive_link}
                   {slido_link}
                 </Card.Body>

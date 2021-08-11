@@ -436,31 +436,7 @@ class Account {
     return false;
   }
 
-  getSignUps(){
-    if (!this.isLoggedIn()){
-      return null;
-    }
-
-    if (this._secret.signed_up){
-      return this._secret.signed_up;
-    }
-
-    return null;
-  }
-
-  getUnsuccessful(){
-    if (!this.isLoggedIn()){
-      return null;
-    }
-
-    if (this._secret.unsuccessful){
-      return this._secret.unsuccessful;
-    }
-
-    return null;
-  }
-
-  getDriveLink(id){
+  _getEventSecret(id){
     if (!this.isLoggedIn()){
       return null;
     }
@@ -470,6 +446,42 @@ class Account {
     } else {
       return null;
     }
+  }
+
+  getSignUps(id){
+    let secret = this._getEventSecret(id);
+
+    if (secret){
+      if (secret["signups"]){
+        return secret["signups"]["signed_up"];
+      }
+    }
+
+    return null;
+  }
+
+  getUnsuccessful(id){
+    let secret = this._getEventSecret(id);
+
+    if (secret){
+      if (secret["signups"]){
+        return secret["signups"]["unsuccessful"];
+      }
+    }
+
+    return null;
+  }
+
+  getDriveLink(id){
+    let secret = this._getEventSecret(id);
+
+    if (secret){
+      if (secret["link"]){
+        return secret["link"];
+      }
+    }
+
+    return null;
   }
 
   static getDriveReadLink(id){
