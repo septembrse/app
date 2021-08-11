@@ -277,10 +277,15 @@ for i in range(0, len(wshop_forms)):
     unsuccessful = []
 
     if responses is not None:
+        seen_emails = {}
+
         for j in range(0, len(responses)):
             email = responses.loc[j]["Email address"]
 
-            if email not in all_emails:
+            if email in seen_emails:
+                print(f"\nProblem with workshop {ID}")
+                print(f"Duplicate email {email}")
+            elif email not in all_emails:
                 print(f"\nProblem with workshop {ID}")
                 print(f"{email} has registered, but they don't have a ticket!")
             elif max_attendees is not None and max_attendees <= len(signed_up):
@@ -289,6 +294,8 @@ for i in range(0, len(wshop_forms)):
                 unsuccessful.append(email)
             else:
                 signed_up.append(email)
+
+            seen_emails[email] = 1
 
     wshop_form_links[ID] = {
         "link": clean(link["form_link"]),

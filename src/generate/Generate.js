@@ -20,6 +20,7 @@ import {get_key, get_day_secret,
 
 import styles from "./Generate.module.css";
 
+
 class Generate extends React.Component {
   constructor(props){
     super(props);
@@ -141,6 +142,36 @@ class Generate extends React.Component {
       }
     }
 
+    let wshop_data = data.wshop_form_links;
+
+    let wshop_links = {};
+
+    for (let i in wshop_data){
+      let session = Session.getSessionForPresentation(i);
+
+      if (session){
+        let day = session.getStartTime();
+
+        if (day){
+          let day_secret = get_day_secret(god_key, day);
+          day_secrets[get_day_string(day)] = day_secret;
+          let key = get_key(day_secret);
+          let wshop_link = wshop_data[i];
+
+          if (wshop_link){
+            let pub = {"link": wshop_link["link"],
+                       "max_attendees": wshop_link["max_attendees"]}
+
+            wshop_links[i] = key.encrypt(JSON.stringify(pub));
+          }
+        } else {
+          console.log(`No day for session ${session.getID()} : ${i}`);
+        }
+      } else {
+        console.log(`No session for workshop link at ${i}`);
+      }
+    }
+
     // next, we need to create a key for every user based on
     // their password, encrypt the god_key using their password,
     // and then save this for output
@@ -194,7 +225,6 @@ class Generate extends React.Component {
         }
 
         ticket["day_keys"] = day_keys;
-        console.log(ticket);
 
       } else {
         throw new Error(`Unrecognised ticket type? ${attendee.ticket}`);
@@ -218,16 +248,54 @@ class Generate extends React.Component {
           if (!link){
             console.log(`No write drive link for presentation ${presentation}`);
           }
-
-          // still write the null link, as the key is used to
-          // get the list of presentations for this attendee
-          links[presentation] = link;
-          has_links = true;
         }
+
+        //is this presentation a workshop with limited attendance? If so,
+        //let the presenter see the list of emails that have signed up
+        let signups = {}
+
+        let wshop = wshop_data[presentation];
+
+        if (wshop){
+          signups = {"signed_up": wshop["signed_up"],
+                     "unsuccessful": wshop["unsuccessful"]};
+        }
+
+        // still write the null link, as the key is used to
+        // get the list of presentations for this attendee
+        links[presentation] = {"link": link, "signups": signups};
+        has_links = true;
       }
 
       if (has_links){
         ticket["drive_links"] = links;
+      }
+
+      let signed_up = [];
+      let unsuccessful = [];
+
+      let has_signed_up = false;
+      let has_unsuccessful = false;
+
+      // has the ticket holder signed up to any workshops?
+      for (let i in wshop_data){
+        let wshop = wshop_data[i];
+
+        if (wshop["signed_up"].includes(attendee.email)){
+          signed_up.push(i);
+          has_signed_up = true;
+        } else if (wshop["unsuccessful"].includes(attendee.email)){
+          unsuccessful.push(i);
+          has_unsuccessful = true;
+        }
+      }
+
+      if (has_signed_up){
+        ticket["signed_up"] = signed_up;
+      }
+
+      if (has_unsuccessful){
+        ticket["unsuccessful"] = unsuccessful;
       }
 
       let key = get_user_key(attendee.email, attendee.password);

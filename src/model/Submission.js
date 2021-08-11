@@ -10,6 +10,7 @@ class Submission {
     this.name = data.name;
     this.institution = data.institution;
     this.format = data.format;
+    this.requirements = data.requirements;
     this.id = null;
   }
 
@@ -189,6 +190,14 @@ class Submission {
 
   getLink(){
     return `/event/${this.getID()}`;
+  }
+
+  hasLimitedAttendance(account){
+    if (account && account.isLoggedIn()){
+      return account.hasSignUpFormForSubmission(this.getID());
+    }
+
+    return false;
   }
 
   isPoster(){

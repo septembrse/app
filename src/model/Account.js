@@ -351,6 +351,54 @@ class Account {
     return null;
   }
 
+  hasSuccessfulSignUp(ID){
+    if (!this.isLoggedIn()){
+      return false;
+    }
+
+    if (this._secret.signed_up){
+      return this._secret.signed_up.includes(ID);
+    }
+
+    return false;
+  }
+
+  hasFailedSignUp(ID){
+    if (!this.isLoggedIn()){
+      return false;
+    }
+
+    if (this._secret.unsuccessful){
+      return this._secret.unsuccessful.includes(ID);
+    }
+
+    return false;
+  }
+
+  getSignUps(){
+    if (!this.isLoggedIn()){
+      return null;
+    }
+
+    if (this._secret.signed_up){
+      return this._secret.signed_up;
+    }
+
+    return null;
+  }
+
+  getUnsuccessful(){
+    if (!this.isLoggedIn()){
+      return null;
+    }
+
+    if (this._secret.unsuccessful){
+      return this._secret.unsuccessful;
+    }
+
+    return null;
+  }
+
   getDriveLink(id){
     if (!this.isLoggedIn()){
       return null;

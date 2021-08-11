@@ -277,6 +277,46 @@ export function TicketComponent(props){
       }
     }
 
+    let signups = account.getSignUps();
+
+    if (signups){
+      let links = [];
+
+      for (let i in signups){
+        let ID = signups[i];
+        let link = `/#/event/${ID}`;
+        links.push(
+          <span key={ID}><a href={link}>{ID}</a>&nbsp;</span>
+        );
+      }
+
+      signups = (
+        <li key="signups">
+          You have signed up to the following workshops; {links}
+        </li>
+      )
+    }
+
+    let unsuccessful = account.getUnsuccessful();
+
+    if (unsuccessful){
+      let links = [];
+
+      for (let i in unsuccessful){
+        let ID = unsuccessful[i];
+        let link = `/#/event/${ID}`;
+        links.push(
+          <span key={ID}><a href={link}>{ID}</a>&nbsp;</span>
+        );
+      }
+
+      unsuccessful = (
+        <li key="unsuccessful">
+          You were not able to sign up to these workshops because they were full; {links}
+        </li>
+      )
+    }
+
     return (
       <Container fluid>
         <Row>
@@ -300,20 +340,22 @@ export function TicketComponent(props){
                   Your SeptembRSE Ticket
                 </Card.Title>
                 <ul>
-                  <li>
+                  <li key="ticket_type">
                     Ticket type: {account.getTicket()}
                   </li>
-                  <li>
+                  <li key="ticket_details">
                     {account.getTicketDetails()}
                   </li>
                   {gathertown}
-                  <li>
+                  <li key="zoom_link_today">
                     When the conference is running you will be able
                     to get direct links to Zoom meetings and Sli.do
                     boards for today's events by visiting
                     the <Link to="/today">What's on Today?</Link> page.
                   </li>
                   {presenter}
+                  {signups}
+                  {unsuccessful}
                 </ul>
               </Card.Body>
             </Card>
