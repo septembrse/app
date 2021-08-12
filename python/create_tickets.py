@@ -66,7 +66,23 @@ def clean(s):
     if pd.isna(s) or s is None:
         return None
     else:
-        return str(s)
+        return str(s).strip()
+
+
+def clean_and_split(t, sep=","):
+    if pd.isna(t) or t is None:
+        return None
+    else:
+        s = clean(t)
+
+        parts = s.split(sep)
+
+        s = []
+
+        for part in parts:
+            s.append(clean(part))
+
+        return s
 
 
 def clean_int(s):
@@ -174,33 +190,31 @@ for i in range(0, len(submissions)):
 # Also add their sessions to the tickets spreadsheet
 for i in range(0, len(extras)):
     submission = extras.loc[i]
-    email = submission["Presenter"]
+    emails = clean_and_split(submission["Presenter"])
 
-    if pd.isna(email) or email is None:
-        print(f"No presenter for {submission['Title']}")
-        continue
+    if emails:
+        for email in emails:
+            idx = get_row_in_tickets(email)
 
-    idx = get_row_in_tickets(email)
+            if idx is None:
+                tickets = tickets.append({"email": email,
+                                          "password": generate_password(),
+                                          "ticket": "day",
+                                          "name": get_name(email)},
+                                          ignore_index=True)
 
-    if idx is None:
-        tickets = tickets.append({"email": email,
-                                  "password": generate_password(),
-                                  "ticket": "day",
-                                  "name": get_name(email)},
-                                 ignore_index=True)
+                idx = get_row_in_tickets(email)
 
-        idx = get_row_in_tickets(email)
+            presentation = submission["ID"]
 
-    presentation = submission["ID"]
+            current = tickets.loc[idx]["presentations"]
 
-    current = tickets.loc[idx]["presentations"]
-
-    if pd.isna(current):
-        current = presentation
-        tickets.at[idx, "presentations"] = current
-    elif current.find(presentation) == -1:
-        current = f"{current},{presentation}"
-        tickets.at[idx, "presentations"] = current
+            if pd.isna(current):
+                current = presentation
+                tickets.at[idx, "presentations"] = current
+            elif current.find(presentation) == -1:
+                current = f"{current},{presentation}"
+                tickets.at[idx, "presentations"] = current
 
 
 # Create the JSON file that is needed for the JS conference info system

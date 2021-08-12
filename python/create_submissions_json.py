@@ -79,16 +79,37 @@ def clean(t):
     if pd.isna(t) or t is None:
         return None
     else:
-        return str(t)
+        return str(t).strip()
+
+
+def clean_and_split(t, sep=","):
+    if pd.isna(t) or t is None:
+        return None
+    else:
+        s = clean(t)
+
+        parts = s.split(sep)
+
+        s = []
+
+        for part in parts:
+            s.append(clean(part))
+
+        return s
 
 
 for i in range(0, len(extra_data)):
     d = extra_data.loc[i]
 
     ID = d["ID"]
-    email = clean(d["Presenter"])
+    emails = clean_and_split(d["Presenter"])
     title = clean(d["Title"])
     abstract = clean(d["Abstract"])
+
+    if emails:
+        email = emails[0]
+    else:
+        email = None
 
     (name, institution) = get_name(email)
 
@@ -112,6 +133,14 @@ for i in range(0, len(extra_data)):
             "institution": institution,
             "format": get_format(ID)
         }
+
+    if emails is not None and len(emails) > 1:
+        i = 0
+        for email in emails[1:]:
+            i += 1
+            (name, institution) = get_name(email)
+            submissions[ID][f"name{i}"] = name
+            submissions[ID][f"institution{i}"] = institution
 
 
 for i in range(0, len(workshops)):
