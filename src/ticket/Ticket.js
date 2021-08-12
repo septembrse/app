@@ -268,7 +268,7 @@ export function TicketComponent(props){
                 <Card.Header style={{color: "rgb(220,220,220)",
                                      fontWeight: "bold",
                                      textAlign: "center"}}>
-                  Your {submission.getFormat()}: {id}
+                  <Link to={submission.getLink()}>Your {submission.getFormat()}: {id}</Link>
                 </Card.Header>
                 <Card.Body>
                   <Card.Title style={{fontSize: "large",

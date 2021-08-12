@@ -12,6 +12,21 @@ class Submission {
     this.format = data.format;
     this.requirements = data.requirements;
     this.id = null;
+
+    let i = 0;
+    while (true){
+      i += 1;
+      let nme = `name${i}`;
+      let institution = `institution${i}`;
+      console.log(nme);
+
+      if (data[`name${i}`]){
+        this.name = `${this.name}, ${data[nme]}`;
+        this.institution = `${this.institution}, ${data[institution]}`;
+      } else {
+        break;
+      }
+    }
   }
 
   getSession(){
