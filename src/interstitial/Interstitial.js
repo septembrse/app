@@ -14,6 +14,8 @@ import Col from "react-bootstrap/Col";
 
 import Sound from "react-sound";
 
+import {getTracks} from "../music/Music";
+
 import styles from "./Interstitial.module.css"
 
 import banner from "../images/interstitial_bg.png";
@@ -25,33 +27,11 @@ import amazon from "../images/sponsors/amazon.png";
 import alcesflight from "../images/sponsors/alcesflight.png";
 
 
-const tracks = [
-  {
-    url: "https://siremol.org/largefiles/music/001.mp3",
-    title: "Honeyknocker Meadows",
-    author: "Origami Repetika"
-  },
-  {
-    url: "https://siremol.org/largefiles/music/002.mp3",
-    title: "Let's go up",
-    author: "Origami Repetika"
-  },
-  {
-    url: "https://siremol.org/largefiles/music/003.mp3",
-    title: "Gaily into the ether",
-    author: "Origami Repetika"
-  },
-  {
-    url: "https://siremol.org/largefiles/music/004.mp3",
-    title: "Quare Frolic",
-    author: "Origami Repetika"
-  }
-];
-
-
 class Interstitial extends React.Component {
   constructor(props){
     super(props);
+
+    let tracks = getTracks();
 
     this.state = { "account": Account.get_account(),
                    "playing": Sound.status.STOPPED,
@@ -61,6 +41,7 @@ class Interstitial extends React.Component {
   }
 
   getNextTrack(){
+    let tracks = getTracks();
     let ntracks = tracks.length;
 
     let track = this.state.track;
@@ -80,7 +61,8 @@ class Interstitial extends React.Component {
     if (this.state.playing === Sound.status.STOPPED){
       this.setState({"playing": Sound.status.PLAYING});
     } else {
-      this.setState({"playing": Sound.status.STOPPED});
+      this.setState({"playing": Sound.status.STOPPED,
+                     "track": this.getNextTrack()});
     }
   }
 
@@ -168,6 +150,7 @@ class Interstitial extends React.Component {
                   <img className={styles.no_microphone} src={no_microphone} alt=""/>
                   </div>)
 
+      let tracks = getTracks();
       let track = tracks[this.state.track];
 
       let credits = null;
@@ -175,10 +158,11 @@ class Interstitial extends React.Component {
       if (this.state.playing === Sound.status.PLAYING){
         credits = (
           <div className={styles.music}>
-            <div className={styles.credits}>
-              Playing '{track.title}' by {track.author})
+            <div className={styles.credits}
+                 onClick={() => this.togglePlaying()}>
+              Playing '{track.title}' by {track.author}
             </div>
-            <div className={styles.music}>
+            <div className={styles.credits}>
               Visit https://septembrse.github.io/#/music for more info
             </div>
           </div>

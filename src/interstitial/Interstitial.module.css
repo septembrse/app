@@ -106,3 +106,14 @@
     text-align: center;
     padding: 12pt;
 }
+
+.music {
+    width: 100%;
+}
+
+.credits {
+    font-size: 10pt;
+    text-align: center;
+    color: lightcyan;
+    text-shadow: 0 0 0;
+}
