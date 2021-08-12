@@ -153,12 +153,9 @@ class Session {
     let keys = Object.keys(upcoming_sessions);
 
     if (running_sessions.length > 0){
-      console.log(running_sessions);
       return running_sessions[0];
     } else if (keys.length > 0){
       keys.sort((a, b)=>{return a - b});
-      console.log(keys);
-      console.log(keys[0]);
       return upcoming_sessions[keys[0]];
     } else {
       return new Session();
