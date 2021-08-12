@@ -326,7 +326,7 @@ export function Today(props){
   }, [account]);
 
   return (
-    <SimplePage account={account} setAccount={setAccount}>
+    <SimplePage {...props} account={account} setAccount={setAccount}>
       <TodayComponent account={account} setAccount={setAccount}
                       history={props.history} />
     </SimplePage>

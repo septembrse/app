@@ -23,6 +23,13 @@ graphics (e.g. as we have done here for the Society - standard booth
 furniture has been placed over the Society logo, and a name tag
 added to the bottom right).
 
+A good piece of advice is that you first decide what you want your booth to
+link to (e.g. web pages, Google docs or Google forms, YouTube videos, etc).
+Once you know that, position those things in your tiles. Think about how
+people will know what they are. Also think about whether people will be
+blocked by anything (so which tiles are impassable because, e.g.
+there is a table or a board there).
+
 When you are ready, [email us your graphics and instructions](mailto:conference-2021@society-rse.org)
 and we will build it into the conference center as quickly as possible.
 We will invite you to have a look at your booth before the conference, if you

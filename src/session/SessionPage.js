@@ -203,14 +203,14 @@ export function SessionPage(props){
 
   if (params.session_id){
     return (
-      <SimplePage account={account} setAccount={setAccount}>
+      <SimplePage {...props} account={account} setAccount={setAccount}>
         <SessionComponent account={account} setAccount={setAccount}
                           session_id={params.session_id} />
       </SimplePage>
     );
   } else {
     return (
-      <SimplePage account={account} setAccount={setAccount}>
+      <SimplePage {...props} account={account} setAccount={setAccount}>
         <div>Information about all sessions?</div>
       </SimplePage>
     );

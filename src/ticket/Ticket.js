@@ -475,7 +475,7 @@ export function Ticket(props){
   }, [account]);
 
   return (
-    <SimplePage account={account} setAccount={setAccount}>
+    <SimplePage {...props} account={account} setAccount={setAccount}>
       <TicketComponent account={account} setAccount={setAccount} />
     </SimplePage>
   );

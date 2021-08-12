@@ -157,7 +157,7 @@ export function Login(props){
   }, [account]);
 
   return (
-    <SimplePage account={account} setAccount={setAccount}>
+    <SimplePage {...props} account={account} setAccount={setAccount}>
       <Container fluid>
         <Row>
           <Col style={{marginTop:"10px",

@@ -226,7 +226,7 @@ export function Search(props){
   }, [account]);
 
   return (
-    <SimplePage account={account} setAccount={setAccount}>
+    <SimplePage {...props} account={account} setAccount={setAccount}>
       <SearchComponent />
     </SimplePage>
   );

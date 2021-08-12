@@ -296,7 +296,7 @@ export function Timetable(props){
   let day_or_week = params.day_or_week;
 
   return (
-    <SimplePage account={account} setAccount={setAccount}>
+    <SimplePage {...props} account={account} setAccount={setAccount}>
       <TimetableComponent account={account}
                           setAccount={setAccount}
                           day_or_week={day_or_week} />

@@ -148,7 +148,7 @@ export function Guide(props){
   }
 
   return (
-    <SimplePage account={account} setAccount={setAccount}>
+    <SimplePage {...props} account={account} setAccount={setAccount}>
       <GuideComponent account={account}
                       setAccount={setAccount}
                       history={props.history}

@@ -343,7 +343,7 @@ class Generate extends React.Component {
       }
 
       return (
-        <SimplePage>
+        <SimplePage {...this.props}>
           <Container fluid>
             <Row>
               <Col style={{marginTop:"10px",
@@ -383,7 +383,7 @@ class Generate extends React.Component {
       );
     } else {
       return (
-        <SimplePage>
+        <SimplePage {...this.props}>
           <Container fluid>
             <Row>
               <Col style={{marginTop:"10px",

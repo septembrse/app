@@ -364,14 +364,14 @@ export function EventPage(props){
 
   if (params.event_id){
     return (
-      <SimplePage account={account} setAccount={setAccount}>
+      <SimplePage {...props} account={account} setAccount={setAccount}>
         <EventComponent account={account} setAccount={setAccount}
                         event_id={params.event_id} />
       </SimplePage>
     );
   } else {
     return (
-      <SimplePage account={account} setAccount={setAccount}>
+      <SimplePage {...props} account={account} setAccount={setAccount}>
         <div>Information about all sessions?</div>
       </SimplePage>
     );

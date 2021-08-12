@@ -51,7 +51,7 @@ function Home(props){
   }
 
   return (
-    <SimplePage account={account} setAccount={setAccount}>
+    <SimplePage {...props} account={account} setAccount={setAccount}>
       <Container fluid>
         <Row>
           <Col>
