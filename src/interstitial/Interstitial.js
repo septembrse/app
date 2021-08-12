@@ -18,6 +18,10 @@ import banner from "../images/interstitial_bg.png";
 import no_camera from "../images/no_camera.png";
 import no_microphone from "../images/no_microphone.png";
 
+import oracle from "../images/sponsors/oracle.png";
+import amazon from "../images/sponsors/amazon.png";
+import alcesflight from "../images/sponsors/alcesflight.png";
+
 const Interstitial = () => {
 
   let [account, setAccount] = React.useState(Account.get_account());
@@ -86,9 +90,16 @@ const Interstitial = () => {
           <img src={banner}
               className={styles.bg_image} alt=""
           ></img>
+          <div className={styles.partners}>
+            <img src={oracle} className={styles.partner_logo} alt="Thanks to Oracle for Research for Sponsoring" />
+            <img src={amazon} className={styles.partner_logo} alt="Thanks to Amazon Web Services for Sponsoring" />
+          </div>
           {title}
           {description}
           {countdown}
+          <div className={styles.partners}>
+            <img src={alcesflight} className={styles.networker_logo} alt="Thanks to Alces Flight for Sponsoring" />
+          </div>
           {info}
         </div>
     );

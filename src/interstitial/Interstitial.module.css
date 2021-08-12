@@ -8,9 +8,32 @@
     background-image: linear-gradient(rgb(89,128,188), white);
 }
 
+.partners {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.networkers {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.partner_logo {
+    height: 72pt;
+}
+
+.networker_logo {
+    height: 64pt;
+}
+
 .bg_image {
-    width: 60%;
-    max-height: 30%;
+    height: 96pt;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -28,8 +51,14 @@
     text-shadow: 0 0 0;
 }
 
+.sponsorthanks {
+    font-size: 18pt;
+    text-align: center;
+    color: black;
+}
+
 .title {
-    font-size: xx-large;
+    font-size: 28pt;
     text-align: center;
     padding: 12pt;
     color: white;
@@ -37,7 +66,7 @@
 }
 
 .description {
-    font-size: large;
+    font-size: 22pt;
     text-align: center;
     padding: 12pt;
     color: white;
@@ -45,7 +74,7 @@
 }
 
 .countdown {
-    font-size: larger;
+    font-size: 24pt;
     text-align: center;
     padding: 12pt;
     color: white;
@@ -59,7 +88,7 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    color: white;
+    color: black;
     outline: white;
     text-shadow: 0 0 0;
 }
@@ -73,7 +102,7 @@
 }
 
 .info_text {
-    font-size: medium;
+    font-size: 14pt;
     text-align: center;
     padding: 12pt;
 }
