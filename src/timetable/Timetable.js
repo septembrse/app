@@ -29,7 +29,7 @@ export function DayTimetableComponent(props){
     let day_string = Session.getDayString(day);
 
     return (
-      <Row key={day_string}>
+      <Row>
         <Col style={{marginTop:"10px",
                      maxWidth: "768px",
                      marginLeft: "auto", marginRight: "auto"}}>
@@ -184,6 +184,14 @@ export function TimetableComponent(props){
   }
 
   if (days){
+    console.log(days);
+
+    if (days.length > 1){
+      if (days[0] > days[days.length - 1]){
+        days = days.reverse();
+      }
+    }
+
     for (let i in days){
 
       if (view_days){
@@ -211,7 +219,7 @@ export function TimetableComponent(props){
       day_views.push(
         <DayTimetableComponent account={props.account}
                                   day={days[i]}
-                                  key={i}>
+                                  key={Math.random()}>
           {session_parts}
         </DayTimetableComponent>
       )
@@ -220,7 +228,7 @@ export function TimetableComponent(props){
 
   if (day_views.length === 0){
     day_views.push(
-      <Row>
+      <Row key="nothing">
         <Col style={{marginTop:"10px",
                     maxWidth: "768px",
                     marginLeft: "auto", marginRight: "auto"}}>
