@@ -79,6 +79,12 @@ class Session {
     let keys = Object.keys(days);
     keys.sort((a, b) => {return (a - b)});
 
+    if (keys.length > 1){
+      if (keys[0] > keys[keys.length - 1]){
+        keys = keys.reverse();
+      }
+    }
+
     return keys;
   }
 

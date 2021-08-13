@@ -184,14 +184,6 @@ export function TimetableComponent(props){
   }
 
   if (days){
-    console.log(days);
-
-    if (days.length > 1){
-      if (days[0] > days[days.length - 1]){
-        days = days.reverse();
-      }
-    }
-
     for (let i in days){
 
       if (view_days){
@@ -243,13 +235,20 @@ export function TimetableComponent(props){
     );
   }
 
+  let offset = new Date().getTimezoneOffset() / -60.0;
+
+  if (offset > 0){
+    offset = `+${offset}`;
+  }
+
   return (
     <Container fluid>
       <Row>
         <Col style={{marginTop:"10px",
                      maxWidth: "768px",
                      marginLeft: "auto", marginRight: "auto"}}>
-          <h1 style={{textAlign: "center"}}>Conference Timetable</h1>
+          <h1 style={{textAlign: "center"}}>Conference Timetable (Provisional)</h1>
+          <h3 style={{textAlign: "center"}}>(all times are in your local timezone, UTC{offset})</h3>
         </Col>
       </Row>
 

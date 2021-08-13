@@ -60,7 +60,7 @@ function EventToday(props){
   }
 
   return (
-    <Card variant={variant}
+    <Card bg={variant}
           style={{borderRadius: "5px", marginBottom:"10px"}}
           key={event.getID()}>
       <Card.Header style={{textAlign: "center"}}>
@@ -196,7 +196,7 @@ function SessionToday(props){
       <Col style={{marginTop:"10px",
                    maxWidth: "768px",
                    marginLeft: "auto", marginRight: "auto"}}>
-        <Card variant={variant}
+        <Card bg={variant}
               style={{borderRadius: "5px"}}>
           <Card.Header style={{textAlign: "center", fontSize: "larger",
                               fontWeight: "bold"}}>
@@ -245,10 +245,10 @@ export function TodayComponent(props){
           <Col style={{marginTop:"10px",
                       maxWidth: "768px",
                       marginLeft: "auto", marginRight: "auto"}}>
-            <Button variant="dark"
+            <Button variant="secondary"
                     style={{width: "100%", borderRadius: "5px"}}
                     href={account.getGatherTownLink()}>
-              Connect to the gather.town Virtual Conference Center
+              Click to connect to the gather.town Virtual Conference Center
             </Button>
           </Col>
         </Row>

@@ -18,7 +18,6 @@ class Submission {
       i += 1;
       let nme = `name${i}`;
       let institution = `institution${i}`;
-      console.log(nme);
 
       if (data[`name${i}`]){
         this.name = `${this.name}, ${data[nme]}`;
