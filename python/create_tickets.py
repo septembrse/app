@@ -329,6 +329,6 @@ with open("passwords.json", "w") as FILE:
                "gather_link": gather_link,
                "god_key": get_god_key()}, FILE)
 
-print(tickets)
+#print(tickets)
 
 tickets.to_excel("Tickets.xlsx", index=False)
