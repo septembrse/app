@@ -22,6 +22,16 @@ presentation_to_session = {}
 
 now = datetime.datetime.now()
 
+event = Event()
+event.add('uid', "test_event")
+event.add('summary', "Test Event")
+event.add("dtstart", tz.localize(now+datetime.timedelta(hours=1)).astimezone(pytz.utc))
+event.add("dtend", tz.localize(now+datetime.timedelta(hours=2)).astimezone(pytz.utc))
+event.add("dtstamp", now)
+event.add("location", f"https://septembrse.github.io/#/session/N1001")
+
+calendar.add_component(event)
+
 for i in range(0, len(data)):
     d = data.loc[i]
 
