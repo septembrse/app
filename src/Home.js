@@ -68,6 +68,11 @@ function Home(props){
                        maxWidth: "768px",
                        marginLeft: "auto", marginRight: "auto"}}>
             <ButtonGroup vertical style={{width: "100%"}}>
+              <Button href="https://docs.google.com/document/d/1_69GaI3JWNvRRLitF1DCs4OLzwJA6lGftH_a8n24LYs/edit?usp=sharing"
+                      variant="info"
+                      style={{borderRadius: "5px", marginTop: "5px"}}>
+                Conference Notice board (last minute announcements)
+              </Button>
               <Button onClick={() => props.history.push("/venue")}
                       variant="primary"
                       style={{borderRadius: "5px", marginTop: "5px"}}>
