@@ -24,7 +24,7 @@ import styles from "./Generate.module.css";
 function _to_csv(guestlist){
   let lines = [];
 
-  lines.push("email,name,role");
+  lines.push("email,name,role,affiliation");
 
   for (let i in guestlist){
     let email = guestlist[i][0];
@@ -36,7 +36,10 @@ function _to_csv(guestlist){
       let role = guestlist[i][2];
       if (!role){ role = "user" }
 
-      lines.push(`${email},${name},${role}`);
+      let af = guestlist[i][3];
+      if (!af){ af = "unknown"}
+
+      lines.push(`${email},${name},${role},${af}`);
     }
   }
 
@@ -246,7 +249,7 @@ class Generate extends React.Component {
           level = "admin";
         }
 
-        guestlist.push([attendee.email, attendee.name, level]);
+        guestlist.push([attendee.email, attendee.name, level, attendee.affiliation]);
         num_general += 1;
 
       } else if (attendee.ticket === "day") {
@@ -281,7 +284,7 @@ class Generate extends React.Component {
         ticket["day_keys"] = day_keys;
 
         if (has_access_today){
-          guestlist.push([attendee.email, attendee.name, "user"]);
+          guestlist.push([attendee.email, attendee.name, "user", attendee.affiliation]);
           num_day += 1;
         }
 

@@ -103,6 +103,15 @@ def get_name(email):
         return diversity.loc[rows[-1]]["What is your full name?"]
 
 
+def get_affiliation(email):
+    rows = diversity.index[diversity['Email address'] == email].tolist()
+
+    if len(rows) == 0:
+        return None
+    else:
+        return diversity.loc[rows[-1]]["What is your institution or affiliation?"]
+
+
 def get_row_in_tickets(email):
     rows = tickets.index[tickets["email"] == email].tolist()
 
@@ -236,6 +245,7 @@ for i in range(0, len(tickets)):
                 "password": ticket["password"],
                 "ticket": ticket["ticket"],
                 "name": clean(ticket["name"]),
+                "affiliation": clean(get_affiliation(ticket["email"])),
                 "presentations": p}
 
     attendees.append(attendee)
