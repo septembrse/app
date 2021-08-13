@@ -235,6 +235,7 @@ for i in range(0, len(tickets)):
     attendee = {"email": ticket["email"],
                 "password": ticket["password"],
                 "ticket": ticket["ticket"],
+                "name": clean(ticket["name"]),
                 "presentations": p}
 
     attendees.append(attendee)

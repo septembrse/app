@@ -21,11 +21,35 @@ import {get_key, get_day_secret,
 import styles from "./Generate.module.css";
 
 
+function _to_csv(guestlist){
+  let lines = [];
+
+  lines.push("email,name,role");
+
+  for (let i in guestlist){
+    let email = guestlist[i][0];
+
+    if (email){
+      let name = guestlist[i][1];
+      if (!name){ name = "Anonymous" }
+
+      let role = guestlist[i][2];
+      if (!role){ role = "user" }
+
+      lines.push(`${email},${name},${role}`);
+    }
+  }
+
+  return lines.join("\n");
+}
+
+
 class Generate extends React.Component {
   constructor(props){
     super(props);
 
-    this.state = {output: null};
+    this.state = {output: null,
+                  guestlist: null};
   }
 
   readJSON = async (e) => {
@@ -35,10 +59,14 @@ class Generate extends React.Component {
       const text = (e.target.result)
 
       try{
-        this.setState({output: this.generateOutput(text)});
+        let output = this.generateOutput(text);
+        this.setState({output: output["secrets"],
+                       guestlist: _to_csv(output["guestlist"]),
+                       num_general: output["num_general"],
+                       num_day: output["num_day"]});
       } catch(error){
         console.log(error);
-        this.setState({output: null});
+        this.setState({output: null, guestlist: null});
       }
     };
     reader.readAsText(e.target.files[0])
@@ -187,6 +215,12 @@ class Generate extends React.Component {
                    "workshop_links": wshop_links,
                    "attendees": {}};
 
+    let guestlist = [];
+    let today = Account.getNow();
+
+    let num_general = 0;
+    let num_day = 0;
+
     for (let i in attendees){
       let attendee = attendees[i];
 
@@ -205,11 +239,23 @@ class Generate extends React.Component {
           attendee.ticket === "full"){
         // general ticket - can access everything every day
         ticket["god_key"] = god_key;
+
+        let level = "user";
+
+        if (attendee.email === "Christopher.Woods@bristol.ac.uk"){
+          level = "admin";
+        }
+
+        guestlist.push([attendee.email, attendee.name, level]);
+        num_general += 1;
+
       } else if (attendee.ticket === "day") {
         // we need to supply day tickets - loop over all of
         // the days that this person is attending and give
         // them the day key
         let day_keys = {};
+
+        let has_access_today = false;
 
         for (let j in attendee.presentations){
           let presentation = attendee.presentations[j].trim();
@@ -222,10 +268,22 @@ class Generate extends React.Component {
           } else {
             let day_string = get_day_string(session.getStartTime());
             day_keys[day_string] = day_secrets[day_string];
+
+            // time in days to the session
+            let delta = (session.getStartTime() - today) / (1000*60*60*24);
+
+            if (delta < 1.0 && delta > -1.0){
+              console.log(`${attendee.email} : ${delta} : ${session.getStartTime()}`);
+            }
           }
         }
 
         ticket["day_keys"] = day_keys;
+
+        if (has_access_today){
+          guestlist.push([attendee.email, attendee.name, "user"]);
+          num_day += 1;
+        }
 
       } else {
         throw new Error(`Unrecognised ticket type? ${attendee.ticket}`);
@@ -321,7 +379,10 @@ class Generate extends React.Component {
     //add the time of generation so we know if we need to update
     tickets["version"] = new Date().toISOString();
 
-    return JSON.stringify(tickets);
+    return { secrets: JSON.stringify(tickets),
+             guestlist: guestlist,
+             num_general: num_general,
+             num_day: num_day };
   }
 
   render = () => {
@@ -330,16 +391,35 @@ class Generate extends React.Component {
 
     if (account && account.isAdmin()){
       let copy_button = null;
+      let guest_button = null;
 
       if (this.state.output){
         copy_button = (
           <CopyToClipboard text={this.state.output}
+                           key="secrets"
                            onCopy={() => this.setState({copied: true})}>
             <Button variant="secondary"
                     style={{width:"100%"}}>
-              Copy to clipboard
+              Copy secrets.json to clipboard
             </Button>
           </CopyToClipboard>);
+      }
+
+      if (this.state.guestlist){
+        guest_button = [
+          <CopyToClipboard text={this.state.guestlist}
+                           key="guestlist"
+                           onCopy={() => this.setState({copied: true})}>
+            <Button variant="info"
+                    style={{width:"100%"}}>
+              Copy Gather guestlist to clipboard
+            </Button>
+          </CopyToClipboard>,
+          <ul key="ticket_list">
+            <li key="general">General tickets: {this.state.num_general}</li>
+            <li key="day">Day tickets: {this.state.num_day}</li>
+            <li key="total">Total tickets: {this.state.num_general+this.state.num_day}</li>
+          </ul>];
       }
 
       return (
@@ -368,6 +448,7 @@ class Generate extends React.Component {
               <Col style={{marginTop:"10px",
                            maxWidth: "768px",
                            marginLeft: "auto", marginRight: "auto"}}>
+                {guest_button}
                 {copy_button}
               </Col>
             </Row>
