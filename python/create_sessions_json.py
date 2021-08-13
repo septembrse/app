@@ -3,6 +3,7 @@ import json
 import pandas as pd
 import tzlocal
 import datetime
+import pytz
 from icalendar import Calendar, Event
 
 sessions = []
@@ -19,6 +20,8 @@ tz = tzlocal.get_localzone()
 
 presentation_to_session = {}
 
+now = datetime.datetime.now()
+
 for i in range(0, len(data)):
     d = data.loc[i]
 
@@ -29,9 +32,11 @@ for i in range(0, len(data)):
 
     if d["Starts"] > datetime.date.fromisoformat("2021-09-04"):
         event = Event()
+        event.add('uid', session_id)
         event.add('summary', d["Title"])
-        event.add("dtstart", tz.localize(d["Starts"]))
-        event.add("dtend", tz.localize(d["Ends"]))
+        event.add("dtstart", tz.localize(d["Starts"]).astimezone(pytz.utc))
+        event.add("dtend", tz.localize(d["Ends"]).astimezone(pytz.utc))
+        event.add("dtstamp", now)
         event.add("location", f"https://septembrse.github.io/#/session/{session_id}")
 
         calendar.add_component(event)
