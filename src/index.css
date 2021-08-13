@@ -37,3 +37,13 @@ a {
   background-color: #571644!important;
 }
 
+.btn-primary {
+  background-color: #3e256d;
+  box-shadow: none;
+}
+
+.btn-secondary {
+  background-color: #571644;
+  box-shadow: none;
+}
+
