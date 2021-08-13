@@ -289,10 +289,9 @@ export function EventCard(props){
       <Col style={{marginTop:"10px",
                    maxWidth: "768px",
                    marginLeft: "auto", marginRight: "auto"}}>
-        <Card bg={variant} border={variant} text={variant}
+        <Card bg={variant}
               style={{borderRadius: "5px"}}>
-          <Card.Header style={{color: "rgb(220,220,220)",
-                               fontWeight: "bold",
+          <Card.Header style={{fontWeight: "bold",
                                textAlign: "center"}}>
             <Link to={event.getLink()}>{event.getFormat()}: {event.getID()}</Link>
           </Card.Header>

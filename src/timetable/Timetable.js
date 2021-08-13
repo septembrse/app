@@ -33,7 +33,7 @@ export function DayTimetableComponent(props){
         <Col style={{marginTop:"10px",
                      maxWidth: "768px",
                      marginLeft: "auto", marginRight: "auto"}}>
-          <Card bg={variant} border={variant} text={variant}
+          <Card bg={variant}
                 style={{borderRadius: "5px"}}>
             <Card.Header style={{textAlign: "center", fontSize: "larger",
                                  fontWeight: "bold"}}>
@@ -98,13 +98,13 @@ export function SessionTimetableComponent(props){
     }
 
     return (
-      <Card bg={variant} border={variant} text={variant}
+      <Card bg={variant}
             style={{borderRadius: "5px", marginBottom:"10px"}}>
         <Card.Header style={{textAlign: "center"}}>
           {session.getDurationString()} : <Link to={session.getLink()}>Session {session.getID()}</Link>
         </Card.Header>
         <Card.Body style={{align_items:"center"}}>
-          <Card.Title style={{fontWeight: "bold"}}>{session.getTitle()}</Card.Title>
+          <Card.Title style={{fontWeight: "bold", textShadow: "none"}}>{session.getTitle()}</Card.Title>
           {events}
         </Card.Body>
       </Card>
@@ -250,9 +250,9 @@ export function TimetableComponent(props){
                      maxWidth: "768px",
                      marginLeft: "auto", marginRight: "auto"}}>
           <Dropdown>
-            <Dropdown.Toggle variant="dark" border="warning" text="warning"
-                             id="dropdown-basic"
-                             style={{width: "100%"}}>
+            <Dropdown.Toggle id="dropdown-basic"
+                             style={{width: "100%", borderRadius: "5px",
+                                     fontWeight: "bold"}}>
               {dw_text}
             </Dropdown.Toggle>
             <Dropdown.Menu style={{width: "100%", textAlign: "center"}}>

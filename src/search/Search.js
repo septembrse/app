@@ -61,25 +61,25 @@ export function SearchComponent(props){
                   onClick={() => setSearchText("talks")}>
             View all talks
           </Button>
-          <Button variant="info"
+          <Button variant="primary"
                   style={{borderRadius: "5px",
                           marginTop: "5px"}}
                   onClick={() => setSearchText("walkthroughs")}>
             View all walkthroughs
           </Button>
-          <Button variant="primary"
+          <Button variant="secondary"
                   style={{borderRadius: "5px",
                           marginTop: "5px"}}
                   onClick={() => setSearchText("posters")}>
             View all posters
           </Button>
-          <Button variant="secondary"
+          <Button variant="primary"
                   style={{borderRadius: "5px",
                           marginTop: "5px"}}
                   onClick={() => setSearchText("workshops")}>
             View all workshops
           </Button>
-          <Button variant="info"
+          <Button variant="secondary"
                   style={{borderRadius: "5px",
                           marginTop: "5px"}}
                   onClick={() => setSearchText("panels")}>
@@ -97,7 +97,7 @@ export function SearchComponent(props){
                   onClick={() => setSearchText("keynotes")}>
             View all keynotes
           </Button>
-          <Button variant="info"
+          <Button variant="primary"
                   style={{borderRadius: "5px",
                           marginTop: "5px"}}
                   onClick={() => setSearchText("specials")}>
@@ -156,10 +156,8 @@ export function SearchComponent(props){
 
     let variant = "primary";
 
-    if (i % 3 === 1){
+    if (i % 2 === 1){
       variant = "secondary";
-    } else if (i % 3 === 2){
-      variant = "info";
     }
 
     i += 1;
@@ -170,7 +168,7 @@ export function SearchComponent(props){
                      maxWidth: "768px",
                      marginLeft: "auto", marginRight: "auto"}}>
           <Card className="text-center"
-                bg={variant} border={variant} text={variant}
+                bg={variant}
                 key={r.getID()}
                 style={{borderRadius: "5px"}}>
             <Card.Header style={{color: "rgb(220,220,220)",

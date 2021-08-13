@@ -35,7 +35,7 @@ export function SessionCard(props){
       <Col style={{marginTop:"10px",
                    maxWidth: "768px",
                    marginLeft: "auto", marginRight: "auto"}}>
-        <Card bg={variant} border={variant} text={variant}
+        <Card bg={variant}
               style={{borderRadius: "5px"}}>
           <Card.Header style={{textAlign: "center"}}>
             {session.getStartTimeString()} - {session.getEndTimeString()}
@@ -85,7 +85,7 @@ export function SessionComponent(props){
             if (zoom_link){
               if (event.isInGather(account)){
                 zoom_text = (
-                  <Card.Text style={{textAlign: "center", color: "white"}}>
+                  <Card.Text style={{textAlign: "center"}}>
                     <a href={zoom_link}>
                       Connect to the Zoom meeting for this session.
                     </a><br/>Alternatively you can walk to the lecture theatre
@@ -95,7 +95,7 @@ export function SessionComponent(props){
                 );
               } else {
                 zoom_text = (
-                  <Card.Text style={{textAlign: "center", color: "white"}}>
+                  <Card.Text style={{textAlign: "center"}}>
                     <a href={zoom_link}>
                       Connect to the Zoom meeting for this session.
                     </a><br/>This is a parallel session, so it cannot be
@@ -105,14 +105,14 @@ export function SessionComponent(props){
               }
             } else if (!account.isValidToday()){
               zoom_text = (
-                <Card.Text style={{textAlign: "center", color: "white"}}>
+                <Card.Text style={{textAlign: "center"}}>
                   Your ticket is not valid today, so you cannot connect
                   to the Zoom session.
                 </Card.Text>
               );
             } else {
               zoom_text = (
-                <Card.Text style={{textAlign: "center", color: "white"}}>
+                <Card.Text style={{textAlign: "center"}}>
                   The link to the Zoom meeting for this session will appear
                   from 30 minutes before the session starts, and will be available
                   until 30 minutes after it has finished.
@@ -137,7 +137,7 @@ export function SessionComponent(props){
 
         if (zoom_link){
           zoom_text = (
-            <Card.Text style={{textAlign: "center", color: "white"}}>
+            <Card.Text style={{textAlign: "center"}}>
               <a href={zoom_link}>
                 Connect to the Zoom meeting for this session.
               </a><br/>Or connect to Zoom by visiting the lecture theatre
@@ -146,14 +146,14 @@ export function SessionComponent(props){
           );
         } else if (!account.isValidToday()){
           zoom_text = (
-            <Card.Text style={{textAlign: "center", color: "white"}}>
+            <Card.Text style={{textAlign: "center"}}>
               Your ticket is not valid today, so you cannot connect
               to the Zoom session.
             </Card.Text>
           );
         } else {
           zoom_text = (
-            <Card.Text style={{textAlign: "center", color: "white"}}>
+            <Card.Text style={{textAlign: "center"}}>
               The link to the Zoom meeting for this session will appear
               from 30 minutes before the session starts, and will be available
               until 30 minutes after it has finished.
@@ -162,7 +162,7 @@ export function SessionComponent(props){
         }
       } else {
         zoom_text = (
-          <Card.Text style={{textAlign: "center", color: "white"}}>
+          <Card.Text style={{textAlign: "center"}}>
             <Link to="/login">Log in</Link> to get the Zoom and Sli.do
             links associated with this session.
           </Card.Text>

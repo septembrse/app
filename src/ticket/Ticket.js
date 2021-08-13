@@ -257,16 +257,17 @@ export function TicketComponent(props){
           variant = "primary";
         }
 
+        variant = "secondary";
+
         presentation_buttons.push(
           <Row key={id}>
             <Col>
               <Card
-                  bg={variant} border={variant} text={variant}
+                  bg={variant}
                   style={{borderRadius: "5px", marginTop:"10px",
                           maxWidth: "768px",
                           marginLeft: "auto", marginRight: "auto"}}>
-                <Card.Header style={{color: "rgb(220,220,220)",
-                                     fontWeight: "bold",
+                <Card.Header style={{fontWeight: "bold",
                                      textAlign: "center"}}>
                   <Link to={submission.getLink()}>Your {submission.getFormat()}: {id}</Link>
                 </Card.Header>
@@ -342,7 +343,7 @@ export function TicketComponent(props){
         links.push(
           <Row>
             <Col>
-              <Card bg="dark" border="warning" text="warning"
+              <Card bg="dark"
                     style={{borderRadius: "5px", marginTop:"10px",
                             maxWidth: "768px",
                             marginLeft: "auto", marginRight: "auto"}}>
@@ -382,7 +383,7 @@ export function TicketComponent(props){
         links.push(
           <Row>
             <Col>
-              <Card bg="dark" border="danger" text="danger"
+              <Card bg="dark"
                     style={{borderRadius: "5px", marginTop:"10px",
                             maxWidth: "768px",
                             marginLeft: "auto", marginRight: "auto"}}>
@@ -422,7 +423,7 @@ export function TicketComponent(props){
         </Row>
         <Row>
           <Col>
-            <Card bg="primary" border="primary" text="primary"
+            <Card bg="primary"
                   style={{borderRadius: "5px", marginTop:"10px",
                           maxWidth: "768px",
                           marginLeft: "auto", marginRight: "auto"}}>

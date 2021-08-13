@@ -29,7 +29,7 @@ export function LogoutComponent(props) {
 
   if (account && account.isLoggedIn()){
     return (
-      <Card bg="primary" border="primary" text="primary"
+      <Card bg="primary"
             style={{borderRadius: "5px"}}>
         <Card.Body>
           <div style={{width: "100%",
@@ -48,7 +48,7 @@ export function LogoutComponent(props) {
     );
   } else {
     return (
-      <Card bg="primary" border="primary" text="primary"
+      <Card bg="primary"
             style={{borderRadius: "5px"}}>
         <Card.Body>
           <div style={{width: "100%",

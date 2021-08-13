@@ -86,17 +86,17 @@ export function GuideComponent(props){
               How do I navigate? Useful keys and features
             </Button>
             <Button onClick={() => props.history.push("/venue/features")}
-                    variant="info"
+                    variant="primary"
                     style={{borderRadius: "5px", marginTop: "5px"}}>
               What can I do in the Virtual Conference Center?
             </Button>
             <Button onClick={() => props.history.push("/venue/treasure")}
-                    variant="primary"
+                    variant="secondary"
                     style={{borderRadius: "5px", marginTop: "5px"}}>
               Oracle Cryptic Code Treasure Hunt
             </Button>
             <Button onClick={() => props.history.push("/venue/sponsors")}
-                    variant="secondary"
+                    variant="primary"
                     style={{borderRadius: "5px", marginTop: "5px"}}>
               Information for Sponsors
             </Button>

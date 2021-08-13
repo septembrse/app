@@ -2,12 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { HashRouter } from "react-router-dom";
 
-
 // Vapor bootstrap theme from https://bootswatch.com/
 // MIT Licensed - Thanks :-)
 import './vapor.min.css';
+//import './test.min.css';
 
 import './index.css';
+
+
 
 import App from './App';
 

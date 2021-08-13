@@ -107,7 +107,7 @@ export function GetLinks(props){
               <Card bg="primary" border="primary" text="primary"
                     style={{borderRadius: "5px"}}>
                 <Card.Body style={{align_items:"center"}}>
-                  <Card.Title key="gather_title">
+                  <Card.Title key="gather_title" style={{textShadow: "none"}}>
                     Virtual Conference Center Link
                   </Card.Title>
                   <Card.Text key="gather_link">

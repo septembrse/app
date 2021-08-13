@@ -60,7 +60,7 @@ function EventToday(props){
   }
 
   return (
-    <Card bg={variant} border={variant} text={variant}
+    <Card variant={variant}
           style={{borderRadius: "5px", marginBottom:"10px"}}
           key={event.getID()}>
       <Card.Header style={{textAlign: "center"}}>
@@ -196,7 +196,7 @@ function SessionToday(props){
       <Col style={{marginTop:"10px",
                    maxWidth: "768px",
                    marginLeft: "auto", marginRight: "auto"}}>
-        <Card bg={variant} border={variant} text={variant}
+        <Card variant={variant}
               style={{borderRadius: "5px"}}>
           <Card.Header style={{textAlign: "center", fontSize: "larger",
                               fontWeight: "bold"}}>

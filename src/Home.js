@@ -69,32 +69,32 @@ function Home(props){
                        marginLeft: "auto", marginRight: "auto"}}>
             <ButtonGroup vertical style={{width: "100%"}}>
               <Button href="https://docs.google.com/document/d/1_69GaI3JWNvRRLitF1DCs4OLzwJA6lGftH_a8n24LYs/edit?usp=sharing"
-                      variant="info"
+                      variant="primary"
                       style={{borderRadius: "5px", marginTop: "5px"}}>
                 Conference Notice board (last minute announcements)
               </Button>
               <Button onClick={() => props.history.push("/venue")}
-                      variant="primary"
+                      variant="secondary"
                       style={{borderRadius: "5px", marginTop: "5px"}}>
                 Conference venue guide (gather.town)
               </Button>
               <Button onClick={() => props.history.push("/today")}
-                      variant="secondary"
+                      variant="primary"
                       style={{borderRadius: "5px", marginTop: "5px"}}>
                 What's happening today?
               </Button>
               <Button onClick={() => props.history.push("/timetable")}
-                      variant="info"
+                      variant="secondary"
                       style={{borderRadius: "5px", marginTop: "5px"}}>
                 View the conference timetable
               </Button>
               <Button onClick={() => props.history.push("/search")}
-                      variant="secondary"
+                      variant="primary"
                       style={{borderRadius: "5px", marginTop: "5px"}}>
                 Search for a presentation or event
               </Button>
               <Button onClick={() => props.history.push("/ticket")}
-                      variant="info"
+                      variant="secondary"
                       style={{borderRadius: "5px", marginTop: "5px"}}>
                 View your conference ticket
               </Button>

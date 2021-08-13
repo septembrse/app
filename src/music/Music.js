@@ -78,7 +78,7 @@ export function Music(props){
                      maxWidth: "768px",
                      marginLeft: "auto", marginRight: "auto"}}>
           <Card className="text-center"
-                bg={variant} border={variant} text={variant}
+                bg={variant}
                 style={{borderRadius: "5px"}}>
             <Card.Header>
               <a href={track["track_url"]}>{track["title"]}</a>

@@ -103,7 +103,7 @@ export function LoginComponent(props) {
     }
 
     return (
-      <Card bg="primary" border="primary" text="primary"
+      <Card bg="primary"
             style={{borderRadius: "5px"}}>
         <Card.Body style={{align_items:"center"}}>
           {alert}
