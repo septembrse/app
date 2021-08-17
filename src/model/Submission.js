@@ -258,6 +258,10 @@ class Submission {
     return this.getID().startsWith("P1");
   }
 
+  isBlended(){
+    return this.getID().startsWith("B");
+  }
+
   getZoomLink(account){
     if (account && account.isLoggedIn()){
       return account.getZoomLinkForSubmission(this.getID());

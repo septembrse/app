@@ -30,6 +30,8 @@ def get_format(id):
         return "Keynote"
     elif id.startswith("X"):
         return "Special event"
+    elif id.startswith("B"):
+        return "Blended event"
     else:
         return "Unknown"
 

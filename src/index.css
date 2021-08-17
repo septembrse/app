@@ -31,19 +31,19 @@ a {
 
 .bg-primary {
   background-color: #3e256d!important;
+  box-shadow: 0 0 2px rgb(111 66 193 / 90%), 0 0 4px rgb(111 66 193 / 40%), 0 0 1rem rgb(111 66 193 / 30%), 0 0 4rem rgb(111 66 193 / 10%);
 }
 
 .bg-secondary {
   background-color: #571644!important;
+  box-shadow: 0 0 2px rgb(234 57 184 / 90%), 0 0 4px rgb(234 57 184 / 40%), 0 0 1rem rgb(234 57 184 / 30%), 0 0 4rem rgb(234 57 184 / 10%);
 }
 
 .btn-primary {
   background-color: #3e256d;
-  box-shadow: none;
 }
 
 .btn-secondary {
   background-color: #571644;
-  box-shadow: none;
 }
 

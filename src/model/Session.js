@@ -176,6 +176,10 @@ class Session {
     return `/session/${this.getID()}`;
   }
 
+  isBlended(){
+    return this.getID().startsWith("NB");
+  }
+
   isWithinMinutes(date, minutes=30){
     let delta_start = date - this.getStartTime();
 

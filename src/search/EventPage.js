@@ -96,6 +96,18 @@ export function EventCard(props){
 
   if (event.isPoster()){
     zoom_link = null;
+  } else if (event.isBlended()){
+    zoom_link = [
+      <Card.Title key="z1" style={{fontSize: "medium",
+                  fontStyle: "bold",
+                  textAlign: "center"}}>
+        Zoom link
+      </Card.Title>,
+      <Card.Text key="z2">
+        This is a Blended session. The sign up and Zoom link details
+        are provided via the link in the event abstract.
+      </Card.Text>
+    ];
   } else if (zoom_link){
     if (is_in_gather){
       zoom_link = [
@@ -171,8 +183,8 @@ export function EventCard(props){
   } else if (!props.hide_zoom) {
     zoom_link = [
       <Card.Text key="z3" style={{textAlign: "center"}}>
-        <Link to="/login">Login</Link> to get the Zoom, Sli.do and
-        Google Drive links associated with this event.
+        <Link to="/login">Login</Link> to get the Zoom and Sli.do
+        links associated with this event.
       </Card.Text>
     ];
   }

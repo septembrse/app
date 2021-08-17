@@ -71,6 +71,15 @@ export function SessionComponent(props){
 
     let event_ids = session.getEventIDs();
 
+    if (session.isBlended()){
+      zoom_text = (
+        <Card.Text style={{textAlign: "center"}}>
+          This is a blended session. Sign up and Zoom link details can
+          be found in the abstract for the individual events.
+        </Card.Text>
+      );
+    }
+
     for (let i in event_ids){
       let event_id = event_ids[i];
 
