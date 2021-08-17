@@ -53,6 +53,7 @@ export function DayTimetableComponent(props){
 
 export function SessionTimetableComponent(props){
   let session = props.session;
+  let account = props.account;
 
   let variant = props.variant;
 
@@ -60,15 +61,21 @@ export function SessionTimetableComponent(props){
     variant = "secondary";
   }
 
+  let location = "lecture_theatre";
 
   if (session){
     let events = [];
+
+    if (session.isBlended()){
+      location = "blended";
+    }
 
     if (session.isNetworking()){
       events = [
         <li key="e1">This is a designated networking session.</li>,
         <li key="e2">Please feel free to <a href="#/today">join and explore the virtual conference center</a> and to network with other attendees.</li>
       ];
+      location = "networking";
     } else {
       let event_ids = session.getEventIDs();
 
@@ -76,6 +83,12 @@ export function SessionTimetableComponent(props){
         let event = Submission.getSubmission(event_ids[i]);
 
         if (event){
+          if (!event.isInGather(account)){
+            location = "workshop";
+          } else if (event.isPoster()){
+            location = "poster";
+          }
+
           events.push(
             <li key={event.getID()}><Link to={event.getLink()}>{event.getTitle()}</Link></li>
           );
@@ -97,11 +110,40 @@ export function SessionTimetableComponent(props){
       );
     }
 
+    let location_link = null;
+
+    if (location === "lecture_theatre"){
+      let link = account.getGatherTownLink();
+      if (link){
+        location_link = <Link to={link}>Lecture Theatre</Link>;
+      } else {
+        location_link = "Lecture Theatre";
+      }
+    } else if (location === "poster"){
+      let link = account.getGatherTownLink();
+      if (link){
+        location_link = <Link to={link}>Poster Hall</Link>;
+      } else {
+        location_link = "Poster Hall";
+      }
+    } else if (location === "blended") {
+      location_link = "Blended location";
+    } else if (location === "networking"){
+      let link = account.getGatherTownLink();
+      if (link){
+        location_link = <Link to={link}>Conference Center</Link>;
+      } else {
+        location_link = "Conference Center";
+      }
+    } else {
+      location_link = "Workshop room (sign up may be needed!)";
+    }
+
     return (
       <Card bg={variant}
             style={{borderRadius: "5px", marginBottom:"10px"}}>
         <Card.Header style={{textAlign: "center"}}>
-          {session.getDurationString()} : <Link to={session.getLink()}>Session {session.getID()}</Link>
+          {session.getDurationString()} : <Link to={session.getLink()}>Session {session.getID()}</Link> : {location_link}
         </Card.Header>
         <Card.Body style={{align_items:"center"}}>
           <Card.Title style={{fontWeight: "bold", textShadow: "none"}}>{session.getTitle()}</Card.Title>
