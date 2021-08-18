@@ -83,7 +83,8 @@ class Account {
     }
 
     if (this.getTicket() === "committee" ||
-        this.getTicket() === "full"){
+        this.getTicket() === "full" ||
+        this.getTicket() === "general"){
       return true;
     }
 
