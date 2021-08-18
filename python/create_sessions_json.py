@@ -22,15 +22,7 @@ presentation_to_session = {}
 
 now = datetime.datetime.now()
 
-#event = Event()
-#event.add('uid', "test_event")
-#event.add('summary', "Test Event")
-#event.add("dtstart", tz.localize(now+datetime.timedelta(hours=1)).astimezone(pytz.utc))
-#event.add("dtend", tz.localize(now+datetime.timedelta(hours=2)).astimezone(pytz.utc))
-#event.add("dtstamp", now)
-#event.add("location", f"https://septembrse.github.io/#/session/N1001")
-#
-#calendar.add_component(event)
+events = json.load(open("../src/submissions.json", "r"))
 
 for i in range(0, len(data)):
     d = data.loc[i]
@@ -39,6 +31,8 @@ for i in range(0, len(data)):
 
     starts = tz.localize(d["Starts"]).isoformat()
     ends = tz.localize(d["Ends"]).isoformat()
+
+    event = None
 
     if d["Starts"] > datetime.date.fromisoformat("2021-09-04"):
         event = Event()
@@ -49,14 +43,27 @@ for i in range(0, len(data)):
         event.add("dtstamp", now)
         event.add("location", f"https://septembrse.github.io/#/session/{session_id}")
 
-        calendar.add_component(event)
-
     presentations = []
 
     for c in ["Content1", "Content2", "Content3", "Content4", "Content5"]:
         if not pd.isna(d[c]):
             presentations.append(d[c])
             presentation_to_session[d[c]] = session_id
+
+            try:
+                e = events[d[c]]
+            except Exception:
+                e = None
+                print(f"Cannot find event {d[c]}")
+
+            if e:
+                s = Event()
+                s.add('uid', d[c])
+                s.add('summary', e["title"])
+                event.add_component(s)
+
+    if event:
+        calendar.add_component(event)
 
     session = {"id": d["Session ID"],
                "title": d["Title"],
