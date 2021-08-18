@@ -81,6 +81,18 @@
     text-shadow: 0 0 0;
 }
 
+.minutesbox {
+    font-size: 24pt;
+    max-width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    padding: 12pt;
+    color: white;
+    text-shadow: 0 0 0;
+    border-radius: 5px;
+}
+
 .info {
     display: flex;
     flex-direction: row;
@@ -114,6 +126,6 @@
 .credits {
     font-size: 10pt;
     text-align: center;
-    color: lightcyan;
+    color: rgb(22, 117, 117);
     text-shadow: 0 0 0;
 }

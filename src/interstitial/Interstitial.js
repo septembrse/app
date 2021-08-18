@@ -11,6 +11,9 @@ import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import InputGroup from "react-bootstrap/InputGroup";
+import FormControl from 'react-bootstrap/FormControl';
+import Button from "react-bootstrap/Button";
 
 import Sound from "react-sound";
 
@@ -37,7 +40,9 @@ class Interstitial extends React.Component {
                    "playing": Sound.status.STOPPED,
                    "track": Math.floor(Math.random() * tracks.length),
                    "position": null,
-                   "autoload": false };
+                   "autoload": false,
+                   "is_break": props.is_break,
+                   "target_value": 5 };
   }
 
   getNextTrack(){
@@ -99,8 +104,6 @@ class Interstitial extends React.Component {
 
       let test_date = account.thisGetNow();
 
-      let s = Session.getNextSession(test_date);
-
       // get the time now
       let d = null;
       let offset = 0;
@@ -112,36 +115,82 @@ class Interstitial extends React.Component {
         d = new Date();
       }
 
-      // how many seconds to go?
-      let delta = (s.getDelayTime() - d) / 1000.0;
-
+      let delta = 0;
       let countdown = null;
-
-      if (delta <= 0){
-        delta = s.getEndTime() - d;
-
-        if (delta < 0){
-          countdown = <div className={styles.message}>Session has finished</div>;
-        } else {
-          countdown = <div className={styles.message}>Session is in progress</div>;
-        }
-      } else if (delta > 1800){
-        countdown = (<div className={styles.countdown}>
-                      <div>Session will start at {s.getStartTimeString()}</div>
-                    </div>);
-      } else {
-        countdown = (<div className={styles.countdown}>
-                      <CountDown offset={offset} target={s.getDelayTime()}/>
-                    </div>);
-
-      }
-
-      let title = <div className={styles.title}>{s.getTitle()}</div>;
-
+      let title = null;
       let description = null;
 
-      if (s.hasDescription()){
-        description = <div className={styles.description}>{s.getDescription()}</div>;
+      if (this.state.is_break){
+        let target = this.state.target;
+
+        if (!target){
+          // need to set the target
+          countdown = (
+            <div className={styles.minutesbox}>
+              <InputGroup className="lg">
+                <FormControl
+                  placeholder={5}
+                  aria-label="Number_of_minutes"
+                  aria-describedby="basic-addon1"
+                  style={{textAlign:"right"}}
+                  onChange={(e) => this.setState({target_value:e.target.value})}
+                  onKeyPress={event => {
+                    if (event.key === 'Enter') {
+                      this.setState({target: this.state.target_value})
+                    }
+                  }}
+                />
+                <InputGroup.Text id="basic-addon1">minutes</InputGroup.Text>
+                <Button style={{width:"100%"}} variant="secondary"
+                        id="button-addon1"
+                        onClick={() => {this.setState({target: this.state.target_value})}}>
+                  Go
+                </Button>
+              </InputGroup>
+            </div>);
+
+          title = <div className={styles.title}>How many minutes for the break?</div>;
+        } else {
+          let t = new Date();
+          t.setSeconds(d.getSeconds() + target*60);
+
+          countdown = (<div className={styles.countdown}>
+                        <CountDown offset={offset} target={t}/>
+                      </div>);
+
+          title = <div className={styles.title}>Time for a break. We will be back soon!</div>;
+        }
+
+      } else {
+        let s = Session.getNextSession(test_date);
+
+        // how many seconds to go?
+        delta = (s.getDelayTime() - d) / 1000.0;
+
+        if (delta <= 0){
+          delta = s.getEndTime() - d;
+
+          if (delta < 0){
+            countdown = <div className={styles.message}>Session has finished</div>;
+          } else {
+            countdown = <div className={styles.message}>Session is in progress</div>;
+          }
+        } else if (delta > 1800){
+          countdown = (<div className={styles.countdown}>
+                        <div>Session will start at {s.getStartTimeString()}</div>
+                      </div>);
+        } else {
+          countdown = (<div className={styles.countdown}>
+                        <CountDown offset={offset} target={s.getDelayTime()}/>
+                      </div>);
+
+        }
+
+        title = <div className={styles.title}>{s.getTitle()}</div>;
+
+        if (s.hasDescription()){
+          description = <div className={styles.description}>{s.getDescription()}</div>;
+        }
       }
 
       let info = (<div className={styles.info}>

@@ -34,6 +34,11 @@ function Home(props){
                     style={{borderRadius: "5px", marginTop: "5px"}}>
               Conference interstitial page
             </Button>
+            <Button onClick={() => props.history.push("/break")}
+                    variant="danger"
+                    style={{borderRadius: "5px", marginTop: "5px"}}>
+              Conference refreshment break page
+            </Button>
             <Button onClick={() => props.history.push("/getlinks")}
                     variant="danger"
                     style={{borderRadius: "5px", marginTop: "5px"}}>

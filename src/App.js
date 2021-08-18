@@ -31,6 +31,7 @@ function App() {
               <Route exact path="/" component = {Home} />
               <Route exact path="/interstitial" component = {Interstitial} />
               <Route exact path="/interstitial/:test_date" component = {Interstitial} />
+              <Route exact path="/break" render = {(props) => <Interstitial {...props} is_break={true} />} />
               <Route exact path="/search" component = {Search} />
               <Route exact path="/login" component = {Login} />
               <Route exact path="/logout" component = {Logout} />
