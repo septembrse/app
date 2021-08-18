@@ -33,11 +33,13 @@ for i in range(0, len(data)):
     ends = tz.localize(d["Ends"]).isoformat()
 
     event = None
+    summary = None
 
     if d["Starts"] > datetime.date.fromisoformat("2021-09-04"):
         event = Event()
         event.add('uid', session_id)
-        event.add('summary', d["Title"])
+        summary = d["Title"]
+        event.add("organizer", "Society of Research Software Engineering")
         event.add("dtstart", tz.localize(d["Starts"]).astimezone(pytz.utc))
         event.add("dtend", tz.localize(d["Ends"]).astimezone(pytz.utc))
         event.add("dtstamp", now)
@@ -58,11 +60,10 @@ for i in range(0, len(data)):
 
             if e:
                 s = Event()
-                s.add('uid', d[c])
-                s.add('summary', e["title"])
-                event.add_component(s)
+                summary = f"{summary}\n\n{d[c]}: {e['title']}"
 
     if event:
+        event.add("summary", summary)
         calendar.add_component(event)
 
     session = {"id": d["Session ID"],
