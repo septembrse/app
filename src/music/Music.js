@@ -44,7 +44,97 @@ const tracks = [
     author_url: "https://freemusicarchive.org/music/Origami_Repetika",
     license_img: "https://licensebuttons.net/l/by/4.0/88x31.png",
     license_url: "https://creativecommons.org/licenses/by/4.0"
-  }
+  },
+  {
+    url: "https://siremol.org/largefiles/music/005.mp3",
+    title: "Tuffet",
+    author: "Origami Repetika",
+    track_url: "https://freemusicarchive.org/music/Origami_Repetika/the-happy-puppy-collection/tuffet",
+    author_url: "https://freemusicarchive.org/music/Origami_Repetika",
+    license_img: "https://licensebuttons.net/l/by/4.0/88x31.png",
+    license_url: "https://creativecommons.org/licenses/by/4.0"
+  },
+  {
+    url: "https://siremol.org/largefiles/music/006.mp3",
+    title: "Sunny Morning Exercise Club",
+    author: "Origami Repetika",
+    track_url: "https://freemusicarchive.org/music/Origami_Repetika/the-happy-puppy-collection/sunny-morning-exercise-club",
+    author_url: "https://freemusicarchive.org/music/Origami_Repetika",
+    license_img: "https://licensebuttons.net/l/by/4.0/88x31.png",
+    license_url: "https://creativecommons.org/licenses/by/4.0"
+  },
+  {
+    url: "https://siremol.org/largefiles/music/007.mp3",
+    title: "Medicine Head",
+    author: "Origami Repetika",
+    track_url: "https://freemusicarchive.org/music/Origami_Repetika/the-happy-puppy-collection/medicine-head",
+    author_url: "https://freemusicarchive.org/music/Origami_Repetika",
+    license_img: "https://licensebuttons.net/l/by/4.0/88x31.png",
+    license_url: "https://creativecommons.org/licenses/by/4.0"
+  },
+  {
+    url: "https://siremol.org/largefiles/music/008.mp3",
+    title: "Making up for Lost Time",
+    author: "Origami Repetika",
+    track_url: "https://freemusicarchive.org/music/Origami_Repetika/the-happy-puppy-collection/making-up-for-lost-time",
+    author_url: "https://freemusicarchive.org/music/Origami_Repetika",
+    license_img: "https://licensebuttons.net/l/by/4.0/88x31.png",
+    license_url: "https://creativecommons.org/licenses/by/4.0"
+  },
+  {
+    url: "https://siremol.org/largefiles/music/009.mp3",
+    title: "Kind Gentle Beautiful Person",
+    author: "Origami Repetika",
+    track_url: "https://freemusicarchive.org/music/Origami_Repetika/the-happy-puppy-collection/kind-gentle-beautiful-person",
+    author_url: "https://freemusicarchive.org/music/Origami_Repetika",
+    license_img: "https://licensebuttons.net/l/by/4.0/88x31.png",
+    license_url: "https://creativecommons.org/licenses/by/4.0"
+  },
+  {
+    url: "https://siremol.org/largefiles/music/010.mp3",
+    title: "4c Iced Tea",
+    author: "Origami Repetika",
+    track_url: "https://freemusicarchive.org/music/Origami_Repetika/the-happy-puppy-collection/4c-iced-tea",
+    author_url: "https://freemusicarchive.org/music/Origami_Repetika",
+    license_img: "https://licensebuttons.net/l/by/4.0/88x31.png",
+    license_url: "https://creativecommons.org/licenses/by/4.0"
+  },
+  {
+    url: "https://siremol.org/largefiles/music/011.mp3",
+    title: "Tricky Pyramids",
+    author: "Edward Shallow",
+    track_url: "https://freemusicarchive.org/music/Edward_Shallow/Hippodichotomous/04_Tricky_Pyramids",
+    author_url: "https://freemusicarchive.org/music/Edward_Shallow",
+    license_img: "https://creativecommons.org/images/deed/nc_white_x2.png",
+    license_url: "https://creativecommons.org/licenses/by-nc-sa/3.0/us/"
+  },
+  {
+    url: "https://siremol.org/largefiles/music/012.mp3",
+    title: "The Infinite Railroad",
+    author: "Edward Shallow",
+    track_url: "https://freemusicarchive.org/music/Edward_Shallow/Hippodichotomous/01_The_Infinite_Railroad",
+    author_url: "https://freemusicarchive.org/music/Edward_Shallow",
+    license_img: "https://creativecommons.org/images/deed/nc_white_x2.png",
+    license_url: "https://creativecommons.org/licenses/by-nc-sa/3.0/us/"
+  },
+  {
+    url: "https://siremol.org/largefiles/music/013.mp3",
+    title: "Fractal Crook",
+    author: "Edward Shallow",
+    track_url: "https://freemusicarchive.org/music/Edward_Shallow/Hippodichotomous/02_Fractal_Crook",
+    author_url: "https://freemusicarchive.org/music/Edward_Shallow",
+    license_img: "https://creativecommons.org/images/deed/nc_white_x2.png",
+    license_url: "https://creativecommons.org/licenses/by-nc-sa/3.0/us/"
+  },
+  {
+    url: "https://siremol.org/largefiles/music/014.mp3",
+    title: "Cauldron Chemistry",
+    author: "Edward Shallow",
+    track_url: "https://freemusicarchive.org/music/Edward_Shallow/Hippodichotomous/03_Cauldron_Chemistry",
+    author_url: "https://freemusicarchive.org/music/Edward_Shallow",
+    license_img: "https://creativecommons.org/images/deed/nc_white_x2.png",
+    license_url: "https://creativecommons.org/licenses/by-nc-sa/3.0/us/"
+  },
 ];
 
 export function getTracks(){
