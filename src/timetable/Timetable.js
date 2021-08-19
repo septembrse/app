@@ -83,7 +83,9 @@ export function SessionTimetableComponent(props){
         let event = Submission.getSubmission(event_ids[i]);
 
         if (event){
-          if (!event.isInGather(account)){
+          if (!account){
+            location = "unknown";
+          } else if (!event.isInGather(account)){
             location = "workshop";
           } else if (event.isPoster()){
             location = "poster";
@@ -113,14 +115,24 @@ export function SessionTimetableComponent(props){
     let location_link = null;
 
     if (location === "lecture_theatre"){
-      let link = account.getGatherTownLink();
+      let link = null;
+
+      if (account){
+        link = account.getGatherTownLink();
+      }
+
       if (link){
         location_link = <Link to={link}>Lecture Theatre</Link>;
       } else {
         location_link = "Lecture Theatre";
       }
     } else if (location === "poster"){
-      let link = account.getGatherTownLink();
+      let link = null;
+
+      if (account){
+        link = account.getGatherTownLink();
+      }
+
       if (link){
         location_link = <Link to={link}>Poster Hall</Link>;
       } else {
@@ -129,14 +141,21 @@ export function SessionTimetableComponent(props){
     } else if (location === "blended") {
       location_link = "Blended location";
     } else if (location === "networking"){
-      let link = account.getGatherTownLink();
+      let link = null;
+
+      if (account){
+        link = account.getGatherTownLink();
+      }
+
       if (link){
         location_link = <Link to={link}>Conference Center</Link>;
       } else {
         location_link = "Conference Center";
       }
-    } else {
+    } else if (location === "workshop") {
       location_link = "Workshop room (sign up may be needed!)";
+    } else {
+      location_link = <Link to="/login">Login for location</Link>
     }
 
     return (
