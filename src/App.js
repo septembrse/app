@@ -48,6 +48,7 @@ function App() {
               <Route exact path="/event" component = {EventPage} />
               <Route exact path="/event/:event_id" component = {EventPage} />
               <Route exact path="/music" component = {Music} />
+              <Route exact path="/contact" render = {(props) => <Guide {...props} page="contact" />} />
               <Route render={() => <h1>404: page not found</h1>} />
             </Switch>
         </Router>

@@ -103,6 +103,16 @@ function Home(props){
                       style={{borderRadius: "5px", marginTop: "5px"}}>
                 View your conference ticket
               </Button>
+              <Button onClick={() => props.history.push("/contact")}
+                      variant="primary"
+                      style={{borderRadius: "5px", marginTop: "5px"}}>
+                Contact and Feedback Details
+              </Button>
+              <Button onClick={() => props.history.push("/music")}
+                      variant="secondary"
+                      style={{borderRadius: "5px", marginTop: "5px"}}>
+                Music Credits
+              </Button>
               <Button href="https://septembrse.society-rse.org"
                       variant="primary"
                       style={{borderRadius: "5px", marginTop: "5px"}}>

@@ -22,6 +22,7 @@ import guide_markdown from "./venue.txt";
 import keys_markdown from "./keys.txt";
 import treasure_markdown from "./treasure.txt";
 import sponsor_markdown from "./sponsor.txt";
+import contact_markdown from "./contact.txt";
 
 const gfm = require('remark-gfm');
 
@@ -33,7 +34,7 @@ export function MarkdownComponent(props){
         <Col style={{marginTop:"10px",
                     maxWidth: "768px",
                     marginLeft: "auto", marginRight: "auto"}}>
-          <h1 style={{textAlign: "center"}}>Conference Venue Guide</h1>
+          <h1 style={{textAlign: "center"}}>{props.title}</h1>
         </Col>
       </Row>
       <Row>
@@ -55,7 +56,7 @@ export function GuideComponent(props){
   let page = props.page;
 
   if (page){
-    return <MarkdownComponent text={props.text} history={props.history} />
+    return <MarkdownComponent {...props} />
   }
 
   return (
@@ -122,6 +123,12 @@ export function Guide(props){
 
   let { page } = useParams();
 
+  let title = "Conference Venue Guide";
+
+  if (!page){
+    page = props.page;
+  }
+
   if (page === "quickstart"){
     fetch(quick_markdown)
       .then((response) => response.text())
@@ -130,7 +137,6 @@ export function Guide(props){
     fetch(keys_markdown)
       .then((response) => response.text())
       .then((textContent) => {setText(textContent)});
-
   } else if (page === "features"){
     fetch(guide_markdown)
       .then((response) => response.text())
@@ -143,6 +149,11 @@ export function Guide(props){
     fetch(sponsor_markdown)
       .then((response) => response.text())
       .then((textContent) => {setText(textContent)});
+  } else if (page === "contact"){
+    title = "Contact Information";
+    fetch(contact_markdown)
+      .then((response) => response.text())
+      .then((textContent) => {setText(textContent)});
   } else {
     page = null;
   }
@@ -152,6 +163,7 @@ export function Guide(props){
       <GuideComponent account={account}
                       setAccount={setAccount}
                       history={props.history}
+                      title={title}
                       text={text}
                       page={page}/>
     </SimplePage>
