@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/static/css/main.c06865ab.chunk.css",
-    "main.js": "/static/js/main.ac5adaee.chunk.js",
-    "main.js.map": "/static/js/main.ac5adaee.chunk.js.map",
+    "main.js": "/static/js/main.af11abbc.chunk.js",
+    "main.js.map": "/static/js/main.af11abbc.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.be265e1d.js",
     "runtime-main.js.map": "/static/js/runtime-main.be265e1d.js.map",
     "static/js/2.2115662f.chunk.js": "/static/js/2.2115662f.chunk.js",
@@ -11,6 +11,7 @@
     "static/css/main.c06865ab.chunk.css.map": "/static/css/main.c06865ab.chunk.css.map",
     "static/js/2.2115662f.chunk.js.LICENSE.txt": "/static/js/2.2115662f.chunk.js.LICENSE.txt",
     "static/media/amazon.b7a6d8fd.png": "/static/media/amazon.b7a6d8fd.png",
+    "static/media/contact.f318babe.txt": "/static/media/contact.f318babe.txt",
     "static/media/interstitial_bg.097b37a5.png": "/static/media/interstitial_bg.097b37a5.png",
     "static/media/keys.e08f7e0b.txt": "/static/media/keys.e08f7e0b.txt",
     "static/media/quickstart.746074f2.txt": "/static/media/quickstart.746074f2.txt",
@@ -22,6 +23,6 @@
     "static/js/runtime-main.be265e1d.js",
     "static/js/2.2115662f.chunk.js",
     "static/css/main.c06865ab.chunk.css",
-    "static/js/main.ac5adaee.chunk.js"
+    "static/js/main.af11abbc.chunk.js"
   ]
 }
