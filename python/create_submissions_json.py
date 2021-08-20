@@ -67,7 +67,7 @@ def get_name(email):
     for i in range(len(diversity)-1, 0, -1):
         e = diversity.loc[i]["Email address"]
 
-        if e == email:
+        if e.lower() == email.lower():
             return (diversity.loc[i]["What is your full name?"],
                     diversity.loc[i][
                         "What is your institution or affiliation?"])

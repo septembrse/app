@@ -114,6 +114,14 @@ export function GetLinks(props){
                     gather.town<br/>
                     <a href={account._getGatherTownLink()}>Click to visit the Virtual Conference Center</a>
                   </Card.Text>
+                  <Card.Text key="message_link">
+                    Messages Sent to the Committee<br/>
+                    <a href={account._getMessagesLink()}>Click to visit the form where people send messages</a>
+                  </Card.Text>
+                  <Card.Text key="feedback_link">
+                    Conference Feedback<br/>
+                    <a href={account._getFeedbackLink()}>Click to visit the form where people send feedback</a>
+                  </Card.Text>
                   <Card.Title>
                     Zoom Links
                   </Card.Title>

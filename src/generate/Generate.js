@@ -86,6 +86,18 @@ class Generate extends React.Component {
       throw new Error("No gather link!");
     }
 
+    const message_link = data.message_link;
+
+    if (!message_link){
+      throw new Error("No message link!");
+    }
+
+    const feedback_link = data.feedback_link;
+
+    if (!feedback_link){
+      throw new Error("No feedback link!");
+    }
+
     const god_key = data.god_key;
 
     if (!god_key){
@@ -234,7 +246,9 @@ class Generate extends React.Component {
       }
 
       let ticket = {"ticket": attendee.ticket,
-                    "gather_link": data.gather_link };
+                    "gather_link": data.gather_link,
+                    "message_link": data.message_link,
+                    "feedback_link": data.feedback_link };
 
       if (attendee.ticket === "committee" ||
           attendee.ticket === "volunteer" ||

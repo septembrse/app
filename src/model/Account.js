@@ -97,6 +97,18 @@ class Account {
     }
   }
 
+  _getMessagesLink(){
+    if (this.isAdmin()){
+      return this._secret["message_link"];
+    }
+  }
+
+  _getFeedbackLink(){
+    if (this.isAdmin()){
+      return this._secret["feedback_link"];
+    }
+  }
+
   getGatherTownLink(){
     if (this.isValidToday()){
       return this._secret["gather_link"];
@@ -645,12 +657,20 @@ class Account {
       // cache this to localStorage
       key = get_local_key(email);
 
+      let account = new Account(email, parsed);
+
+      if (!account.isAdmin()){
+        // remove anything that shouldn't be here
+        parsed["message_link"] = null;
+        parsed["feedback_link"] = null;
+        secret = JSON.stringify(parsed);
+        console.log(secret);
+      }
+
       localStorage.setItem("septembrse_user", email);
       localStorage.setItem("septembrse_version", secrets["version"]);
       localStorage.setItem("septembrse_secret_data", key.encrypt(secret));
       localStorage.setItem("septembrse_secret", key.encrypt(password));
-
-      let account = new Account(email, parsed);
 
       // save this to memory
       Account._logged_in_account = account;
@@ -658,6 +678,7 @@ class Account {
       return account;
 
     } catch(error){
+      console.log(error);
       throw new Error(
           "Invalid password. " +
           "Check the password sent to the email address " +

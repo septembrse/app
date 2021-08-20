@@ -59,7 +59,10 @@ for wshop in glob.glob("workshop_responses/*.xlsx"):
         wshop_responses[m.group(0)] = pd.read_excel(wshop)
 
 # The gather.town link
-gather_link = open("gathertown_link.txt", "r").readline().lstrip().rstrip()
+with open("gathertown_link.txt", "r") as FILE:
+    gather_link = FILE.readline().lstrip().rstrip()
+    message_link = FILE.readline().lstrip().rstrip()
+    feedback_link = FILE.readline().lstrip().rstrip()
 
 
 def clean(s):
@@ -337,6 +340,8 @@ with open("passwords.json", "w") as FILE:
                "slido_links": slido_links,
                "wshop_form_links": wshop_form_links,
                "gather_link": gather_link,
+               "message_link": message_link,
+               "feedback_link": feedback_link,
                "god_key": get_god_key()}, FILE)
 
 #print(tickets)
