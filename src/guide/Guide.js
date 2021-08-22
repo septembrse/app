@@ -11,6 +11,8 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 
+import { Redirect } from "react-router-dom";
+
 import { useParams } from 'react-router-dom';
 
 import ReactMarkdown from 'react-markdown'
@@ -122,6 +124,12 @@ export function Guide(props){
   const [text, setText] = React.useState(loading);
 
   let { page } = useParams();
+
+  if (props.need_login){
+    if (!(account && account.isLoggedIn())){
+      return (<Redirect to="/login" />);
+    }
+  }
 
   let title = "Conference Venue Guide";
 
