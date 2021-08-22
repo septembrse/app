@@ -98,7 +98,7 @@ def clean_int(s):
 
 
 def get_name(email):
-    rows = diversity.index[diversity['Email address'] == email].tolist()
+    rows = diversity.index[diversity['Email address'].str.lower() == email.lower()].tolist()
 
     if len(rows) == 0:
         return None
@@ -252,7 +252,7 @@ for i in range(0, len(tickets)):
                 "presentations": p}
 
     attendees.append(attendee)
-    all_emails[ticket["email"]] = 1
+    all_emails[ticket["email"].lower()] = 1
 
 # Now read all of the google drive links and add them to
 # the json
@@ -310,20 +310,20 @@ for i in range(0, len(wshop_forms)):
         for j in range(0, len(responses)):
             email = responses.loc[j]["Email address"]
 
-            if email in seen_emails:
+            if email.lower() in seen_emails:
                 print(f"\nProblem with workshop {ID}")
                 print(f"Duplicate email {email}")
-            elif email not in all_emails:
+            elif email.lower() not in all_emails:
                 print(f"\nProblem with workshop {ID}")
                 print(f"{email} has registered, but they don't have a ticket!")
             elif max_attendees is not None and max_attendees <= len(signed_up):
                 print(f"\nProblem with workshop {ID}")
                 print(f"Too many sign ups! {email} cannot join!")
-                unsuccessful.append(email)
+                unsuccessful.append(email.lower())
             else:
-                signed_up.append(email)
+                signed_up.append(email.lower())
 
-            seen_emails[email] = 1
+            seen_emails[email.lower()] = 1
 
     wshop_form_links[ID] = {
         "link": clean(link["form_link"]),
@@ -343,7 +343,5 @@ with open("passwords.json", "w") as FILE:
                "message_link": message_link,
                "feedback_link": feedback_link,
                "god_key": get_god_key()}, FILE)
-
-#print(tickets)
 
 tickets.to_excel("Tickets.xlsx", index=False)

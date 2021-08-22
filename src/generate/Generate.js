@@ -6,9 +6,6 @@ import SimplePage from "../SimplePage";
 import Account from "../model/Account";
 import Session from "../model/Session";
 
-import {CopyToClipboard} from 'react-copy-to-clipboard';
-
-import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -31,10 +28,18 @@ function _to_csv(guestlist){
 
     if (email){
       let name = guestlist[i][1];
-      if (!name){ name = "Anonymous" }
+      if (!name){
+        name = email.substring(0, email.indexOf("@"));
+        console.log(`No name for ${email} - using ${name}`);
+      }
 
       let role = guestlist[i][2];
       if (!role){ role = "user" }
+
+      if (role === "committee"){
+        console.log(`${name} is a committee member!`);
+        name = `⭐ ${name}`;
+      }
 
       let af = guestlist[i][3];
       if (!af){ af = "unknown"}
@@ -44,6 +49,44 @@ function _to_csv(guestlist){
   }
 
   return lines.join("\n");
+}
+
+
+function ClipboardCopy({ copyText }) {
+  const [isCopied, setIsCopied] = React.useState(false);
+
+  // This is the function we wrote earlier
+  async function copyTextToClipboard(text) {
+    if ('clipboard' in navigator) {
+      return await navigator.clipboard.writeText(text);
+    } else {
+      return document.execCommand('copy', true, text);
+    }
+  }
+
+  // onClick handler function for the copy button
+  const handleCopyClick = () => {
+    // Asynchronously call copyTextToClipboard
+    copyTextToClipboard(copyText)
+      .then(() => {
+        // If successful, update the isCopied state value
+        setIsCopied(true);
+        setTimeout(() => {
+          setIsCopied(false);
+        }, 1500);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  return (
+    <div>
+      <button onClick={handleCopyClick}>
+        <span>{isCopied ? 'Copied!' : 'Copy'}</span>
+      </button>
+    </div>
+  );
 }
 
 
@@ -263,6 +306,8 @@ class Generate extends React.Component {
           level = "admin";
         }
 
+        console.log(attendee);
+
         guestlist.push([attendee.email, attendee.name, level, attendee.affiliation]);
         num_general += 1;
 
@@ -412,26 +457,19 @@ class Generate extends React.Component {
 
       if (this.state.output){
         copy_button = (
-          <CopyToClipboard text={this.state.output}
-                           key="secrets"
-                           onCopy={() => this.setState({copied: true})}>
-            <Button variant="secondary"
-                    style={{width:"100%"}}>
-              Copy secrets.json to clipboard
-            </Button>
-          </CopyToClipboard>);
+          <div className={styles.copybox}>
+            <div className={styles.copytext}>secrets.json</div>
+            <ClipboardCopy copyText={this.state.output} />
+          </div>
+        );
       }
 
       if (this.state.guestlist){
         guest_button = [
-          <CopyToClipboard text={this.state.guestlist}
-                           key="guestlist"
-                           onCopy={() => this.setState({copied: true})}>
-            <Button variant="info"
-                    style={{width:"100%"}}>
-              Copy Gather guestlist to clipboard
-            </Button>
-          </CopyToClipboard>,
+          <div className={styles.copybox}>
+            <div className={styles.copytext}>gather.town guest list</div>
+            <ClipboardCopy copyText={this.state.guestlist} />
+          </div>,
           <ul key="ticket_list">
             <li key="general">General tickets: {this.state.num_general}</li>
             <li key="day">Day tickets: {this.state.num_day}</li>
