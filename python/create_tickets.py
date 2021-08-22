@@ -107,7 +107,7 @@ def get_name(email):
 
 
 def get_affiliation(email):
-    rows = diversity.index[diversity['Email address'] == email].tolist()
+    rows = diversity.index[diversity['Email address'].str.lower() == email.lower()].tolist()
 
     if len(rows) == 0:
         return None
@@ -116,13 +116,14 @@ def get_affiliation(email):
 
 
 def get_row_in_tickets(email):
-    rows = tickets.index[tickets["email"] == email].tolist()
+    rows = tickets.index[tickets["email"].str.lower() == email.lower()].tolist()
 
     if len(rows) == 0:
         return None
-    elif len(rows) > 1:
-        raise SystemError(f"Too many rows for {email}")
     else:
+        if len(rows) > 1:
+            print(f"WARNING! Too many rows for {email}")
+
         return rows[0]
 
 
@@ -251,8 +252,9 @@ for i in range(0, len(tickets)):
                 "affiliation": clean(get_affiliation(ticket["email"])),
                 "presentations": p}
 
-    attendees.append(attendee)
-    all_emails[ticket["email"].lower()] = 1
+    if ticket["email"].lower() not in all_emails:
+        attendees.append(attendee)
+        all_emails[ticket["email"].lower()] = 1
 
 # Now read all of the google drive links and add them to
 # the json

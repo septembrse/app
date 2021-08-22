@@ -28,18 +28,9 @@ function _to_csv(guestlist){
 
     if (email){
       let name = guestlist[i][1];
-      if (!name){
-        name = email.substring(0, email.indexOf("@"));
-        console.log(`No name for ${email} - using ${name}`);
-      }
 
       let role = guestlist[i][2];
       if (!role){ role = "user" }
-
-      if (role === "committee"){
-        console.log(`${name} is a committee member!`);
-        name = `⭐ ${name}`;
-      }
 
       let af = guestlist[i][3];
       if (!af){ af = "unknown"}
@@ -306,9 +297,18 @@ class Generate extends React.Component {
           level = "admin";
         }
 
-        console.log(attendee);
+        let name = attendee.name;
 
-        guestlist.push([attendee.email, attendee.name, level, attendee.affiliation]);
+        if (!name){
+          name = attendee.email.substring(0, attendee.email.indexOf("@"));
+          console.log(`No name for ${attendee.email} - using ${name}`);
+        }
+
+        if (attendee.ticket === "committee"){
+          name = `⭐ ${name}`;
+        }
+
+        guestlist.push([attendee.email, name, level, attendee.affiliation]);
         num_general += 1;
 
       } else if (attendee.ticket === "day") {
@@ -457,7 +457,7 @@ class Generate extends React.Component {
 
       if (this.state.output){
         copy_button = (
-          <div className={styles.copybox}>
+          <div key="copy_secrets" className={styles.copybox}>
             <div className={styles.copytext}>secrets.json</div>
             <ClipboardCopy copyText={this.state.output} />
           </div>
@@ -466,7 +466,7 @@ class Generate extends React.Component {
 
       if (this.state.guestlist){
         guest_button = [
-          <div className={styles.copybox}>
+          <div key="copy_guestlist" className={styles.copybox}>
             <div className={styles.copytext}>gather.town guest list</div>
             <ClipboardCopy copyText={this.state.guestlist} />
           </div>,
