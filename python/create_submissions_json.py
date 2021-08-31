@@ -138,13 +138,11 @@ for i in range(0, len(extra_data)):
 
     if emails is not None and len(emails) > 1:
         i = 0
-        print(ID, emails)
         for email in emails[1:]:
             (name, institution) = get_name(email)
 
             if name != submissions[ID]["name"]:
                 i += 1
-                print(name, institution)
                 submissions[ID][f"name{i}"] = name
                 submissions[ID][f"institution{i}"] = institution
 
