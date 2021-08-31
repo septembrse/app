@@ -6,6 +6,7 @@ You can contact the committee via a number of different channels;
 1. [Email us](mailto:conference-2021@society-rse.org) at conference-2021@society-rse.org.
 2. [Post an anonymous message](https://docs.google.com/forms/d/e/1FAIpQLSfKgxH21k4yCrVKqBtKsG0vceKU0v4hA8U6JV2AHQ3jWwtMtw/viewform?usp=sf_link)
 3. Fill in our [feedback survey](https://docs.google.com/forms/d/e/1FAIpQLSekBGx1-LdtZQJpBtLTBxeO4qukInkWPPCcsHKasKm3PysvpA/viewform?usp=sf_link)
+4. Talk to us in the Virtual Conference Center. Committee members will have stars next to their names.
 
 You can also find links to the above in the Virtual Conference Center at the
 SeptembRSE stand.
