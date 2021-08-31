@@ -27,6 +27,7 @@ import no_microphone from "../images/no_microphone.png";
 
 import oracle from "../images/sponsors/oracle.png";
 import amazon from "../images/sponsors/amazon.png";
+import microsoft from "../images/sponsors/microsoft.png";
 import alcesflight from "../images/sponsors/alcesflight.png";
 
 
@@ -242,6 +243,7 @@ class Interstitial extends React.Component {
             />
             <div className={styles.partners}>
               <img src={oracle} className={styles.partner_logo} alt="Thanks to Oracle for Research for Sponsoring" />
+              <img src={microsoft} className={styles.partner_logo} alt="Thanks to Microsoft for Sponsoring" />
               <img src={amazon} className={styles.partner_logo} alt="Thanks to Amazon Web Services for Sponsoring" />
             </div>
             {title}

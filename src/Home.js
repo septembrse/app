@@ -113,8 +113,13 @@ function Home(props){
                       style={{borderRadius: "5px", marginTop: "5px"}}>
                 Music Credits
               </Button>
-              <Button href="https://septembrse.society-rse.org"
+              <Button href="https://socrse.myspreadshop.co.uk/all"
                       variant="primary"
+                      style={{borderRadius: "5px", marginTop: "5px"}}>
+                Buy Merch! (T-shirts, bags, stickers)
+              </Button>
+              <Button href="https://septembrse.society-rse.org"
+                      variant="secondary"
                       style={{borderRadius: "5px", marginTop: "5px"}}>
                 Go to the conference website
               </Button>

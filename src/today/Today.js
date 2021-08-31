@@ -153,7 +153,19 @@ function SessionToday(props){
   }
 
   if (!zoom_text){
-    if (account && account.isLoggedIn()){
+    if (session.isNetworking()){
+      zoom_link = null;
+
+      if (account && account.isLoggedIn() && account.isValidToday()){
+        zoom_text = (
+          <Card.Text style={{textAlign: "center", color: "white"}}>
+            <a href={account.getGatherTownLink()}>
+              Connect to the Virtual Conference Center
+            </a>
+          </Card.Text>
+        );
+      }
+    } else if (account && account.isLoggedIn()){
       zoom_link = session.getZoomLink(account);
 
       if (zoom_link){

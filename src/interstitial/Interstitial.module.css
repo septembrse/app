@@ -26,10 +26,20 @@
 
 .partner_logo {
     height: 72pt;
+    background-color: white;
+    border: 10px;
+    border-color: white;
+    border-style: solid;
+    border-radius: 5px;
 }
 
 .networker_logo {
     height: 64pt;
+    background-color: white;
+    border: 10px;
+    border-color: white;
+    border-style: solid;
+    border-radius: 5px;
 }
 
 .bg_image {
