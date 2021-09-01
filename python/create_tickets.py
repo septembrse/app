@@ -172,7 +172,7 @@ for i in range(0, len(purchased_tickets)):
                                  ignore_index=True)
     else:
         # make sure that they are recorded as having bought a ticket
-        ticket_type = tickets.at[i, "ticket"]
+        ticket_type = tickets.at[idx, "ticket"]
 
         if ticket_type == "day":
             tickets.at[idx, "ticket"] = "general"
