@@ -321,7 +321,7 @@ export function TicketComponent(props){
         gathertown = (
           <li>A link to connect to the gather.town virtual conference center
               will appear here when the conference center is open. This
-              will be from the 2nd September to the 1st October 2021.</li>
+              will be from the afternoon of the 3rd September to the 1st October 2021.</li>
         );
       } else {
         gathertown = (

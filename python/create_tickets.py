@@ -152,12 +152,22 @@ for i in range(0, len(tickets)):
 # have been added to this spreadsheet
 for i in range(0, len(purchased_tickets)):
     email = purchased_tickets.loc[i]["Email"]
+
+    if pd.isna(email):
+        # this is a blank link
+        continue
+
+    if email.find("@") == -1:
+        # This does not look like an email address
+        # print(f"Skipping {email}")
+        continue
+
     idx = get_row_in_tickets(email)
 
     if idx is None:
         tickets = tickets.append({"email": email,
                                   "password": generate_password(),
-                                  "ticket": "full",
+                                  "ticket": "general",
                                   "name": get_name(email)},
                                  ignore_index=True)
     else:
@@ -245,14 +255,21 @@ for i in range(0, len(tickets)):
     else:
         p = p.split(",")
 
+    email = ticket["email"]
+    name = clean(get_name(email))
+    affiliation = clean(get_affiliation(email))
+
     attendee = {"email": ticket["email"],
                 "password": ticket["password"],
                 "ticket": ticket["ticket"],
-                "name": clean(ticket["name"]),
-                "affiliation": clean(get_affiliation(ticket["email"])),
+                "name": name,
+                "affiliation": affiliation,
                 "presentations": p}
 
     if ticket["email"].lower() not in all_emails:
+        if name is None:
+            print(f"WARNING: Need diversity data for {email}")
+
         attendees.append(attendee)
         all_emails[ticket["email"].lower()] = 1
 
