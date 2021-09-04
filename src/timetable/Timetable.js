@@ -122,7 +122,7 @@ export function SessionTimetableComponent(props){
       }
 
       if (link){
-        location_link = <Link to={link}>Lecture Theatre</Link>;
+        location_link = <a href={link}>Lecture Theatre</a>;
       } else {
         location_link = "Lecture Theatre";
       }
@@ -134,7 +134,7 @@ export function SessionTimetableComponent(props){
       }
 
       if (link){
-        location_link = <Link to={link}>Poster Hall</Link>;
+        location_link = <a href={link}>Poster Hall</a>;
       } else {
         location_link = "Poster Hall";
       }
@@ -148,7 +148,7 @@ export function SessionTimetableComponent(props){
       }
 
       if (link){
-        location_link = <Link to={link}>Conference Center</Link>;
+        location_link = <a href={link}>Conference Center</a>;
       } else {
         location_link = "Conference Center";
       }
