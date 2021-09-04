@@ -64,7 +64,7 @@ def get_name(email):
     if email is None or pd.isna(email):
         return (None, None)
 
-    for i in range(len(diversity)-1, 0, -1):
+    for i in range(len(diversity)-1, -1, -1):
         e = diversity.loc[i]["Email address"]
 
         if e.lower() == email.lower():
@@ -112,8 +112,17 @@ for i in range(0, len(extra_data)):
         email = emails[0]
     else:
         email = None
+        emails = []
 
     (name, institution) = get_name(email)
+
+    while name is None:
+        if len(emails) > 1:
+            emails = emails[1:]
+            email = emails[0]
+            (name, institution) = get_name(email)
+        else:
+            break
 
     if ID in submissions:
         if name:
