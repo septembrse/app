@@ -344,7 +344,14 @@ class Generate extends React.Component {
         ticket["day_keys"] = day_keys;
 
         if (has_access_today){
-          guestlist.push([attendee.email, attendee.name, "user", attendee.affiliation]);
+          let name = attendee.name;
+
+          if (!name){
+            name = attendee.email.substring(0, attendee.email.indexOf("@"));
+            //console.log(`No name for ${attendee.email} - using ${name}`);
+          }
+
+          guestlist.push([attendee.email, name, "user", attendee.affiliation]);
           num_day += 1;
         }
 
