@@ -1,0 +1,70 @@
+# The Oracle Cryptic Code Treasure Hunt
+
+The Oracle Cryptic Code Treasure Hunt will be running throughout the
+conference. Each week 5 treasure coins will be released. The first
+person (or team) that finds and submits all 20 coins will win
+a prize! We will also be publishing a leader board each week so you
+see how you or your team compares.
+
+Each coin contains a clue that will help you find the next coin.
+These clues are encoded using an increasingly sophisticated
+algorithm that you will have to write a program to decode.
+This is a challenge of your ability to solve riddles, write
+code, and find objects. We really encourage you to form a team
+to do this (e.g. maybe your local RSE group?). We think it will
+be a lot of fun, not only as a competition, but also as a
+group bonding or networking exercise.
+
+# Here is the first coin!
+
+![](https://github.com/septembrse/septembrse.github.io/blob/main/images/treasure_coin.png?raw=true)
+
+Each coin looks like the image above. 5 coins are released each week.
+On week 1, these are 1 coin on this
+website (the one above), plus 4 coins in the Virtual Conference Center.
+
+The clue to decode the first coin is;
+
+📝➡️🔟➡️b64
+
+The content of the first coin is;
+
+```
+T3JhY2xlIENyeXB0aWMgQ29kZSBUcmVhc3VyZSBIdW50ClRyZWFzdXJlIDEgOiBDb2RlIDAxYUdoTGFTCgpIaW50IHRvIGZpbmQgdGhlIG5leHQgcGllY2Ugb2YgdHJlYXN1cmU6IFJlc2lkZW50IG9mIERlbHBoaQpIaW50IHRvIGRlY29kZSB0aGUgbmV4dCBwaWVjZSBvZiB0cmVhc3VyZTog8J+TneKeoe+4j/CflJ/inqHvuI9iNjTinqHvuI/wn6qeCg==
+```
+
+Your job now is to use the above decoding clue to decode the coin's contents.
+
+[Click here to see how to decode this first coin](/#/venue/first_coin)
+
+When you have decoded the coin, the result will look something like this
+(this is just an example);
+
+```
+Oracle Cryptic Code Treasure Hunt
+Treasure 0 : Code 00fjirSd
+
+Hint to find the next piece of treasure: A riddle
+Hint to decode the next piece of treasure: Some emojis
+```
+
+You next need to enter the code number (e.g. `00fjirSd` in this example)
+into [this form](https://docs.google.com/forms/d/e/1FAIpQLSf2oWEH3p4EvNkzyu2UuFkb49SB68T52sIvyWkivxyZgNFsiQ/viewform?usp=sf_link).
+This form is also linked from the Oracle Cryptic Code Treasure Hunt
+booth in the Virtual Conference Center.
+
+![](https://github.com/septembrse/septembrse.github.io/blob/main/images/treasure_booth.png?raw=true)
+
+The form will ask for your email address and either your name, or the
+name of your team. The form records the timestamp of submission, which
+we will use to compose the leaderboard. Note that you must submit the
+codes for *all* 20 coins using the same email address to win the prize.
+The winner will be the person or team who submits all 20 coins
+the quickest.
+
+If you have any questions then please get in touch via the #septembrse
+channel on the RSE Slack.
+
+Happy Treasure Hunting!
+
+### [Previous](/#/venue/features)  |  [Up](/#/venue)  |  [Next](/#/venue/sponsors)

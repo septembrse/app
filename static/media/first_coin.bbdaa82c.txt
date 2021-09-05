@@ -1,0 +1,61 @@
+# The Oracle Cryptic Code Treasure Hunt
+
+The clue to decode the first coin is;
+
+📝➡️🔟➡️b64
+
+The content of the first coin is;
+
+```
+T3JhY2xlIENyeXB0aWMgQ29kZSBUcmVhc3VyZSBIdW50ClRyZWFzdXJlIDEgOiBDb2RlIDAxYUdoTGFTCgpIaW50IHRvIGZpbmQgdGhlIG5leHQgcGllY2Ugb2YgdHJlYXN1cmU6IFJlc2lkZW50IG9mIERlbHBoaQpIaW50IHRvIGRlY29kZSB0aGUgbmV4dCBwaWVjZSBvZiB0cmVhc3VyZTog8J+TneKeoe+4j/CflJ/inqHvuI9iNjTinqHvuI/wn6qeCg==
+```
+
+The clue to decode uses the following emojis;
+
+* 📝 = text (specifically UTF-8 encoded text)
+* ➡️ = is converted to
+* 🔟 = binary
+* b64 = base64 encoding
+
+You may have guessed that the content of the first coin is base64 encoded.
+The clue to decode is thus the instructions by which the contents were encoded.
+The clue says that the UTF-8 text of the coin was
+converted to binary, which was then converted to base64 encoding.
+
+To decode, we therefore need to reverse this process. We need to
+base64 decode the contents to get the binary data. We then need
+to interpret the binary data using UTF-8 to get the original contents
+of the coin.
+
+This process could be performed in many different programming languages.
+A possible Python program to do this is;
+
+```
+import base64
+
+encoded = "T3JhY2xlIENyeXB0aWMgQ29kZSBUcmVhc3VyZSBIdW50ClRyZWFzdXJlIDEgOiBDb2RlIDAxYUdoTGFTCgpIaW50IHRvIGZpbmQgdGhlIG5leHQgcGllY2Ugb2YgdHJlYXN1cmU6IFJlc2lkZW50IG9mIERlbHBoaQpIaW50IHRvIGRlY29kZSB0aGUgbmV4dCBwaWVjZSBvZiB0cmVhc3VyZTog8J+TneKeoe+4j/CflJ/inqHvuI9iNjTinqHvuI/wn6qeCg=="
+
+# base64 decode
+binary = base64.b64decode(encoded)
+
+# utf8 decode
+decoded = binary.decode("utf-8")
+
+print(decoded)
+```
+
+The output from running this program is the decoded contents of the
+first coin;
+
+```
+Oracle Cryptic Code Treasure Hunt
+Treasure 1 : Code 01aGhLaS
+
+Hint to find the next piece of treasure: Resident of Delphi
+Hint to decode the next piece of treasure: 📝➡️🔟➡️b64➡️🪞
+```
+
+Now you've decoded the first coin, you can return to the
+[previous page](/#/venue/treasure).
+
+### [Back](/#/venue/treasure)
