@@ -216,7 +216,7 @@ class Account {
     let today = new Date();
 
     // uncomment to test different dates
-    // today = new Date("2021-09-06T12:20:00");
+    // today = new Date("2021-09-06T09:00:00");
 
     return today;
   }
