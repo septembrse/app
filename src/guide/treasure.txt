@@ -1,20 +1,26 @@
 # The Oracle Cryptic Code Treasure Hunt
 
-We will be running a treasure hunt throughout the conference.
-Each week, various clues will be hidden throughout the map. Your task,
-as an individual or as part of a team, will be to find each clue by
-decoding the one previous. There will be a leaderboard of which
-people or teams are finding the clues the quickest, and a prize
-for the winning team(s) that will be awarded at the end of the
-conference.
+The Oracle Cryptic Code Treasure Hunt will be running throughout the
+conference. Each week 5 treasure coins will be released. The first
+person (or team) that finds and submits all 20 coins will win
+a prize! We will also be publishing a leader board each week so you
+see how you or your team compares.
 
-Clues will be encoded by an increasinly sophisticated algorithm that
-you will have to write a program to decode. This will be a challenge
-of both your ability to solve riddles, write code, and find objects.
+Each coin contains a clue that will help you find the next coin.
+These clues are encoded using an increasingly sophisticated
+algorithm that you will have to write a program to decode.
+This is a challenge of your ability to solve riddles, write
+code, and find objects. We really encourage you to form a team
+to do this (e.g. maybe your local RSE group?). We think it will
+be a lot of fun, not only as a competition, but also as a
+group bonding or networking exercise. Good luck!
 
-Are you or your team up to the challenge?
+## The first coin
 
-If so, more details will be made available at the start of the
-conference. Good luck!
+5 coins are released each week. On week 1, these are 1 coin on this
+website, plus 4 coins in the Virtual Conference Center.
+
+![](https://github.com/septembrse/septembrse.github.io/blob/main/images/treasure_coin.png?raw=true)
+
 
 ### [Previous](/#/venue/features)  |  [Up](/#/venue)  |  [Next](/#/venue/sponsors)
