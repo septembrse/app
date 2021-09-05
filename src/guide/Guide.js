@@ -25,6 +25,7 @@ import keys_markdown from "./keys.txt";
 import treasure_markdown from "./treasure.txt";
 import sponsor_markdown from "./sponsor.txt";
 import contact_markdown from "./contact.txt";
+import first_coin_markdown from "./first_coin.txt";
 
 const gfm = require('remark-gfm');
 
@@ -151,6 +152,10 @@ export function Guide(props){
       .then((textContent) => {setText(textContent)});
   } else if (page === "treasure"){
     fetch(treasure_markdown)
+      .then((response) => response.text())
+      .then((textContent) => {setText(textContent)});
+  } else if (page === "first_coin"){
+    fetch(first_coin_markdown)
       .then((response) => response.text())
       .then((textContent) => {setText(textContent)});
   } else if (page === "sponsors"){
