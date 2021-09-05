@@ -301,7 +301,7 @@ class Generate extends React.Component {
 
         if (!name){
           name = attendee.email.substring(0, attendee.email.indexOf("@"));
-          console.log(`No name for ${attendee.email} - using ${name}`);
+          //console.log(`No name for ${attendee.email} - using ${name}`);
         }
 
         if (attendee.ticket === "committee"){
@@ -336,6 +336,7 @@ class Generate extends React.Component {
 
             if (delta < 1.0 && delta > -1.0){
               console.log(`${attendee.email} : ${delta} : ${session.getStartTime()}`);
+              has_access_today = true;
             }
           }
         }
