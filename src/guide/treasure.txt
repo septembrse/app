@@ -17,10 +17,45 @@ group bonding or networking exercise. Good luck!
 
 ## The first coin
 
-5 coins are released each week. On week 1, these are 1 coin on this
-website, plus 4 coins in the Virtual Conference Center.
-
 ![](https://github.com/septembrse/septembrse.github.io/blob/main/images/treasure_coin.png?raw=true)
+
+Each coin looks like the image above. 5 coins are released each week.
+On week 1, these are 1 coin on this
+website (the one above), plus 4 coins in the Virtual Conference Center.
+
+The clue to decode the first coin is;
+
+📝➡️🔟➡️b64
+
+The content of the first coin is;
+
+```
+T3JhY2xlIENyeXB0aWMgQ29kZSBUcmVhc3VyZSBIdW50ClRyZWFzdXJlIDEgOiBDb2RlIDAxYUdoTGFTCgpIaW50IHRvIGZpbmQgdGhlIG5leHQgcGllY2Ugb2YgdHJlYXN1cmU6IFJlc2lkZW50IG9mIERlbHBoaQpIaW50IHRvIGRlY29kZSB0aGUgbmV4dCBwaWVjZSBvZiB0cmVhc3VyZTog8J+TneKeoe+4j/CflJ/inqHvuI9iNjTinqHvuI/wn6qeCg==
+```
+
+Your job now is to use the above decoding clue to decode the coin's contents.
+
+When you have done this, the result will be something like this
+(this is just an example);
+
+```
+Oracle Cryptic Code Treasure Hunt
+Treasure 0 : Code 00fjirSd
+
+Hint to find the next piece of treasure: A riddle
+Hint to decode the next piece of treasure: Some emojis
+```
+
+You will need to enter the code number (e.g. `00fjirSd` in this example)
+into [this form](https://docs.google.com/forms/d/e/1FAIpQLSf2oWEH3p4EvNkzyu2UuFkb49SB68T52sIvyWkivxyZgNFsiQ/viewform?usp=sf_link).
+The form is also linked from the Oracle Cryptic Code Treasure Hunt
+booth in the Virtual Conference Center.
+
+
+
+
+
+
 
 
 ### [Previous](/#/venue/features)  |  [Up](/#/venue)  |  [Next](/#/venue/sponsors)
