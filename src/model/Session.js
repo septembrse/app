@@ -39,6 +39,12 @@ class Session {
       this.title = "SeptembRSE has finished. We hope it was fun!";
     }
 
+    if (data["youtube"]){
+      this.youtube = data["youtube"];
+    } else {
+      this.youtube = null;
+    }
+
     this.delay_minutes = 5;
   }
 
@@ -174,6 +180,10 @@ class Session {
 
   getLink(){
     return `/session/${this.getID()}`;
+  }
+
+  getYouTubeLink(){
+    return this.youtube;
   }
 
   isBlended(){

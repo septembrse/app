@@ -30,6 +30,19 @@ export function SessionCard(props){
     zoom_text = null;
   }
 
+  let youtube_link = session.getYouTubeLink();
+
+  if (youtube_link){
+    youtube_link = (
+      <Card.Text style={{textAlign: "center"}}>
+        <a href={youtube_link}>View recorded session on YouTube</a>
+      </Card.Text>
+    );
+
+    //this is in the past, so no zoom link
+    zoom_text = null;
+  }
+
   return (
     <Row key={session.getID()}>
       <Col style={{marginTop:"10px",
@@ -44,6 +57,7 @@ export function SessionCard(props){
             <Card.Title style={{textAlign: "center"}}>
               Session {session.getID()}: {session.getTitle()}
             </Card.Title>
+            {youtube_link}
             {zoom_text}
             <Card.Text>
               {session.getDescription()}
