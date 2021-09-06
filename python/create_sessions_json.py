@@ -15,6 +15,7 @@ calendar.add('prodid', '-//SeptembRSE//calendar//')
 calendar.add('version', '2.0')
 
 data = pd.read_excel("Timetable.xlsx")
+youtube = pd.read_excel("YouTube Links.xlsx")
 
 tz = tzlocal.get_localzone()
 
@@ -23,6 +24,23 @@ presentation_to_session = {}
 now = datetime.datetime.now()
 
 events = json.load(open("../src/submissions.json", "r"))
+
+
+def get_youtube_link(id):
+    for i in range(0, len(youtube)):
+        y = youtube.loc[i]
+
+        if y["ID"] == id:
+            link = y["Link"]
+
+            if pd.isna(link):
+                link = None
+
+            print(f"{id} == {link}")
+            return link
+
+    return None
+
 
 for i in range(0, len(data)):
     d = data.loc[i]
@@ -66,11 +84,14 @@ for i in range(0, len(data)):
         event.add("summary", summary)
         calendar.add_component(event)
 
+    youtube_link = get_youtube_link(d["Session ID"])
+
     session = {"id": d["Session ID"],
                "title": d["Title"],
                "details": None,
                "starts": starts,
                "ends": ends,
+               "youtube": youtube_link,
                "presentations": presentations}
 
     sessions.append(session)
