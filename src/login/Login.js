@@ -130,9 +130,30 @@ export function LoginComponent(props) {
                             onChange={(e) => setPassword(e.target.value)}
                             onKeyPress={(e) => enterOnEnter(e)} />
               <Form.Text className="text-muted">
-                <div style={{color:"white"}}>
+                <div style={{color:"white", marginBottom: "10px"}}>
                   Use the password that was include in the email with
-                  your SeptembRSE ticket.
+                  your SeptembRSE ticket. This email has the subject
+                  "Your SeptembRSE Ticket". Note that this is separate
+                  to the emails sent by the Society confirming your
+                  purchase.
+                </div>
+              </Form.Text>
+              <Form.Text className="text-muted">
+                <div style={{color:"white", marginBottom: "10px"}}>
+                  The process is that the Society passes on your email address
+                  to the Conference Committee, who then generate and email
+                  out your Ticket. This process is manual, happens once a
+                  day, and not at weekends. This means that there can be
+                  a delay between you buying your ticket and receiving
+                  the "Your SeptembRSE Ticket" email that contains your
+                  password.
+                </div>
+              </Form.Text>
+              <Form.Text className="text-muted">
+                <div style={{color:"white"}}>
+                  If you have just bought your ticket, and want to
+                  log in now, then please <a href="mailto:conference-2021@society-rse.org">email us</a> and
+                  we will see what we can do to accelerate the process.
                 </div>
               </Form.Text>
             </Form.Group>
