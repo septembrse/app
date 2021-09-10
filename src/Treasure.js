@@ -25,7 +25,7 @@ export function Treasure(props){
   if (!key_text || key_text.length === 0){
     output = "Enter your input above to generate the key."
   } else {
-    output = get_key(`${code}${key_text}`).fingerprint();
+    output = get_key(`${code}${key_text.toLowerCase().trim()}`).fingerprint();
   }
 
   return (
