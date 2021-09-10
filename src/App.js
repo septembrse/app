@@ -19,6 +19,7 @@ import {Guide} from "./guide/Guide";
 import {SessionPage} from "./session/SessionPage";
 import {EventPage} from "./search/EventPage";
 import {Music} from './music/Music';
+import {Treasure} from './Treasure';
 
 import Generate from "./generate/Generate";
 import GetLinks from "./generate/GetLinks";
@@ -32,6 +33,7 @@ function App() {
               <Route exact path="/interstitial" component = {Interstitial} />
               <Route exact path="/interstitial/:test_date" component = {Interstitial} />
               <Route exact path="/break" render = {(props) => <Interstitial {...props} is_break={true} />} />
+              <Route exact path="/treasure/:code" component = {Treasure} />
               <Route exact path="/search" component = {Search} />
               <Route exact path="/login" component = {Login} />
               <Route exact path="/logout" component = {Logout} />
