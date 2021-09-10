@@ -218,7 +218,7 @@ export function EventCard(props){
       <Card.Text key="l2">
         Please <a href={drive_link}>click here</a> to access a drive
         in which the presenter may have uploaded slides or associated
-        materials. These will be in the 'content' folder in this drive.
+        materials.
       </Card.Text>,
       <Card.Text key="l3">
         If you can't access this drive, then
