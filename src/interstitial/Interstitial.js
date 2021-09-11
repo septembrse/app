@@ -39,11 +39,13 @@ class Interstitial extends React.Component {
 
     this.state = { "account": Account.get_account(),
                    "playing": Sound.status.STOPPED,
-                   "track": Math.floor(Math.random() * tracks.length),
+                   "track": null,
                    "position": null,
                    "autoload": false,
                    "is_break": props.is_break,
                    "target_value": 5 };
+
+    this.state["track"] = this.getNextTrack();
   }
 
   getNextTrack(){
@@ -54,6 +56,10 @@ class Interstitial extends React.Component {
 
     while (track === this.state.track){
       track = Math.floor(Math.random() * ntracks);
+
+      if (track < 14){
+        track = this.state.track;
+      }
     }
 
     return track;
