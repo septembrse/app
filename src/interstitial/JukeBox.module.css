@@ -1,0 +1,94 @@
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: linear-gradient(rgb(89,128,188), white);
+}
+
+.trackbutton {
+  width: 64px;
+  height: 64px;
+  margin: 1px;
+  margin-top: 2px;
+  border-radius: 20px;
+}
+
+.playbutton {
+  width: 96px;
+  height: 96px;
+  font-size: 48pt;
+  background-color: cyan;
+}
+
+.playbuttons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: stretch;
+  align-content: stretch;
+  gap: 0px;
+  margin: 10px;
+  border-radius: 20px;
+  background-color: cyan;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: stretch;
+  align-content: stretch;
+  gap: 1px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 5px;
+  padding: 2px;
+  background-color: black;
+  border-style: ridge;
+  border-radius: 20px;
+}
+
+.jukebox {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  max-width: 800px;
+  align-content: center;
+  background-color: darkblue;
+  margin-top: 20px;
+  border-radius: 20px;
+  border-style: ridge;
+}
+
+.licenseimg {
+  height: 48px;
+  margin: 10px;
+}
+
+.trackinfo {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 5px;
+  justify-content: center;
+  background-color: black;
+  border-radius: 20px;
+}
+
+.title {
+  font-size: 24pt;
+  text-align: center;
+}
+
+.author {
+  font-size: 16pt;
+  text-align: center;
+}

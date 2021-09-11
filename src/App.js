@@ -20,6 +20,7 @@ import {SessionPage} from "./session/SessionPage";
 import {EventPage} from "./search/EventPage";
 import {Music} from './music/Music';
 import {Treasure} from './Treasure';
+import {JukeBox} from './interstitial/JukeBox';
 
 import Generate from "./generate/Generate";
 import GetLinks from "./generate/GetLinks";
@@ -50,6 +51,7 @@ function App() {
               <Route exact path="/event" component = {EventPage} />
               <Route exact path="/event/:event_id" component = {EventPage} />
               <Route exact path="/music" component = {Music} />
+              <Route exact path="/jukebox" component = {JukeBox} />
               <Route exact path="/contact" render = {(props) => <Guide {...props} page="contact" need_login={true} />} />
               <Route render={() => <h1>404: page not found</h1>} />
             </Switch>

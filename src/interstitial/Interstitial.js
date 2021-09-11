@@ -35,8 +35,6 @@ class Interstitial extends React.Component {
   constructor(props){
     super(props);
 
-    let tracks = getTracks();
-
     this.state = { "account": Account.get_account(),
                    "playing": Sound.status.STOPPED,
                    "track": null,
