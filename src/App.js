@@ -20,6 +20,7 @@ import {SessionPage} from "./session/SessionPage";
 import {EventPage} from "./search/EventPage";
 import {Music} from './music/Music';
 import {Treasure} from './Treasure';
+import {Note} from './Note';
 import {JukeBox} from './interstitial/JukeBox';
 
 import Generate from "./generate/Generate";
@@ -35,6 +36,8 @@ function App() {
               <Route exact path="/interstitial/:test_date" component = {Interstitial} />
               <Route exact path="/break" render = {(props) => <Interstitial {...props} is_break={true} />} />
               <Route exact path="/treasure/:code" component = {Treasure} />
+              <Route exact path="/note" component = {Note} />
+              <Route exact path="/note/:code" component = {Note} />
               <Route exact path="/search" component = {Search} />
               <Route exact path="/login" component = {Login} />
               <Route exact path="/logout" component = {Logout} />

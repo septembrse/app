@@ -43,7 +43,7 @@ function _to_csv(guestlist){
 }
 
 
-function ClipboardCopy({ copyText }) {
+export function ClipboardCopy({ copyText }) {
   const [isCopied, setIsCopied] = React.useState(false);
 
   // This is the function we wrote earlier
