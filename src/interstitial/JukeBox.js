@@ -1,14 +1,5 @@
 
 import React from 'react';
-
-import SimplePage from "../SimplePage";
-
-import Container from "react-bootstrap/Container";
-import Card from "react-bootstrap/Card";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import InputGroup from "react-bootstrap/InputGroup";
-import FormControl from 'react-bootstrap/FormControl';
 import Button from "react-bootstrap/Button";
 
 import Sound from "react-sound";
@@ -81,6 +72,27 @@ export class JukeBox extends React.Component {
   render(){
 
     let tracks = getTracks();
+
+    tracks = [...tracks];
+
+    tracks.sort((a, b) => {
+      if (a.author === b.author){
+        if (a.title < b.title){
+          return -1;
+        } else if (a.title === b.title){
+          return 0;
+        } else if (a.title > b.title){
+          return 1;
+        }
+      } else if (a.author < b.author){
+        return -1;
+      } else {
+        return 1;
+      }
+
+      return 0;
+    });
+
     let track = tracks[this.state.track];
 
     let buttons = [];
