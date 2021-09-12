@@ -28,7 +28,13 @@ export function Note(props){
     let hash_key = get_hash(`${main_code}:${greeting}`);
     let hash_answer = get_hash(`${main_code}:${answer}`);
 
-    let key = get_key(`${main_code}:${greeting.toLowerCase().trim()}`);
+    let g = greeting;
+
+    if (g){
+      g = g.toLowerCase().trim();
+    }
+
+    let key = get_key(`${main_code}:${g}`);
 
     let t = null;
 
