@@ -1,9 +1,10 @@
 
 import React from 'react';
 
-
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+
+import Account from "./model/Account";
 
 import { useParams } from 'react-router-dom';
 
@@ -12,8 +13,31 @@ import { ClipboardCopy } from './generate/Generate';
 
 import styles from "./Note.module.css";
 
+import notes from "./notes.json";
+
+function get_coded_hash(code, value){
+  if (value){
+    return get_hash(`${code}:${value.toLowerCase().trim()}`);
+  } else {
+    return null;
+  }
+}
+
+function get_coded_key(code, value){
+  if (value){
+    return get_key(`${value.toLowerCase().trim()}:${code}`);
+  } else {
+    return null;
+  }
+}
 
 export function Note(props){
+
+  let [account, setAccount] = React.useState(Account.get_account());
+
+  React.useEffect(() => {
+    setAccount(Account.get_account());
+  }, [account]);
 
   const [greeting, setGreeting] = React.useState(null);
   const [track, setTrack] = React.useState(null);
@@ -25,32 +49,34 @@ export function Note(props){
 
   if (!code){
 
-    let hash_key = get_hash(`${main_code}:${greeting}`);
-    let hash_answer = get_hash(`${main_code}:${answer}`);
-
-    let g = greeting;
-
-    if (g){
-      g = g.toLowerCase().trim();
+    if (!account || !account.isLoggedIn() || !account.isAdmin()){
+      return <div>UNAUTHORISED</div>;
     }
 
-    let key = get_key(`${main_code}:${g}`);
+    let output = null;
+    let data = null;
+    let key = get_coded_key(main_code, greeting);
 
-    let t = null;
+    if (key){
+      let hash_greeting = get_coded_hash(main_code, greeting);
+      let hash_answer = get_coded_hash(main_code, answer);
 
-    try{
-      t = parseInt(track);
-    } catch(error){}
+      let t = null;
 
-    let data = {
-      "question": question,
-      "track": t,
-      "answer": hash_answer
-    };
+      try{
+        t = parseInt(track);
+      } catch(error){}
 
-    let secret = key.encrypt(JSON.stringify(data));
+      data = {
+        "question": question,
+        "track": t,
+        "answer": hash_answer
+      };
 
-    let output = `"${hash_key}": "${secret}"`;
+      let secret = key.encrypt(JSON.stringify(data));
+
+      output = `"${hash_greeting}": "${secret}"`;
+    }
 
     return (
       <div style={{marginBottom: "30px"}}>
@@ -113,7 +139,25 @@ export function Note(props){
         <div className={styles.background}/>
       </div>
     );
-  } else {
-    return <div>Not yet!</div>;
   }
+
+  let hash_greeting = get_coded_hash(code, greeting);
+
+  if (hash_greeting){
+    console.log(hash_greeting);
+  }
+
+  return (
+    <div style={{marginBottom: "30px"}}>
+      <Row>
+        <Col style={{marginTop:"10px",
+                     maxWidth: "768px",
+                     marginLeft: "auto", marginRight: "auto"}}>
+          <input key="input" className={styles.inputbar}
+                 onChange={(e) => setGreeting(e.target.value)}
+                 placeholder="Greeting..." />
+        </Col>
+      </Row>
+    </div>
+  );
 }
