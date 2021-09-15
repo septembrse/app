@@ -1,4 +1,45 @@
 
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.dialogue {
+  display: flex;
+  flex-direction: column;
+}
+
+.question {
+  text-align: left;
+  margin-right: auto;
+}
+
+.answer {
+  text-align: right;
+  margin-left: auto;
+}
+
+.musicbutton {
+  margin-left: auto;
+}
+
+.inputbox {
+  display: flex;
+  flex-direction: row;
+}
+
+.submitbutton {
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  display: inline;
+}
+
+.inputbar {
+  display: inline;
+}
+
 .background {
   position: fixed;
   top: 0;

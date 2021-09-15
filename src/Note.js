@@ -330,7 +330,7 @@ class NoteDialog extends React.Component {
     }
 
     return (
-      <div style={{marginBottom: "30px"}}>
+      <div className={styles.container}>
         {sound_component}
         <div className={styles.dialogue}>
           {dialog}
