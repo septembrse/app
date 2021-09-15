@@ -260,9 +260,11 @@ class NoteDialog extends React.Component {
           );
 
           if (data.track){
+            let start = Math.random() * (20000 - 10000) + 10000;
+
             this.setState({track:data.track,
-                           position:5000,
-                           start_position:5000});
+                           position:start,
+                           start_position:start});
             d.push(
               <Button key="music_button"
                       className={styles.musicbutton}
