@@ -155,16 +155,39 @@ class NoteDialog extends React.Component {
       dialog: [],
       stage: 0,
       playing: "STOPPED",
-      position: 0
+      position: 0,
+      start_position: 0
     };
+  }
+
+  togglePlay(){
+    if (this.state.playing === "PLAYING"){
+      this.setState({playing:"STOPPED",
+                     position:this.state.start_position});
+    } else {
+      this.setState({playing:"PLAYING"});
+    }
+  }
+
+  onPlaying(o){
+    let p = o.position;
+
+    this.setState({position: p});
+
+    if (p - this.state.start_position > 10000){
+      this.stopMusic();
+    }
+  }
+
+  stopMusic() {
+    this.setState({playing:"STOPPED",
+                   position:this.state.start_position});
   }
 
   render(){
     let input_box = null;
 
     const stage = this.state.stage;
-
-    console.log(stage);
 
     if (stage === 0){
       input_box = (
@@ -196,12 +219,14 @@ class NoteDialog extends React.Component {
               url={tracks[track-1]["url"]}
               playStatus={this.state.playing}
               position={this.state.position}
-              onPlaying={(o)=>this.setState({position:o.position})}
+              onPlaying={(o)=>this.onPlaying(o)}
               autoLoad={true} />
       );
     }
 
     let validate = () => {
+      this.stopMusic();
+
       let hash_greeting = get_coded_hash(code, greeting);
       let data = null;
       let d = [...dialog];
@@ -235,11 +260,13 @@ class NoteDialog extends React.Component {
           );
 
           if (data.track){
-            this.setState({track:data.track});
+            this.setState({track:data.track,
+                           position:5000,
+                           start_position:5000});
             d.push(
               <Button key="music_button"
                       className={styles.musicbutton}
-                      onClick={()=>this.setState({playing:"PLAYING"})}>
+                      onClick={()=>this.togglePlay()}>
                 Play
               </Button>
             );
