@@ -189,41 +189,6 @@ class NoteDialog extends React.Component {
 
     const stage = this.state.stage;
 
-    if (stage === 0){
-      input_box = (
-        <input key="input_question" className={styles.inputquestion}
-              onChange={(e) => this.setState({greeting:e.target.value})}
-              placeholder="Say something to Dr Note..." />
-      );
-    } else if (stage === 1){
-      input_box = (
-        <input key="input_answer" className={styles.inputquestion}
-              onChange={(e) => this.setState({answer:e.target.value})}
-              placeholder="Give your answer to Dr Note..." />
-      );
-    }
-
-    const code = this.state.code;
-    const greeting = this.state.greeting;
-    const dialog = this.state.dialog;
-    const answer = this.state.answer;
-    const track = this.state.track;
-
-    let sound_component = null;
-
-    if (track){
-      let tracks = getTracks();
-
-      sound_component = (
-        <Sound key="music_sound"
-              url={tracks[track-1]["url"]}
-              playStatus={this.state.playing}
-              position={this.state.position}
-              onPlaying={(o)=>this.onPlaying(o)}
-              autoLoad={true} />
-      );
-    }
-
     let validate = () => {
       this.stopMusic();
 
@@ -317,6 +282,53 @@ class NoteDialog extends React.Component {
 
       this.setState({dialog:d, stage:next_stage});
     };
+
+    let return_pressed = (e) => {
+      if (!e) e = window.event;
+
+      var keyCode = e.code || e.key;
+      if (keyCode == 'Enter'){
+        // Enter pressed
+        validate();
+      }
+    };
+
+    if (stage === 0){
+      input_box = (
+        <input key="input_question" className={styles.inputquestion}
+              onChange={(e) => this.setState({greeting:e.target.value})}
+              onKeyPress={return_pressed}
+              placeholder="Say something to Dr Note..." />
+      );
+    } else if (stage === 1){
+      input_box = (
+        <input key="input_answer" className={styles.inputquestion}
+              onChange={(e) => this.setState({answer:e.target.value})}
+              onKeyPress={return_pressed}
+              placeholder="Give your answer to Dr Note..." />
+      );
+    }
+
+    const code = this.state.code;
+    const greeting = this.state.greeting;
+    const dialog = this.state.dialog;
+    const answer = this.state.answer;
+    const track = this.state.track;
+
+    let sound_component = null;
+
+    if (track){
+      let tracks = getTracks();
+
+      sound_component = (
+        <Sound key="music_sound"
+              url={tracks[track-1]["url"]}
+              playStatus={this.state.playing}
+              position={this.state.position}
+              onPlaying={(o)=>this.onPlaying(o)}
+              autoLoad={true} />
+      );
+    }
 
     let validate_button = null;
 
