@@ -191,13 +191,13 @@ class NoteDialog extends React.Component {
 
     if (stage === 0){
       input_box = (
-        <input key="input_question" className={styles.inputbar}
+        <input key="input_question" className={styles.inputquestion}
               onChange={(e) => this.setState({greeting:e.target.value})}
               placeholder="Say something to Dr Note..." />
       );
     } else if (stage === 1){
       input_box = (
-        <input key="input_answer" className={styles.inputbar}
+        <input key="input_answer" className={styles.inputquestion}
               onChange={(e) => this.setState({answer:e.target.value})}
               placeholder="Give your answer to Dr Note..." />
       );
@@ -339,6 +339,7 @@ class NoteDialog extends React.Component {
           {input_box}
           {validate_button}
         </div>
+        <div className={styles.background}/>
       </div>
     );
   }
