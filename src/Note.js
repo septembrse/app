@@ -234,7 +234,7 @@ class NoteDialog extends React.Component {
               <Button key="music_button"
                       className={styles.musicbutton}
                       onClick={()=>this.togglePlay()}>
-                Play
+                ⏯️
               </Button>
             );
           }
@@ -264,7 +264,7 @@ class NoteDialog extends React.Component {
             );
             d.push(
               <div key="answer_answer2" className={styles.answer}>
-                {get_coded_key(code, answer).fingerprint()}
+                {get_coded_key(code, answer).fingerprint().replaceAll(":", "🎶")}
               </div>
             );
 
@@ -287,7 +287,7 @@ class NoteDialog extends React.Component {
       if (!e) e = window.event;
 
       var keyCode = e.code || e.key;
-      if (keyCode == 'Enter'){
+      if (keyCode === 'Enter'){
         // Enter pressed
         validate();
       }
@@ -319,6 +319,26 @@ class NoteDialog extends React.Component {
 
     if (track){
       let tracks = getTracks();
+
+      tracks = [...tracks];
+
+      tracks.sort((a, b) => {
+        if (a.author === b.author){
+          if (a.title < b.title){
+            return -1;
+          } else if (a.title === b.title){
+            return 0;
+          } else if (a.title > b.title){
+            return 1;
+          }
+        } else if (a.author < b.author){
+          return -1;
+        } else {
+          return 1;
+        }
+
+        return 0;
+      });
 
       sound_component = (
         <Sound key="music_sound"
