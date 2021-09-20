@@ -54,10 +54,6 @@ class Interstitial extends React.Component {
 
     while (track === this.state.track){
       track = Math.floor(Math.random() * ntracks);
-
-      if (track < 14){
-        track = this.state.track;
-      }
     }
 
     return track;
