@@ -262,9 +262,16 @@ class NoteDialog extends React.Component {
                 Correct! Here is the code. Use it wisely.
               </div>
             );
+
+            let joiner = "🎶";
+
+            if (!data.track){
+              joiner = "🐱";
+            }
+
             d.push(
               <div key="answer_answer2" className={styles.answer}>
-                {get_coded_key(code, answer).fingerprint().replaceAll(":", "🎶")}
+                {get_coded_key(code, answer).fingerprint().replaceAll(":", joiner)}
               </div>
             );
 
@@ -298,14 +305,14 @@ class NoteDialog extends React.Component {
         <input key="input_question" className={styles.inputquestion}
               onChange={(e) => this.setState({greeting:e.target.value})}
               onKeyPress={return_pressed}
-              placeholder="Say something to Dr Note..." />
+              placeholder="Say something..." />
       );
     } else if (stage === 1){
       input_box = (
         <input key="input_answer" className={styles.inputquestion}
               onChange={(e) => this.setState({answer:e.target.value})}
               onKeyPress={return_pressed}
-              placeholder="Give your answer to Dr Note..." />
+              placeholder="Give your answer..." />
       );
     }
 
